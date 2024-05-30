@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tentangs', function (Blueprint $table) {
+        Schema::create('kliens', function (Blueprint $table) {
             $table->id();
-            $table->string('judul')->nullable();
+            $table->string('nama')->nullable();
             $table->string('gambar')->nullable();
-            $table->text('deskripsi')->nullable();
-            $table->string('kontak')->nullable();
-            $table->string('lokasi')->nullable();
-            $table->string('nomor_telpon')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tentangs');
+        Schema::dropIfExists('kliens');
     }
 };
