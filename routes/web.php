@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\TentangController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -8,3 +9,4 @@ Route::get('/', function () {
 });
 
 Route::resource('admin', AdminController::class);
+Route::resource('tentang', TentangController::class);

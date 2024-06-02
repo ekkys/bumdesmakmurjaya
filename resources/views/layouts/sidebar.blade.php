@@ -21,7 +21,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{ route('tentang.index') }}">
                         <i class="bi bi-chat-left-quote" style="font-size: 1rem;"></i><span>Tentang Kami</span>
                     </a>
                 </li>
@@ -52,7 +52,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <i class="bi bi-house-door" style="font-size: 1rem;"></i><span>Alamat & Kontak</span>
+                        <i class="bi bi-house-door" style="font-size: 1rem;"></i><span>Divisi</span>
                     </a>
                 </li>
             </ul>
