@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Index - QuickStart Bootstrap Template</title>
+    <title>BUMDES MAKMUR JAYA</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -43,43 +43,36 @@
     <header id="header" class="header d-flex align-items-center fixed-top">
         <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
-            <a href="index.html" class="logo d-flex align-items-center me-auto">
-                <img src="assets/img/logo.png" alt="">
-                <h1 class="sitename">QuickStart</h1>
+            <a href="#hero" class="logo d-flex me-auto">
+                <img src="{{ url('assets/img/bumdes.png') }}" alt="">
+                <h4 class="sitename">Bumdes Makmur Jaya</h4>
             </a>
 
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="#hero" class="">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                    <li class="dropdown"><a href="#"><span>Dropdown</span> <i
+                    <li class="dropdown"><a href="#about"><span>Tentang Kami</span> <i
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
-                            <li><a href="#">Dropdown 1</a></li>
-                            <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i
-                                        class="bi bi-chevron-down toggle-dropdown"></i></a>
-                                <ul>
-                                    <li><a href="#">Deep Dropdown 1</a></li>
-                                    <li><a href="#">Deep Dropdown 2</a></li>
-                                    <li><a href="#">Deep Dropdown 3</a></li>
-                                    <li><a href="#">Deep Dropdown 4</a></li>
-                                    <li><a href="#">Deep Dropdown 5</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Dropdown 2</a></li>
-                            <li><a href="#">Dropdown 3</a></li>
-                            <li><a href="#">Dropdown 4</a></li>
+                            <li><a href="#">Unit TPS 3R</a></li>
+                            <li><a href="#">Unit Pasar Desa</a></li>
+                            <li><a href="#">Unit Pinjaman</a></li>
                         </ul>
                     </li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li class="dropdown"><a href="#about"><span>Layanan Kami</span> <i
+                                class="bi bi-chevron-down toggle-dropdown"></i></a>
+                        <ul>
+                            <li><a href="#">Pengangkutan dan Pengolahan Sampah Non B3.</a></li>
+                            <li><a href="#">Pembelian Anfalan & Barang Bekas</a></li>
+                            <li><a href="#">Pemusnahan dokumen & Produk Expired</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#features">Legalitas</a></li>
+                    <li><a href="#services">Klien Kami</a></li>
+                    <li><a href="#pricing">Berita</a></li>
+                    <li><a href="#contact">Kontak</a></li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
-
-            <a class="btn-getstarted" href="#about">Get Started</a>
 
         </div>
     </header>
@@ -93,69 +86,24 @@
             </div>
             <div class="container text-center">
                 <div class="d-flex flex-column justify-content-center align-items-center">
-                    <h1 data-aos="fade-up" class="">Welcome to <span>QuickStart</span></h1>
-                    <p data-aos="fade-up" data-aos-delay="100" class="">Quickly start your project now and set the
-                        stage for success<br></p>
                     <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
-                        <a href="#about" class="btn-get-started">Get Started</a>
-                        <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ"
-                            class="glightbox btn-watch-video d-flex align-items-center"><i
-                                class="bi bi-play-circle"></i><span>Watch Video</span></a>
                     </div>
-                    <img src="assets/img/hero-services-img.webp" class="img-fluid hero-img" alt=""
-                        data-aos="zoom-out" data-aos-delay="300">
+
                 </div>
             </div>
 
         </section><!-- /Hero Section -->
 
         <!-- Featured Services Section -->
-        <section id="featured-services" class="featured-services section">
+        {{-- <section id="featured-services" class="featured-services section">
 
             <div class="container">
 
-                <div class="row gy-4">
-
-                    <div class="col-xl-4 col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="service-item d-flex">
-                            <div class="icon flex-shrink-0"><i class="bi bi-briefcase"></i></div>
-                            <div>
-                                <h4 class="title"><a href="#" class="stretched-link">Lorem Ipsum</a></h4>
-                                <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas
-                                    molestias excepturi</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Service Item -->
-
-                    <div class="col-xl-4 col-lg-6" data-aos="fade-up" data-aos-delay="200">
-                        <div class="service-item d-flex">
-                            <div class="icon flex-shrink-0"><i class="bi bi-card-checklist"></i></div>
-                            <div>
-                                <h4 class="title"><a href="#" class="stretched-link">Dolor Sitema</a></h4>
-                                <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                    aliquip exa</p>
-                            </div>
-                        </div>
-                    </div><!-- End Service Item -->
-
-                    <div class="col-xl-4 col-lg-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="service-item d-flex">
-                            <div class="icon flex-shrink-0"><i class="bi bi-bar-chart"></i></div>
-                            <div>
-                                <h4 class="title"><a href="#" class="stretched-link">Sed ut perspiciatis</a>
-                                </h4>
-                                <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum</p>
-                            </div>
-                        </div>
-                    </div><!-- End Service Item -->
-
-                </div>
+                <div class="row gy-4"></div>
 
             </div>
 
-        </section><!-- /Featured Services Section -->
+        </section><!-- /Featured Services Section --> --}}
 
         <!-- About Section -->
         <section id="about" class="about section">
@@ -181,8 +129,7 @@
                                     consequat. Duis aute irure dolor in reprehenderit in voluptate trideta
                                     storacalaperda mastiro dolore eu fugiat nulla pariatur.</span></li>
                         </ul>
-                        <a href="#" class="read-more"><span>Read More</span><i
-                                class="bi bi-arrow-right"></i></a>
+                        <a href="#" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
                     </div>
 
                     <div class="col-lg-6 about-images" data-aos="fade-up" data-aos-delay="200">
