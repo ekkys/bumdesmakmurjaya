@@ -43,36 +43,49 @@
     <header id="header" class="header d-flex align-items-center fixed-top">
         <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
-            <a href="#hero" class="logo d-flex me-auto">
-                <img src="{{ url('assets/img/bumdes.png') }}" alt="">
-                <h4 class="sitename">Bumdes Makmur Jaya</h4>
+            <a href="" class="logo d-flex align-items-center me-auto">
+                <img src="assets/img/logo.png" alt="">
+                <h1 class="sitename">QuickStart</h1>
             </a>
 
             <nav id="navmenu" class="navmenu">
                 <ul>
+                    <li><a href="#hero" class="">Home</a></li>
                     <li class="dropdown"><a href="#about"><span>Tentang Kami</span> <i
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
-                            <li><a href="#">Unit TPS 3R</a></li>
-                            <li><a href="#">Unit Pasar Desa</a></li>
-                            <li><a href="#">Unit Pinjaman</a></li>
+                            <li><a href="#featured-services">Legalitas</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown"><a href="#about"><span>Layanan Kami</span> <i
+                    <li><a href="#features">Unit Kami</a></li>
+                    <li><a href="#features-details">Layanan</a></li>
+                    <li><a href="#clients">Klien</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    {{-- <li class="dropdown"><a href="#"><span>Dropdown</span> <i
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
-                            <li><a href="#">Pengangkutan dan Pengolahan Sampah Non B3.</a></li>
-                            <li><a href="#">Pembelian Anfalan & Barang Bekas</a></li>
-                            <li><a href="#">Pemusnahan dokumen & Produk Expired</a></li>
+                            <li><a href="#">Dropdown 1</a></li>
+                            <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i
+                                        class="bi bi-chevron-down toggle-dropdown"></i></a>
+                                <ul>
+                                    <li><a href="#">Deep Dropdown 1</a></li>
+                                    <li><a href="#">Deep Dropdown 2</a></li>
+                                    <li><a href="#">Deep Dropdown 3</a></li>
+                                    <li><a href="#">Deep Dropdown 4</a></li>
+                                    <li><a href="#">Deep Dropdown 5</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Dropdown 2</a></li>
+                            <li><a href="#">Dropdown 3</a></li>
+                            <li><a href="#">Dropdown 4</a></li>
                         </ul>
-                    </li>
-                    <li><a href="#features">Legalitas</a></li>
-                    <li><a href="#services">Klien Kami</a></li>
-                    <li><a href="#pricing">Berita</a></li>
+                    </li> --}}
                     <li><a href="#contact">Kontak</a></li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
+
+            <a class="btn-getstarted" href="#about">Get Started</a>
 
         </div>
     </header>
@@ -86,24 +99,22 @@
             </div>
             <div class="container text-center">
                 <div class="d-flex flex-column justify-content-center align-items-center">
+                    <h1 data-aos="fade-up" class="">Welcome to <span>QuickStart</span></h1>
+                    <p data-aos="fade-up" data-aos-delay="100" class="">Quickly start your project now and set the
+                        stage for success<br></p>
                     <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
+                        <a href="#about" class="btn-get-started">Get Started</a>
+                        <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ"
+                            class="glightbox btn-watch-video d-flex align-items-center"><i
+                                class="bi bi-play-circle"></i><span>Watch Video</span></a>
                     </div>
-
+                    <img src="assets/img/hero-services-img.webp" class="img-fluid hero-img" alt=""
+                        data-aos="zoom-out" data-aos-delay="300">
                 </div>
             </div>
 
         </section><!-- /Hero Section -->
 
-        <!-- Featured Services Section -->
-        {{-- <section id="featured-services" class="featured-services section">
-
-            <div class="container">
-
-                <div class="row gy-4"></div>
-
-            </div>
-
-        </section><!-- /Featured Services Section --> --}}
 
         <!-- About Section -->
         <section id="about" class="about section">
@@ -156,49 +167,70 @@
             </div>
         </section><!-- /About Section -->
 
-        <!-- Clients Section -->
-        <section id="clients" class="clients section">
+        <!-- Legalitas Services Section -->
 
-            <div class="container" data-aos="fade-up">
+        <section id="featured-services" class="featured-services section">
+            <!-- Section Title -->
+            <div class="container section-title" data-aos="fade-up">
+                <h2 class="">Legalitas</h2>
+                <p>Sertifikasi dan Perijinan BUMDES Makmur Jaya</p>
+            </div><!-- End Section Title -->
 
+            <div class="container">
                 <div class="row gy-4">
+                    <div class="col-xl-4 col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="service-item d-flex">
+                            <div class="icon flex-shrink-0"><i class="bi bi-briefcase"></i></div>
+                            <div>
+                                <h4 class="title">
+                                    <a href="#" class="stretched-link">
+                                        NIB - Nomor Ijin Berusaha
+                                        <img src=".jpg" alt="NIB PDF Thumbnail" width="50" height="50" />
+                                    </a>
+                                </h4>
+                                <p class="description"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Service Item -->
 
-                    <div class="col-xl-2 col-md-3 col-6 client-logo">
-                        <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
-                    </div><!-- End Client Item -->
+                    <div class="col-xl-4 col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="service-item d-flex">
+                            <div class="icon flex-shrink-0"><i class="bi bi-card-checklist"></i></div>
+                            <div>
+                                <h4 class="title"><a href="#" class="stretched-link">Dolor Sitema</a></h4>
+                                <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                                    aliquip exa</p>
+                            </div>
+                        </div>
+                    </div><!-- End Service Item -->
 
-                    <div class="col-xl-2 col-md-3 col-6 client-logo">
-                        <img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
-                    </div><!-- End Client Item -->
-
-                    <div class="col-xl-2 col-md-3 col-6 client-logo">
-                        <img src="assets/img/clients/client-3.png" class="img-fluid" alt="">
-                    </div><!-- End Client Item -->
-
-                    <div class="col-xl-2 col-md-3 col-6 client-logo">
-                        <img src="assets/img/clients/client-4.png" class="img-fluid" alt="">
-                    </div><!-- End Client Item -->
-
-                    <div class="col-xl-2 col-md-3 col-6 client-logo">
-                        <img src="assets/img/clients/client-5.png" class="img-fluid" alt="">
-                    </div><!-- End Client Item -->
-
-                    <div class="col-xl-2 col-md-3 col-6 client-logo">
-                        <img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
-                    </div><!-- End Client Item -->
+                    <div class="col-xl-4 col-lg-6" data-aos="fade-up" data-aos-delay="300">
+                        <div class="service-item d-flex">
+                            <div class="icon flex-shrink-0"><i class="bi bi-bar-chart"></i></div>
+                            <div>
+                                <h4 class="title"><a href="#" class="stretched-link">Sed ut perspiciatis</a>
+                                </h4>
+                                <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                    cillum</p>
+                            </div>
+                        </div>
+                    </div><!-- End Service Item -->
 
                 </div>
 
             </div>
 
-        </section><!-- /Clients Section -->
+        </section>
 
-        <!-- Features Section -->
+
+
+        <!-- Unit Section -->
         <section id="features" class="features section">
 
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2 class="">Features</h2>
+                <h2 class="">Unit- Unit BUMDES Makmur Jaya</h2>
                 <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
             </div><!-- End Section Title -->
 
@@ -213,7 +245,7 @@
                                     data-bs-target="#features-tab-1">
                                     <i class="bi bi-binoculars"></i>
                                     <div>
-                                        <h4 class="d-none d-lg-block">Modi sit est dela pireda nest</h4>
+                                        <h4 class="d-none d-lg-block">Unit TPS 3R</h4>
                                         <p>
                                             Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                                             dolor in reprehenderit in voluptate
@@ -226,7 +258,7 @@
                                 <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-2">
                                     <i class="bi bi-box-seam"></i>
                                     <div>
-                                        <h4 class="d-none d-lg-block">Unde praesenti mara setra le</h4>
+                                        <h4 class="d-none d-lg-block">Unit Persewaan Toko</h4>
                                         <p>
                                             Recusandae atque nihil. Delectus vitae non similique magnam molestiae
                                             sapiente similique
@@ -239,7 +271,7 @@
                                 <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-3">
                                     <i class="bi bi-brightness-high"></i>
                                     <div>
-                                        <h4 class="d-none d-lg-block">Pariatur explica nitro dela</h4>
+                                        <h4 class="d-none d-lg-block">Unit Peminjaman Dana UMKM</h4>
                                         <p>
                                             Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
                                             deserunt mollit anim id est laborum
@@ -251,7 +283,7 @@
                         </ul><!-- End Tab Nav -->
 
                     </div>
-
+                    {{-- Gambar di kanannya --}}
                     <div class="col-lg-6">
 
                         <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
@@ -279,7 +311,11 @@
 
         <!-- Features Details Section -->
         <section id="features-details" class="features-details section">
-
+            <!-- Section Title -->
+            <div class="container section-title" data-aos="fade-up">
+                <h2 class="">Layanan Kami</h2>
+                <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+            </div><!-- End Section Title -->
             <div class="container">
 
                 <div class="row gy-4 justify-content-between features-item">
@@ -290,7 +326,7 @@
 
                     <div class="col-lg-5 d-flex align-items-center" data-aos="fade-up" data-aos-delay="200">
                         <div class="content">
-                            <h3>Corporis temporibus maiores provident</h3>
+                            <h3>Pengangkutan dan Pengolahan Sampah <strong> Non B3</strong></h3>
                             <p>
                                 Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
                                 reprehenderit in voluptate
@@ -330,11 +366,70 @@
                     </div>
 
                 </div><!-- Features Item -->
+                <div class="row gy-4 justify-content-between features-item">
 
+                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                        <img src="assets/img/features-1.jpg" class="img-fluid" alt="">
+                    </div>
+
+                    <div class="col-lg-5 d-flex align-items-center" data-aos="fade-up" data-aos-delay="200">
+                        <div class="content">
+                            <h3>Corporis temporibus maiores provident</h3>
+                            <p>
+                                Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                                reprehenderit in voluptate
+                                velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                proident.
+                            </p>
+                            <a href="#" class="btn more-btn">Learn More</a>
+                        </div>
+                    </div>
+
+                </div><!-- Features Item -->
             </div>
-
         </section><!-- /Features Details Section -->
 
+        <!-- Klien Section -->
+        <section id="clients" class="clients section">
+            <!-- Section Title -->
+            <div class="container section-title" data-aos="fade-up">
+                <h2 class="">Klien Kami</h2>
+            </div><!-- End Section Title -->
+            <div class="container" data-aos="fade-up">
+                <div class="row gy-4">
+                    <div class="col-xl-2 col-md-3 col-6 client-logo">
+                        <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
+                    </div><!-- End Client Item -->
+
+                    <div class="col-xl-2 col-md-3 col-6 client-logo">
+                        <img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
+                    </div><!-- End Client Item -->
+
+                    <div class="col-xl-2 col-md-3 col-6 client-logo">
+                        <img src="assets/img/clients/client-3.png" class="img-fluid" alt="">
+                    </div><!-- End Client Item -->
+
+                    <div class="col-xl-2 col-md-3 col-6 client-logo">
+                        <img src="assets/img/clients/client-4.png" class="img-fluid" alt="">
+                    </div><!-- End Client Item -->
+
+                    <div class="col-xl-2 col-md-3 col-6 client-logo">
+                        <img src="assets/img/clients/client-5.png" class="img-fluid" alt="">
+                    </div><!-- End Client Item -->
+
+                    <div class="col-xl-2 col-md-3 col-6 client-logo">
+                        <img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
+                    </div><!-- End Client Item -->
+                </div>
+            </div>
+            <div class="content container section-title" data-aos="fade-up">
+                <a href="#" class="btn btn-primary" style="background:#388da8; border:#388da8;">Learn More <i
+                        class="bi bi-arrow-right"></i></a>
+            </div><!-- End Section Title -->
+        </section><!-- /Clients Section -->
+
+
+        {{--
         <!-- Services Section -->
         <section id="services" class="services section">
 
@@ -430,10 +525,10 @@
 
             </div>
 
-        </section><!-- /Services Section -->
+        </section><!-- /Services Section --> --}}
 
         <!-- More Features Section -->
-        <section id="more-features" class="more-features section">
+        {{-- <section id="more-features" class="more-features section">
 
             <div class="container">
 
@@ -491,14 +586,14 @@
 
             </div>
 
-        </section><!-- /More Features Section -->
+        </section><!-- /More Features Section --> --}}
 
         <!-- Pricing Section -->
         <section id="pricing" class="pricing section">
 
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>Pricing</h2>
+                <h2>Biaya Layanan</h2>
                 <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
             </div><!-- End Section Title -->
 
@@ -508,10 +603,9 @@
 
                     <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="100">
                         <div class="pricing-item">
-                            <h3>Free Plan</h3>
-                            <p class="description">Ullam mollitia quasi nobis soluta in voluptatum et sint palora dex
-                                strater</p>
-                            <h4><sup>$</sup>0<span> / month</span></h4>
+                            <h3>Retribusi Pelayanan Desa</h3>
+                            <p class="description">Biaya Layanan dibayarkan Perbulan</p>
+                            <h4><sup>Rp</sup>1.800.000<span> / bulan - Dusun</span></h4>
                             <a href="#" class="cta-btn">Start a free trial</a>
                             <p class="text-center small">No credit card required</p>
                             <ul>
@@ -533,10 +627,10 @@
                     <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="200">
                         <div class="pricing-item featured">
                             <p class="popular">Popular</p>
-                            <h3>Business Plan</h3>
+                            <h3>Retribusi Perusahaan</h3>
                             <p class="description">Ullam mollitia quasi nobis soluta in voluptatum et sint palora dex
                                 strater</p>
-                            <h4><sup>$</sup>29<span> / month</span></h4>
+                            <h4><sup>Rp</sup>800.000<span> / bulan</span></h4>
                             <a href="#" class="cta-btn">Start a free trial</a>
                             <p class="text-center small">No credit card required</p>
                             <ul>
@@ -555,10 +649,10 @@
 
                     <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="300">
                         <div class="pricing-item">
-                            <h3>Developer Plan</h3>
+                            <h3>Retribusi Pemusanahan </h3>
                             <p class="description">Ullam mollitia quasi nobis soluta in voluptatum et sint palora dex
                                 strater</p>
-                            <h4><sup>$</sup>49<span> / month</span></h4>
+                            <h4><sup>Rp</sup>500.000<span> / truck</span></h4>
                             <a href="#" class="cta-btn">Start a free trial</a>
                             <p class="text-center small">No credit card required</p>
                             <ul>
@@ -581,96 +675,7 @@
 
         </section><!-- /Pricing Section -->
 
-        <!-- Faq Section -->
-        <section id="faq" class="faq section">
-
-            <!-- Section Title -->
-            <div class="container section-title" data-aos="fade-up">
-                <h2>Frequently Asked Questions</h2>
-            </div><!-- End Section Title -->
-
-            <div class="container">
-
-                <div class="row justify-content-center">
-
-                    <div class="col-lg-10" data-aos="fade-up" data-aos-delay="100">
-
-                        <div class="faq-container">
-
-                            <div class="faq-item faq-active">
-                                <h3>Non consectetur a erat nam at lectus urna duis?</h3>
-                                <div class="faq-content">
-                                    <p>Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus
-                                        laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor
-                                        rhoncus dolor purus non.</p>
-                                </div>
-                                <i class="faq-toggle bi bi-chevron-right"></i>
-                            </div><!-- End Faq item-->
-
-                            <div class="faq-item">
-                                <h3>Feugiat scelerisque varius morbi enim nunc faucibus?</h3>
-                                <div class="faq-content">
-                                    <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id
-                                        interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus
-                                        scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim.
-                                        Mauris ultrices eros in cursus turpis massa tincidunt dui.</p>
-                                </div>
-                                <i class="faq-toggle bi bi-chevron-right"></i>
-                            </div><!-- End Faq item-->
-
-                            <div class="faq-item">
-                                <h3>Dolor sit amet consectetur adipiscing elit pellentesque?</h3>
-                                <div class="faq-content">
-                                    <p>Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci.
-                                        Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl
-                                        suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis
-                                        convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
-                                    </p>
-                                </div>
-                                <i class="faq-toggle bi bi-chevron-right"></i>
-                            </div><!-- End Faq item-->
-
-                            <div class="faq-item">
-                                <h3>Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla?</h3>
-                                <div class="faq-content">
-                                    <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id
-                                        interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus
-                                        scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim.
-                                        Mauris ultrices eros in cursus turpis massa tincidunt dui.</p>
-                                </div>
-                                <i class="faq-toggle bi bi-chevron-right"></i>
-                            </div><!-- End Faq item-->
-
-                            <div class="faq-item">
-                                <h3>Tempus quam pellentesque nec nam aliquam sem et tortor?</h3>
-                                <div class="faq-content">
-                                    <p>Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse
-                                        in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl
-                                        suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in
-                                    </p>
-                                </div>
-                                <i class="faq-toggle bi bi-chevron-right"></i>
-                            </div><!-- End Faq item-->
-
-                            <div class="faq-item">
-                                <h3>Perspiciatis quod quo quos nulla quo illum ullam?</h3>
-                                <div class="faq-content">
-                                    <p>Enim ea facilis quaerat voluptas quidem et dolorem. Quis et consequatur non sed
-                                        in suscipit sequi. Distinctio ipsam dolore et.</p>
-                                </div>
-                                <i class="faq-toggle bi bi-chevron-right"></i>
-                            </div><!-- End Faq item-->
-
-                        </div>
-
-                    </div><!-- End Faq Column-->
-
-                </div>
-
-            </div>
-
-        </section><!-- /Faq Section -->
-
+        {{--
         <!-- Testimonials Section -->
         <section id="testimonials" class="testimonials section">
 
@@ -684,30 +689,30 @@
 
                 <div class="swiper">
                     <script type="application/json" class="swiper-config">
-            {
-              "loop": true,
-              "speed": 600,
-              "autoplay": {
-                "delay": 5000
-              },
-              "slidesPerView": "auto",
-              "pagination": {
-                "el": ".swiper-pagination",
-                "type": "bullets",
-                "clickable": true
-              },
-              "breakpoints": {
-                "320": {
-                  "slidesPerView": 1,
-                  "spaceBetween": 40
+              {
+                "loop": true,
+                "speed": 600,
+                "autoplay": {
+                  "delay": 5000
                 },
-                "1200": {
-                  "slidesPerView": 3,
-                  "spaceBetween": 1
+                "slidesPerView": "auto",
+                "pagination": {
+                  "el": ".swiper-pagination",
+                  "type": "bullets",
+                  "clickable": true
+                },
+                "breakpoints": {
+                  "320": {
+                    "slidesPerView": 1,
+                    "spaceBetween": 40
+                  },
+                  "1200": {
+                    "slidesPerView": 3,
+                    "spaceBetween": 1
+                  }
                 }
               }
-            }
-          </script>
+            </script>
                     <div class="swiper-wrapper">
 
                         <div class="swiper-slide">
@@ -821,14 +826,14 @@
 
             </div>
 
-        </section><!-- /Testimonials Section -->
+        </section><!-- /Testimonials Section --> --}}
 
         <!-- Contact Section -->
         <section id="contact" class="contact section">
 
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>Contact</h2>
+                <h2>Kontak Kami</h2>
                 <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
             </div><!-- End Section Title -->
 
@@ -840,7 +845,7 @@
                         <div class="info-item d-flex flex-column justify-content-center align-items-center"
                             data-aos="fade-up" data-aos-delay="200">
                             <i class="bi bi-geo-alt"></i>
-                            <h3>Address</h3>
+                            <h3>Alamat</h3>
                             <p>A108 Adam Street, New York, NY 535022</p>
                         </div>
                     </div><!-- End Info Item -->
@@ -922,7 +927,7 @@
         <div class="container footer-top">
             <div class="row gy-4">
                 <div class="col-lg-4 col-md-6 footer-about">
-                    <a href="index.html" class="logo d-flex align-items-center">
+                    <a href="" class="logo d-flex align-items-center">
                         <span class="sitename">QuickStart</span>
                     </a>
                     <div class="footer-contact pt-3">
@@ -998,15 +1003,16 @@
     <div id="preloader"></div>
 
     <!-- Vendor JS Files -->
-    <script src="{{ url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ url('assets/vendor/php-email-form/validate.js') }}"></script>
-    <script src="{{ url('assets/vendor/aos/aos.js') }}"></script>
-    <script src="{{ url('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
-    <script src="{{ url('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
 
     <!-- Main JS File -->
-    <script src="{{ url('assets/js/main.js') }}"></script>
+    <script src="assets/js/main.js"></script>
 
 </body>
+
 
 </html>
