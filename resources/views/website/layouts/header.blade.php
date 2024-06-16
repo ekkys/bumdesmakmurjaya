@@ -24,7 +24,10 @@
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
 
-        <a class="btn-getstarted" href="#about">Get Started</a>
-
+        <!-- WhatsApp Float Button -->
+        {{-- <a href="https://wa.me/62895632210577">
+            <img src="{{ url('assets\img\whatsapp.png') }}" alt="WhatsApp" class="btn-getstarted">
+        </a> --}}
+        <!--  End WhatasApp BUtton-->
     </div>
 </header>

@@ -40,6 +40,27 @@
             border: 1px solid #ccc;
             margin: 1px;
         }
+
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #FFF;
+            color: #000000;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 5px 5px 6px #999;
+            z-index: 200;
+        }
+
+        .whatsapp-float img {
+            margin-top: 10px;
+            width: 40px;
+            height: 40px;
+        }
     </style>
     <!-- =======================================================
   * Template Name: QuickStart
@@ -51,14 +72,17 @@
 </head>
 
 <body class="index-page">
-
-    @include('hero.layouts.header')
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/6281234567890" class="whatsapp-float" target="_blank">
+        <img src="{{ url('assets\img\whatsapp.png') }}" alt="WhatsApp">
+    </a>
+    @include('website.layouts.header')
 
     <main class="main">
         @yield('content')
     </main>
 
-    @include('hero.layouts.footer')
+    @include('website.layouts.footer')
 
     <!-- Scroll Top -->
     <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
