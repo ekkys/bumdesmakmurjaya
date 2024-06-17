@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TentangController;
+use App\Http\Controllers\WebsiteController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('hero');
-});
+Route::resource('/', WebsiteController::class);
+Route::resource('home', HomeController::class);
+Route::resource('tentang', TentangController::class);
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

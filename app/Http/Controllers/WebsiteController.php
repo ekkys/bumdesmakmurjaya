@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Website;
 use Illuminate\Http\Request;
 
-class HeroController extends Controller
+class WebsiteController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('hero.website');
+        return view('website.landing');
     }
 
     /**
@@ -33,7 +34,7 @@ class HeroController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Website $website)
     {
         //
     }
@@ -41,7 +42,7 @@ class HeroController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Website $website)
     {
         //
     }
@@ -49,7 +50,7 @@ class HeroController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Website $website)
     {
         //
     }
@@ -57,7 +58,7 @@ class HeroController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Website $website)
     {
         //
     }

@@ -16,8 +16,8 @@
             </a>
             <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="#">
-                        <i class="bi bi-file-image" style="font-size: 1rem;"></i><span>Hero</span>
+                    <a href="{{ route('home.index') }}">
+                        <i class="bi bi-file-image" style="font-size: 1rem;"></i><span>Home</span>
                     </a>
                 </li>
                 <li>

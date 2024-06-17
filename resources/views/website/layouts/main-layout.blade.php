@@ -72,10 +72,7 @@
 </head>
 
 <body class="index-page">
-    <!-- WhatsApp Float Button -->
-    <a href="https://wa.me/6281234567890" class="whatsapp-float" target="_blank">
-        <img src="{{ url('assets\img\whatsapp.png') }}" alt="WhatsApp">
-    </a>
+
     @include('website.layouts.header')
 
     <main class="main">
@@ -83,6 +80,11 @@
     </main>
 
     @include('website.layouts.footer')
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/6281234567890" class="whatsapp-float" target="_blank">
+        <img src="{{ url('assets\img\whatsapp.png') }}" alt="WhatsApp">
+    </a>
 
     <!-- Scroll Top -->
     <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i

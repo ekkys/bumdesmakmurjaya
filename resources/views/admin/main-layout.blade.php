@@ -125,7 +125,7 @@
     </header><!-- End Header -->
 
     <!-- ======= Sidebar ======= -->
-    @include('layouts.sidebar')
+    @include('admin.sidebar')
     <!-- End Sidebar-->
 
     <main id="main" class="main">
