@@ -6,7 +6,18 @@ use App\Http\Controllers\TentangController;
 use App\Http\Controllers\WebsiteController;
 use Illuminate\Support\Facades\Route;
 
-Route::resource('/', WebsiteController::class);
+
+
+// Website
+Route::get('/', [WebsiteController::class, 'index'])->name('website.index');
+Route::get('/tentang-detail', [WebsiteController::class, 'tentangDetail'])->name('tentang.detail');
+Route::get('/legalitas-detail', [WebsiteController::class, 'legalitasDetail'])->name('legalitas.detail');
+Route::get('/biaya-detail', [WebsiteController::class, 'biayaDetail'])->name('biaya.detail');
+Route::get('/unit-detail', [WebsiteController::class, 'unitDetail'])->name('unit.detail'); //nanti link pas klik gambar
+Route::get('/tps3r-detail', [WebsiteController::class, 'tps3rDetail'])->name('tps3r.detail');
+Route::get('/toko-detail', [WebsiteController::class, 'tokoDetail'])->name('toko.detail');
+Route::get('/pinjaman-detail', [WebsiteController::class, 'pinjamanDetail'])->name('pinjaman.detail');
+//Admin
 Route::resource('home', HomeController::class);
 Route::resource('tentang', TentangController::class);
 

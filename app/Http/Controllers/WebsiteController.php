@@ -14,7 +14,39 @@ class WebsiteController extends Controller
     {
         return view('website.landing');
     }
+    public function tentangDetail()
+    {
+        return view('website.detail.tentang');
+    }
 
+    public function legalitasDetail()
+    {
+        return view('website.detail.legalitas');
+    }
+
+    public function biayaDetail()
+    {
+        return view('website.detail.biaya');
+    }
+    public function unitTPSDetail()
+    {
+        return view('website.detail.biaya');
+    }
+
+    public function tps3rDetail()
+    {
+        return view('website.detail.unit.tps');
+    }
+
+    public function tokoDetail()
+    {
+        return view('website.detail.unit.toko');
+    }
+
+    public function pinjamanDetail()
+    {
+        return view('website.detail.unit.pinjaman');
+    }
     /**
      * Show the form for creating a new resource.
      */
