@@ -51,7 +51,8 @@
                                 consequat. Duis aute irure dolor in reprehenderit in voluptate trideta
                                 storacalaperda mastiro dolore eu fugiat nulla pariatur.</span></li>
                     </ul>
-                    <a href="#" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+                    <a href="{{ route('tentang.detail') }}" class="read-more"><span>Selengkapnya</span><i
+                            class="bi bi-arrow-right"></i></a>
                 </div>
 
                 <div class="col-lg-6 about-images" data-aos="fade-up" data-aos-delay="200">
@@ -121,9 +122,12 @@
                     </div>
                 @endfor
             </div>
-            <!-- End Service Item -->
         </div>
-
+        <!-- End Service Item -->
+        <div class="content container section-title mt-5" data-aos="fade-up">
+            <a href="{{ route('legalitas.detail') }}" class="btn btn-primary"
+                style="background:#388da8; border:#388da8;">Selengkapnya <i class="bi bi-arrow-right"></i></a>
+        </div>
         </div>
 
     </section>
@@ -154,7 +158,14 @@
                                         velit esse cillum dolore eu fugiat nulla pariatur
                                     </p>
                                 </div>
+                                <a href="{{ route('tps3r.detail') }}" class="btn btn-primary"
+                                    style="background:#388da8; border:#388da8;">Selengkapnya <i
+                                        class="bi bi-arrow-right"></i>
+                                </a>
                             </a>
+
+
+
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-2">
@@ -167,6 +178,10 @@
                                         tenetur aut voluptates sed voluptas ipsum voluptas
                                     </p>
                                 </div>
+                                <a href="{{ route('toko.detail') }}" class="btn btn-primary"
+                                    style="background:#388da8; border:#388da8;">Selengkapnya <i
+                                        class="bi bi-arrow-right"></i>
+                                </a>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -180,6 +195,10 @@
                                         Debitis nulla est maxime voluptas dolor aut
                                     </p>
                                 </div>
+                                <a href="{{ route('toko.detail') }}" class="btn btn-primary"
+                                    style="background:#388da8; border:#388da8;">Selengkapnya <i
+                                        class="bi bi-arrow-right"></i>
+                                </a>
                             </a>
                         </li>
                     </ul><!-- End Tab Nav -->
@@ -235,7 +254,7 @@
                             velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
                             proident.
                         </p>
-                        <a href="#" class="btn more-btn">Learn More</a>
+                        <a href="{{ route('pengangkutan.detail') }}" class="btn more-btn">Selengkapnya</a>
                     </div>
                 </div>
 
@@ -258,7 +277,7 @@
                             <li><i class="bi bi-brightness-high flex-shrink-0"></i> Veniam quia modi magnam.</li>
                         </ul>
                         <p></p>
-                        <a href="#" class="btn more-btn">Learn More</a>
+                        <a href="{{ route('pembelian.detail') }}" class="btn more-btn">Selengkapnya</a>
                     </div>
 
                 </div>
@@ -283,7 +302,7 @@
                             velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
                             proident.
                         </p>
-                        <a href="#" class="btn more-btn">Learn More</a>
+                        <a href="{{ route('pemusnahan.detail') }}" class="btn more-btn">Selengkapnya</a>
                     </div>
                 </div>
 
@@ -324,9 +343,9 @@
                 </div><!-- End Client Item -->
             </div>
         </div>
-        <div class="content container section-title" data-aos="fade-up">
-            <a href="#" class="btn btn-primary" style="background:#388da8; border:#388da8;">Learn More <i
-                    class="bi bi-arrow-right"></i></a>
+        <div class="content container section-title mt-5" data-aos="fade-up">
+            <a href="{{ route('klien.detail') }}" class="btn btn-primary"
+                style="background:#388da8; border:#388da8;">Selengkapnya <i class="bi bi-arrow-right"></i></a>
         </div><!-- End Section Title -->
     </section><!-- /Clients Section -->
 
@@ -352,7 +371,7 @@
                                 <h3>Nesciunt Mete</h3>
                                 <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus
                                     dolores iure perferendis tempore et consequatur.</p>
-                                <a href="service-details.html" class="read-more stretched-link">Learn More <i
+                                <a href="service-details.html" class="read-more stretched-link">Selengkapnya <i
                                         class="bi bi-arrow-right"></i></a>
                             </div>
                         </div>
@@ -365,7 +384,7 @@
                                 <h3>Eosle Commodi</h3>
                                 <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque
                                     eum hic non ut nesciunt dolorem.</p>
-                                <a href="service-details.html" class="read-more stretched-link">Learn More <i
+                                <a href="service-details.html" class="read-more stretched-link">Selengkapnya <i
                                         class="bi bi-arrow-right"></i></a>
                             </div>
                         </div>
@@ -378,7 +397,7 @@
                                 <h3>Ledo Markt</h3>
                                 <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id
                                     voluptas adipisci eos earum corrupti.</p>
-                                <a href="service-details.html" class="read-more stretched-link">Learn More <i
+                                <a href="service-details.html" class="read-more stretched-link">Selengkapnya <i
                                         class="bi bi-arrow-right"></i></a>
                             </div>
                         </div>
@@ -391,7 +410,7 @@
                                 <h3>Asperiores Commodi</h3>
                                 <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea
                                     fuga sit provident adipisci neque.</p>
-                                <a href="service-details.html" class="read-more stretched-link">Learn More <i
+                                <a href="service-details.html" class="read-more stretched-link">Selengkapnya <i
                                         class="bi bi-arrow-right"></i></a>
                             </div>
                         </div>
@@ -404,7 +423,7 @@
                                 <h3>Velit Doloremque.</h3>
                                 <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut.
                                     Sed animi at autem alias eius labore.</p>
-                                <a href="service-details.html" class="read-more stretched-link">Learn More <i
+                                <a href="service-details.html" class="read-more stretched-link">Selengkapnya <i
                                         class="bi bi-arrow-right"></i></a>
                             </div>
                         </div>
@@ -417,7 +436,7 @@
                                 <h3>Dolori Architecto</h3>
                                 <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure.
                                     Corrupti recusandae ducimus enim.</p>
-                                <a href="service-details.html" class="read-more stretched-link">Learn More <i
+                                <a href="service-details.html" class="read-more stretched-link">Selengkapnya <i
                                         class="bi bi-arrow-right"></i></a>
                             </div>
                         </div>
@@ -765,7 +784,7 @@
                     <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up"
                         data-aos-delay="400">
                         <i class="bi bi-envelope"></i>
-                        <h3>Email Us</h3>
+                        <h3>Email Kami</h3>
                         <p>admin@bumdesmakmurjaya.com</p>
                     </div>
                 </div><!-- End Info Item -->

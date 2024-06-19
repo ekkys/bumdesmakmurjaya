@@ -1,4 +1,4 @@
-@extends('website.layouts.main-layout')
+@extends('website.detail.detail-main-layout')
 
 @section('content')
     <!-- Service Details Section -->
@@ -9,11 +9,11 @@
                 <!-- Page Title -->
                 <div class="page-title" data-aos="fade">
                     <div class="container d-lg-flex justify-content-between align-items-center">
-                        <h1 class="mb-2 mb-lg-0">Service Details</h1>
+                        <h1 class="mb-2 mb-lg-0">Tentang Kami</h1>
                         <nav class="breadcrumbs">
                             <ol>
                                 <li><a href="index.html">Home</a></li>
-                                <li class="current">Service Details</li>
+                                <li class="current">Tentang Kami</li>
                             </ol>
                         </nav>
                     </div>

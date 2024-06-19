@@ -12,11 +12,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [WebsiteController::class, 'index'])->name('website.index');
 Route::get('/tentang-detail', [WebsiteController::class, 'tentangDetail'])->name('tentang.detail');
 Route::get('/legalitas-detail', [WebsiteController::class, 'legalitasDetail'])->name('legalitas.detail');
+Route::get('/klien-detail', [WebsiteController::class, 'klienDetail'])->name('klien.detail');
 Route::get('/biaya-detail', [WebsiteController::class, 'biayaDetail'])->name('biaya.detail');
 Route::get('/unit-detail', [WebsiteController::class, 'unitDetail'])->name('unit.detail'); //nanti link pas klik gambar
 Route::get('/tps3r-detail', [WebsiteController::class, 'tps3rDetail'])->name('tps3r.detail');
 Route::get('/toko-detail', [WebsiteController::class, 'tokoDetail'])->name('toko.detail');
 Route::get('/pinjaman-detail', [WebsiteController::class, 'pinjamanDetail'])->name('pinjaman.detail');
+Route::get('/pengangkutan-detail', [WebsiteController::class, 'pengangkutanDetail'])->name('pengangkutan.detail');
+Route::get('/pembelian-detail', [WebsiteController::class, 'pembelianDetail'])->name('pembelian.detail');
+Route::get('/pemusnahan-detail', [WebsiteController::class, 'pemusnahanDetail'])->name('pemusnahan.detail');
+
+
 //Admin
 Route::resource('home', HomeController::class);
 Route::resource('tentang', TentangController::class);

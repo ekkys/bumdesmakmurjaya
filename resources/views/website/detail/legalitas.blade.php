@@ -1,5 +1,4 @@
-@extends('website.layouts.main-layout')
-
+@extends('website.detail.detail-main-layout')
 @section('content')
     <!-- Service Details Section -->
     <section id="service-details" class="service-details section">

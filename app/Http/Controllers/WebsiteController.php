@@ -23,6 +23,10 @@ class WebsiteController extends Controller
     {
         return view('website.detail.legalitas');
     }
+    public function klienDetail()
+    {
+        return view('website.detail.klien');
+    }
 
     public function biayaDetail()
     {
@@ -46,6 +50,18 @@ class WebsiteController extends Controller
     public function pinjamanDetail()
     {
         return view('website.detail.unit.pinjaman');
+    }
+    public function pengangkutanDetail()
+    {
+        return view('website.detail.layanan.pengangkutan');
+    }
+    public function pembelianDetail()
+    {
+        return view('website.detail.layanan.pembelian');
+    }
+    public function pemusnahanDetail()
+    {
+        return view('website.detail.layanan.pemusnahan');
     }
     /**
      * Show the form for creating a new resource.
