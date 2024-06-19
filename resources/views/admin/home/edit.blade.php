@@ -23,7 +23,7 @@
             </div>
             <div class="mb-3">
                 <label for="hastag" class="form-label">Hastag</label>
-                <input type="text" class="form-control" id="hastag" name="hastag" value="{{ $home->hastag }}"
+                <input type="text" class="form-control" id="hashtag" name="hashtag" value="{{ $home->hashtag }}"
                     required>
             </div>
             <div class="mb-3">

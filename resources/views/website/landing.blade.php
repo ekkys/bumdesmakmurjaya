@@ -7,16 +7,14 @@
         </div>
         <div class="container text-center">
             <div class="d-flex flex-column justify-content-center align-items-center">
-                <h1 data-aos="fade-up" class="" style="margin-top: 1px;">BUMDES <span>Makmur Jaya</span></h1>
-                <p data-aos="fade-up" data-aos-delay="100" class="" style="margin-top: 50px;">" Menjadikan sampah
-                    sebagai sumber daya bermanfaat
-                    dan solusi ekonomis." <br>
-                    <strong>#BersihDesaKu</strong>
+                <h1 data-aos="fade-up" class="" style="margin-top: 1px;">BUMDES <span>{{ $home->judul }}</span></h1>
+                <p data-aos="fade-up" data-aos-delay="100" class="" style="margin-top: 50px;">"{{ $home->quote }}."
+                    <br>
+                    <strong>{{ $home->hashtag }}</strong>
                 </p>
                 <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
                     <a href="#about" class="btn-get-started"><span>Cari tahu Yuk !</span></a>
-                    <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ"
-                        class="glightbox btn-watch-video d-flex align-items-center"><i
+                    <a href="{{ $home->link }}" class="glightbox btn-watch-video d-flex align-items-center"><i
                             class="bi bi-play-circle"></i><span>Lihat Video</span></a>
                 </div>
                 {{-- <img src="assets/img/hero-services-img.webp" class="img-fluid hero-img" alt=""

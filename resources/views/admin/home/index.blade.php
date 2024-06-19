@@ -3,8 +3,8 @@
 
 @section('content')
     <div class="container mt-5">
-        <h1>Home List</h1>
-        <a href="{{ route('home.create') }}" class="btn btn-primary mb-3">Add Home</a>
+        <h1>Home </h1>
+        {{-- <a href="{{ route('home.create') }}" class="btn btn-primary mb-3">Add Home</a> --}}
 
         <table class="table table-bordered">
             <thead>
@@ -13,7 +13,7 @@
                     <th>Gambar</th>
                     <th>Judul</th>
                     <th>Quote</th>
-                    <th>Hastag</th>
+                    <th>Hashtag</th>
                     <th>Link</th>
                     <th>Actions</th>
                 </tr>
@@ -27,10 +27,10 @@
                         </td>
                         <td>{{ $home->judul }}</td>
                         <td>{{ $home->quote }}</td>
-                        <td>{{ $home->hastag }}</td>
+                        <td>{{ $home->hashtag }}</td>
                         <td><a href="{{ $home->link }}" target="_blank">{{ $home->link }}</a></td>
                         <td>
-                            <a href="{{ route('home.show', $home->id) }}" class="btn btn-info">Show</a>
+                            {{-- <a href="{{ route('home.show', $home->id) }}" class="btn btn-info">Show</a> --}}
                             <a href="{{ route('home.edit', $home->id) }}" class="btn btn-warning">Edit</a>
                             <form action="{{ route('home.destroy', $home->id) }}" method="POST" class="d-inline">
                                 @csrf

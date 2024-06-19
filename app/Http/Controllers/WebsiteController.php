@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Home;
 use App\Models\Website;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class WebsiteController extends Controller
      */
     public function index()
     {
-        return view('website.landing');
+        $home = Home::first();
+        return view('website.landing', compact('home'));
     }
     public function tentangDetail()
     {

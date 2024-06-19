@@ -81,7 +81,7 @@ class HomeController extends Controller
             'gambar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'judul' => 'required|string|max:255',
             'quote' => 'required|string|max:255',
-            'hastag' => 'required|string|max:255',
+            'hashtag' => 'required|string|max:255',
             'link' => 'required|string|max:255',
         ]);
         try {
@@ -97,7 +97,7 @@ class HomeController extends Controller
                 'gambar' => $path,
                 'judul' => $request->judul,
                 'quote' => $request->quote,
-                'hastag' => $request->hastag,
+                'hashtag' => $request->hashtag,
                 'link' => $request->link,
             ]);
             return redirect()->route('home.index')->with('success', 'Home Updated successfully.');
