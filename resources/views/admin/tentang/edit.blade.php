@@ -1,4 +1,4 @@
-@extends('layouts.main-layout')
+@extends('admin.main-layout')
 @section('title', 'Edit Tentang Kami')
 
 @section('content')

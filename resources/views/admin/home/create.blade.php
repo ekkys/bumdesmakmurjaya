@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="container mt-5">
-        <h2>Create Home</h2>
+        <h2>Home</h2>
         <!-- Toast Notifications -->
         <div aria-live="polite" aria-atomic="true" class="position-relative">
             <div class="toast-container position-absolute top-0 end-0 p-3">

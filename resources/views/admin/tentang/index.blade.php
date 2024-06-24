@@ -1,4 +1,4 @@
-@extends('layouts.main-layout')
+@extends('admin.main-layout')
 @section('title', 'Tentang Kami')
 
 @section('content')
@@ -46,28 +46,27 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
+                                    <th>No</th>
                                     <th>Judul</th>
-                                    <th>Gambar</th>
                                     <th>Deskripsi</th>
-                                    <th>Kontak</th>
-                                    <th>Lokasi</th>
-                                    <th>Nomor Telpon</th>
-                                    <th>Actions</th>
+                                    <th>Gambar 1</th>
+                                    <th>Gambar 2</th>
+                                    <th>Gambar 3</th>
+                                    <th>Nomor Telepon</th>
+                                    <th width="280px">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $i = 0; ?>
                                 @foreach ($tentangs as $tentang)
                                     <tr>
+                                    <tr>
+                                        <td>{{ ++$i }}</td>
                                         <td>{{ $tentang->judul }}</td>
-                                        <td>
-                                            @if ($tentang->gambar)
-                                                <img src="{{ asset('uploads/' . $tentang->gambar) }}"
-                                                    alt="{{ $tentang->judul }}" width="100">
-                                            @endif
-                                        </td>
                                         <td>{{ $tentang->deskripsi }}</td>
-                                        <td>{{ $tentang->kontak }}</td>
-                                        <td>{{ $tentang->lokasi }}</td>
+                                        <td>{{ $tentang->gambar1 }}</td>
+                                        <td>{{ $tentang->gambar2 }}</td>
+                                        <td>{{ $tentang->gambar3 }}</td>
                                         <td>{{ $tentang->nomor_telpon }}</td>
                                         <td>
                                             <a href="{{ route('tentang.edit', $tentang->id) }}"

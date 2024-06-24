@@ -34,20 +34,17 @@
 
                 <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
                     <p class="who-we-are">Tentang Kami</p>
-                    <h3>BUMDES Makmur Jaya</h3>
+                    <h3>BUMDES Makmur Jaya <span>SIDOMOJO</span></h3>
                     <p class="fst-italic">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore
-                        magna aliqua.
+                        Bumdes Makmur Jaya Sidomojo adalah sebuah badan usaha milik desa yang bergerak dalam berbagai sektor
+                        ekonomi untuk meningkatkan kesejahteraan masyarakat desa. Dibentuk dengan tujuan utama untuk
+                        menciptakan lapangan kerja dan mengoptimalkan potensi lokal, Bumdes Makmur Jaya Sidomojo berhasil
+                        menjalankan berbagai program unggulan.Program tersebut meliputi :
                     </p>
                     <ul>
-                        <li><i class="bi bi-check-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo
-                                consequat.</span></li>
-                        <li><i class="bi bi-check-circle"></i> <span>Duis aute irure dolor in reprehenderit in
-                                voluptate velit.</span></li>
-                        <li><i class="bi bi-check-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo
-                                consequat. Duis aute irure dolor in reprehenderit in voluptate trideta
-                                storacalaperda mastiro dolore eu fugiat nulla pariatur.</span></li>
+                        <li><i class="bi bi-check-circle"></i> <span>Pengelolaan sampah.</span></li>
+                        <li><i class="bi bi-check-circle"></i> <span>Persewaan toko.</span></li>
+                        <li><i class="bi bi-check-circle"></i> <span>Penyediaan layanan keuangan mikro.</span></li>
                     </ul>
                     <a href="{{ route('tentang.detail') }}" class="read-more"><span>Selengkapnya</span><i
                             class="bi bi-arrow-right"></i></a>

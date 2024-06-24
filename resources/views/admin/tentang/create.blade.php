@@ -1,10 +1,9 @@
-@extends('layouts.main-layout')
+@extends('admin.main-layout')
 @section('title', 'Tentang Kami')
 
 @section('content')
-    <div class="container mt-5">
-        <h2>Create Tentang</h2>
-
+    <div class="container mt-5 card">
+        <h2>Tentang Bumdes</h2>
         <!-- Toast Notifications -->
         <div aria-live="polite" aria-atomic="true" class="position-relative">
             <div class="toast-container position-absolute top-0 end-0 p-3">
@@ -40,43 +39,58 @@
             @csrf
             <div class="mb-3">
                 <label for="judul" class="form-label">Judul</label>
-                <input type="text" class="form-control" id="judul" name="judul">
+                <input type="text" name="judul" class="form-control" id="judul">
+            </div>
+            {{-- <div class="mb-3">
+                <label for="deskripsi" class="form-label">deskripsi</label>
+                <input type="text" name="deskripsi" class="form-control" id="deskripsi">
+            </div> --}}
+
+            <div class="mb-3">
+                <h5 class="card-title">Edit Artikel</h5>
+                <div class="quill-editor-full">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="gambar1" class="form-label">Gambar 1</label>
+                <input type="file" name="gambar1" class="form-control" id="gambar1">
             </div>
             <div class="mb-3">
-                <label for="gambar" class="form-label">Gambar</label>
-                <input type="file" class="form-control" id="gambar" name="gambar">
+                <label for="gambar2" class="form-label">Gambar 2</label>
+                <input type="file" name="gambar2" class="form-control" id="gambar2">
             </div>
             <div class="mb-3">
-                <label for="deskripsi" class="form-label">Deskripsi</label>
-                <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3"></textarea>
+                <label for="gambar3" class="form-label">Gambar 3</label>
+                <input type="file" name="gambar3" class="form-control" id="gambar3">
             </div>
             <div class="mb-3">
-                <label for="kontak" class="form-label">Kontak</label>
-                <input type="text" class="form-control" id="kontak" name="kontak">
+                <label for="nomor_telpon" class="form-label">Nomor Telepon</label>
+                <input type="text" name="nomor_telpon" class="form-control" id="nomor_telpon">
             </div>
-            <div class="mb-3">
-                <label for="lokasi" class="form-label">Lokasi</label>
-                <input type="text" class="form-control" id="lokasi" name="lokasi">
-            </div>
-            <div class="mb-3">
-                <label for="nomor_telpon" class="form-label">Nomor Telpon</label>
-                <input type="text" class="form-control" id="nomor_telpon" name="nomor_telpon">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Simpan</button>
         </form>
     </div>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.quilljs.com/1.3.7/quill.js"></script>
     <script>
-        // Show toast notifications on page load
         document.addEventListener('DOMContentLoaded', function() {
-            var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+            var quill = new Quill('#quill-editor-full', {
+                theme: 'snow'
+            });
+
+            var form = document.querySelector('form');
+            form.onsubmit = function() {
+                var deskripsi = document.querySelector('textarea[name=deskripsi]');
+                deskripsi.value = quill.root.innerHTML;
+            };
+
+            var toastElList = [].slice.call(document.querySelectorAll('.toast'));
             var toastList = toastElList.map(function(toastEl) {
                 return new bootstrap.Toast(toastEl, {
                     autohide: true,
                     delay: 3000
-                })
-            })
-            toastList.forEach(toast => toast.show())
+                }).show();
+            });
         });
     </script>
 @endsection

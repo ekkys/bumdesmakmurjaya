@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tentang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class TentangController extends Controller
 {
@@ -29,34 +30,54 @@ class TentangController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'judul' => 'nullable|string|max:255',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'deskripsi' => 'nullable|string',
-            'kontak' => 'nullable|string|max:255',
-            'lokasi' => 'nullable|string|max:255',
-            'nomor_telpon' => 'nullable|string|max:255',
+        // Validate the request inputs
+        $validatedData = $request->validate([
+            'judul' => 'required|string|max:255',
+            'deskripsi' => 'required|string',
+            'gambar1' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'gambar2' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'gambar3' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'nomor_telpon' => 'required|string|max:15',
         ]);
 
         try {
-            $tentang = new Tentang();
-            $tentang->judul = $request->judul;
+            // Handle file uploads and store paths
+            $gambar1Path = null;
+            $gambar2Path = null;
+            $gambar3Path = null;
 
-            if ($request->hasFile('gambar')) {
-                $fileName = time() . '.' . $request->gambar->extension();
-                $request->gambar->move(public_path('uploads'), $fileName);
-                $tentang->gambar = $fileName;
+            if ($request->hasFile('gambar1')) {
+                $gambar1Path = $request->file('gambar1')->store('public/images');
             }
 
-            $tentang->deskripsi = $request->deskripsi;
-            $tentang->kontak = $request->kontak;
-            $tentang->lokasi = $request->lokasi;
-            $tentang->nomor_telpon = $request->nomor_telpon;
-            $tentang->save();
+            if ($request->hasFile('gambar2')) {
+                $gambar2Path = $request->file('gambar2')->store('public/images');
+            }
 
-            return redirect()->route('tentang.index')->with('success', 'Tentang created successfully.');
+            if ($request->hasFile('gambar3')) {
+                $gambar3Path = $request->file('gambar3')->store('public/images');
+            }
+
+            // Create a new Tentang instance
+            $tentang = new Tentang;
+            $tentang->judul = $validatedData['judul'];
+            $tentang->deskripsi = $validatedData['deskripsi'];
+            $tentang->gambar1 = $gambar1Path;
+            $tentang->gambar2 = $gambar2Path;
+            $tentang->gambar3 = $gambar3Path;
+            $tentang->nomor_telpon = $validatedData['nomor_telpon'];
+            $tentang->kategori = 'tentang';
+
+            // Save the data to the database
+            if ($tentang->save()) {
+                return redirect()->route('tentang.index')->with('success', 'Data berhasil disimpan!');
+            } else {
+                Log::error('Failed to save Tentang: ', $tentang->toArray());
+                return redirect()->back()->with('error', 'Terjadi kesalahan, data tidak dapat disimpan.');
+            }
         } catch (\Exception $e) {
-            return redirect()->route('tentang.create')->with('error', 'Failed to create Tentang.');
+            Log::error('Exception while saving Tentang: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Terjadi kesalahan, data tidak dapat disimpan.');
         }
     }
 
