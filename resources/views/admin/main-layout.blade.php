@@ -180,7 +180,7 @@
 
     <!-- Template Main JS File -->
     <script src="{{ url('assets_nice/js/main.js') }}"></script>
-
+    @yield('scripts')
 </body>
 
 </html>

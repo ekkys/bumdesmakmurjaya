@@ -36,7 +36,7 @@
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger"
-                                    onclick="return confirm('Are you sure?')">Delete</button>
+                                    onclick="return confirm('Anda yakin hapus')">Hapus</button>
                             </form>
                         </td>
                     </tr>

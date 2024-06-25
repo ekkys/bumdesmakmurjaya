@@ -2,7 +2,7 @@
 @section('title', 'Create|Home')
 
 @section('content')
-    <div class="container mt-5">
+    <div class="container card mt-5">
         <h2>Home</h2>
         <!-- Toast Notifications -->
         <div aria-live="polite" aria-atomic="true" class="position-relative">

@@ -84,6 +84,7 @@ class HomeController extends Controller
             'hashtag' => 'required|string|max:255',
             'link' => 'required|string|max:255',
         ]);
+
         try {
             $home = Home::findOrFail($id);
             if ($request->hasFile('gambar')) {

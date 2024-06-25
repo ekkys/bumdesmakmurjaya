@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Home;
+use App\Models\Legalitas;
 use App\Models\Website;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class WebsiteController extends Controller
     public function index()
     {
         $home = Home::first();
-        return view('website.landing', compact('home'));
+        $legalitasPage = Legalitas::take(3)->get();
+        return view('website.landing', compact('home', 'legalitasPage'));
     }
     public function tentangDetail()
     {
@@ -23,7 +25,8 @@ class WebsiteController extends Controller
 
     public function legalitasDetail()
     {
-        return view('website.detail.legalitas');
+        $legalitasAll = Legalitas::all();
+        return view('website.detail.legalitas', compact('legalitasAll'));
     }
     public function klienDetail()
     {

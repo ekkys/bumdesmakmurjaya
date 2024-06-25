@@ -13,13 +13,12 @@ class HomeSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('home')->insert([
+        DB::table('legalitas')->insert([
             [
-                'gambar' => 'home/YA6g0dhNS5xjo1NwSTNBpgm2Nw46Bhap6qzqduTH.png',
-                'judul' => 'Makmur Jaya',
-                'quote' => 'Menjadikan sampah sebagai sumber daya bermanfaat dan solusi ekonomis',
-                'hashtag' => '#bersihdesaku',
-                'link' => 'https://www.yzoutube.com/watch?v=1X8c8ISRbRA',
+                'nama' => 'NIB - Nomor Ijin Berusaha',
+                'gambar' => 'leglitas/FxMHirYpxKgexPG8thUYUvE4pKkWWiqdbssHMA2Z.png',
+                'link' => 'https://drive.google.com/file/d/1XxNfUbGlYaDq1Mx1Pw3Zu1O-8LyKPQmP/view',
+                'deskripsi' => 'NIB - Nomor Ijin Berusaha',
             ],
         ]);
     }

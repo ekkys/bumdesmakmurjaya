@@ -9,7 +9,7 @@
         <nav id="navmenu" class="navmenu">
             <ul>
                 <li><a href="{{ route('website.index') }}#hero" class="">Home</a></li>
-                <li class="dropdown"><a href="#about"><span>Tentang Kami</span> <i
+                <li class="dropdown"><a href="{{ route('website.index') }}#about"><span>Tentang Kami</span> <i
                             class="bi bi-chevron-down toggle-dropdown"></i></a>
                     <ul>
                         <li><a href="{{ route('website.index') }}#featured-services">Legalitas</a></li>
