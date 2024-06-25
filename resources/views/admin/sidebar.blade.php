@@ -36,7 +36,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{ route('klien.index') }}">
                         <i class="bi bi-people-fill" style="font-size: 1rem;"></i><span>List Klien</span>
                     </a>
                 </li>
