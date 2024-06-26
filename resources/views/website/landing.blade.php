@@ -135,53 +135,53 @@
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
             <h2 class="">Unit- Unit BUMDES Makmur Jaya</h2>
-            < </div><!-- End Section Title -->
+        </div><!-- End Section Title -->
 
-                <div class="container">
-                    <div class="row justify-content-between">
+        <div class="container">
+            <div class="row justify-content-between">
 
-                        <div class="col-lg-5 d-flex align-items-center">
+                <div class="col-lg-5 d-flex align-items-center">
 
-                            <ul class="nav nav-tabs" data-aos="fade-up" data-aos-delay="100">
-                                @foreach ($units as $unit)
-                                    <li class="nav-item">
-                                        <a class="nav-link {{ $loop->iteration == 1 ? 'active' : '' }}" data-bs-toggle="tab"
-                                            data-bs-target="#features-tab-{{ $loop->iteration }}">
-                                            <i class="bi bi-binoculars"></i>
-                                            <div>
-                                                <h4 class="d-none d-lg-block">{{ $unit->nama }}</h4>
-                                                <p>
-                                                    {{ $unit->ringkasan }}
-                                                </p>
-                                            </div>
-                                            <a href="{{ route('tps3r.detail') }}" class="btn btn-primary"
-                                                style="background:#388da8; border:#388da8;">Selengkapnya <i
-                                                    class="bi bi-arrow-right"></i>
-                                            </a>
-                                        </a>
-                                    </li>
-                                @endforeach
-                            </ul><!-- End Tab Nav -->
+                    <ul class="nav nav-tabs" data-aos="fade-up" data-aos-delay="100">
+                        @foreach ($units as $unit)
+                            <li class="nav-item">
+                                <a class="nav-link {{ $loop->iteration == 1 ? 'active' : '' }}" data-bs-toggle="tab"
+                                    data-bs-target="#features-tab-{{ $loop->iteration }}">
+                                    <i class="bi bi-binoculars"></i>
+                                    <div>
+                                        <h4 class="d-none d-lg-block">{{ $unit->nama }}</h4>
+                                        <p>
+                                            {{ $unit->ringkasan }}
+                                        </p>
+                                    </div>
+                                    <a href="{{ route('tps3r.detail') }}" class="btn btn-primary"
+                                        style="background:#388da8; border:#388da8;">Selengkapnya <i
+                                            class="bi bi-arrow-right"></i>
+                                    </a>
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul><!-- End Tab Nav -->
 
-                        </div>
-                        {{-- Gambar di kanannya --}}
-                        <div class="col-lg-6">
+                </div>
+                {{-- Gambar di kanannya --}}
+                <div class="col-lg-6">
 
-                            <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
-                                @foreach ($units as $unit)
-                                    <div class="tab-pane fade {{ $loop->iteration == 1 ? 'active' : '' }} show"
-                                        id="features-tab-{{ $loop->iteration }}">
-                                        <img src="{{ Storage::url($unit->gambar) }}" alt="" class="img-fluid">
-                                    </div><!-- End Tab Content Item -->
-                                @endforeach
-
-                            </div>
-
-                        </div>
+                    <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
+                        @foreach ($units as $unit)
+                            <div class="tab-pane fade {{ $loop->iteration == 1 ? 'active' : '' }} show"
+                                id="features-tab-{{ $loop->iteration }}">
+                                <img src="{{ Storage::url($unit->gambar) }}" alt="" class="img-fluid">
+                            </div><!-- End Tab Content Item -->
+                        @endforeach
 
                     </div>
 
                 </div>
+
+            </div>
+
+        </div>
 
     </section><!-- /Features Section -->
 

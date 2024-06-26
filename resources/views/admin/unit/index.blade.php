@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-12 mt-3">
                 <h4>Unit List</h4>
-                <a href="{{ route('unit.create') }}" class="btn btn-primary">Tambah unit</a>
+                {{-- <a href="{{ route('unit.create') }}" class="btn btn-primary">Tambah unit</a> --}}
                 <table class="table mt-3">
                     <thead>
                         <tr>
@@ -34,12 +34,12 @@
                                 <td>
                                     {{-- <a href="{{ route('home.show', $home->id) }}" class="btn btn-info">Show</a> --}}
                                     <a href="{{ route('unit.edit', $unit->id) }}" class="btn btn-warning">Edit</a>
-                                    <form action="{{ route('unit.destroy', $unit->id) }}" method="POST" class="d-inline">
+                                    {{-- <form action="{{ route('unit.destroy', $unit->id) }}" method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger"
                                             onclick="return confirm('Anda yakin hapus ?')">Hapus</button>
-                                    </form>
+                                    </form> --}}
                                 </td>
                             </tr>
                         @endforeach

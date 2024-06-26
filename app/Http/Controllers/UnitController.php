@@ -103,10 +103,10 @@ class UnitController extends Controller
                 'ringkasan' => $request->ringkasan,
                 'link' => $request->link,
             ]);
-            return redirect()->route('unit.index')->with('success', 'Home Updated successfully.');
+            return redirect()->route('unit.index')->with('success', 'Unit Updated successfully.');
         } catch (\Exception $e) {
             throw $e;
-            return redirect()->back()->with('error', 'Failed to update home.');
+            return redirect()->back()->with('error', 'Failed to update Unit.');
         }
     }
 
