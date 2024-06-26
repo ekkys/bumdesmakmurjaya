@@ -51,8 +51,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <i class="bi bi-house-door" style="font-size: 1rem;"></i><span>Divisi</span>
+                    <a href="{{ route('unit.index') }}">
+                        <i class="bi bi-house-door" style="font-size: 1rem;"></i><span>Unit</span>
                     </a>
                 </li>
             </ul>

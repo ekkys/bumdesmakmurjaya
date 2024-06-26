@@ -5,6 +5,7 @@ use App\Http\Controllers\KlienController;
 use App\Http\Controllers\LegalitasController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TentangController;
+use App\Http\Controllers\UnitController;
 use App\Http\Controllers\WebsiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,7 @@ Route::resource('home', HomeController::class);
 Route::resource('tentang', TentangController::class);
 Route::resource('legalitas', LegalitasController::class);
 Route::resource('klien', KlienController::class);
+Route::resource('unit', UnitController::class);
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

@@ -2,7 +2,7 @@
 @section('title', 'Index|Home')
 
 @section('content')
-    <div class="container mt-5">
+    <div class="container mt-5 card">
         <h1>Home </h1>
         {{-- <a href="{{ route('home.create') }}" class="btn btn-primary mb-3">Add Home</a> --}}
 

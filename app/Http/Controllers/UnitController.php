@@ -2,22 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Legalitas;
+use App\Models\Unit;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
-use function PHPUnit\Framework\returnSelf;
-
-class LegalitasController extends Controller
+class UnitController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $legalitas = Legalitas::all();
-        return view('admin.legalitas.index', compact('legalitas'));
+        $units = Unit::all();
+        return view('admin.unit.index', compact('units'));
     }
 
     /**
@@ -25,7 +22,7 @@ class LegalitasController extends Controller
      */
     public function create()
     {
-        return view('admin.legalitas.create');
+        return view('admin.unit.create');
     }
 
     /**
@@ -33,24 +30,24 @@ class LegalitasController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'nama' => 'required|string',
-            'link' => 'required|string',
-            'deskripsi' => 'required|string',
+            'nama' => 'required|string|max:255',
+            'deskripsi' => 'required|string|max:255',
+            'ringkasan' => 'required|string|max:255',
+            'link' => 'required|string|max:255',
         ]);
-
         try {
-            $path = $request->file('gambar')->store('legalitas', 'public');
-            Legalitas::create([
+            $path = $request->file('gambar')->store('unit', 'public');
+            Unit::create([
                 'gambar' => $path,
                 'nama' => $request->nama,
-                'link' => $request->link,
+                'ringkasan' => $request->ringkasan,
                 'deskripsi' => $request->deskripsi,
+                'link' => $request->link,
             ]);
 
-            return redirect()->route('legalitas.index')->with('success', 'Home created successfully.');
+            return redirect()->route('unit.index')->with('success', 'Home created successfully.');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Failed to create home.');
         }
@@ -59,7 +56,7 @@ class LegalitasController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Legalitas $legalitas)
+    public function show(Unit $unit)
     {
         //
     }
@@ -69,8 +66,8 @@ class LegalitasController extends Controller
      */
     public function edit($id)
     {
-        $legalitas = Legalitas::findOrFail($id);
-        return view('admin.legalitas.edit', compact('legalitas'));
+        $unit = Unit::findOrFail($id);
+        return view('admin.unit.edit', compact('unit'));
     }
 
     /**
@@ -81,29 +78,34 @@ class LegalitasController extends Controller
         $request->validate([
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'nama' => 'required|string',
-            'link' => 'required|string',
             'deskripsi' => 'required|string',
+            'ringkasan' => 'required|string',
+            'link' => 'required|string',
         ]);
 
         try {
-            $legalitas = Legalitas::findOrFail($id);
+            $data = Unit::findOrFail($id);
 
             if ($request->hasFile('gambar')) {
-                Storage::disk('public')->delete($legalitas->gambar);
-                $path = $request->file('gambar')->store('legalitas', 'public');
+                // Delete the old image
+                if ($data->gambar && Storage::disk('public')->exists($data->gambar)) {
+                    Storage::disk('public')->delete($data->gambar);
+                }
+                // Store the new image
+                $path = $request->file('gambar')->store('unit', 'public');
             } else {
-                $path = $legalitas->gambar;
+                $path = $data->gambar;
             }
-
-            $legalitas->update([
+            $response =  $data->update([
                 'gambar' => $path,
                 'nama' => $request->nama,
-                'link' => $request->link,
                 'deskripsi' => $request->deskripsi,
+                'ringkasan' => $request->ringkasan,
+                'link' => $request->link,
             ]);
-
-            return redirect()->route('legalitas.index')->with('success', 'Home Updated successfully.');
+            return redirect()->route('unit.index')->with('success', 'Home Updated successfully.');
         } catch (\Exception $e) {
+            throw $e;
             return redirect()->back()->with('error', 'Failed to update home.');
         }
     }
@@ -114,10 +116,10 @@ class LegalitasController extends Controller
     public function destroy($id)
     {
         try {
-            $data = Legalitas::find($id);
+            $data = Unit::find($id);
             Storage::disk('public')->delete($data->gambar);
             $data->delete();
-            return redirect()->route('legalitas.index')->with('success', 'Home deleted successfully.');
+            return redirect()->route('unit.index')->with('success', 'Home deleted successfully.');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Failed to delete home.');
         }
