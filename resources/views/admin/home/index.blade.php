@@ -32,12 +32,12 @@
                         <td>
                             {{-- <a href="{{ route('home.show', $home->id) }}" class="btn btn-info">Show</a> --}}
                             <a href="{{ route('home.edit', $home->id) }}" class="btn btn-warning">Edit</a>
-                            <form action="{{ route('home.destroy', $home->id) }}" method="POST" class="d-inline">
+                            {{-- <form action="{{ route('home.destroy', $home->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger"
                                     onclick="return confirm('Anda yakin hapus')">Hapus</button>
-                            </form>
+                            </form> --}}
                         </td>
                     </tr>
                 @endforeach
