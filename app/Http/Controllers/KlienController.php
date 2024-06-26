@@ -72,8 +72,8 @@ class KlienController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'nama' => 'required|string|max:255',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'nama' => 'nullable|string|max:255',
         ]);
 
         try {
