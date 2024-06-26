@@ -145,8 +145,8 @@
                             <ul class="nav nav-tabs" data-aos="fade-up" data-aos-delay="100">
                                 @foreach ($units as $unit)
                                     <li class="nav-item">
-                                        <a class="nav-link active show" data-bs-toggle="tab"
-                                            data-bs-target="#features-tab-1">
+                                        <a class="nav-link {{ $loop->iteration == 1 ? 'active' : '' }}" data-bs-toggle="tab"
+                                            data-bs-target="#features-tab-{{ $loop->iteration }}">
                                             <i class="bi bi-binoculars"></i>
                                             <div>
                                                 <h4 class="d-none d-lg-block">{{ $unit->nama }}</h4>
@@ -168,14 +168,12 @@
                         <div class="col-lg-6">
 
                             <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
-
-                                <div class="tab-pane fade active show" id="features-tab-1">
-                                    <img src="{{ Storage::url($unit->gambar) }}" alt="" class="img-fluid">
-                                </div><!-- End Tab Content Item -->
-
-                                <div class="tab-pane fade" id="features-tab-2">
-                                    <img src="{{ Storage::url($unit->gambar) }}" alt="" class="img-fluid">
-                                </div><!-- End Tab Content Item -->
+                                @foreach ($units as $unit)
+                                    <div class="tab-pane fade {{ $loop->iteration == 1 ? 'active' : '' }} show"
+                                        id="features-tab-{{ $loop->iteration }}">
+                                        <img src="{{ Storage::url($unit->gambar) }}" alt="" class="img-fluid">
+                                    </div><!-- End Tab Content Item -->
+                                @endforeach
 
                             </div>
 
