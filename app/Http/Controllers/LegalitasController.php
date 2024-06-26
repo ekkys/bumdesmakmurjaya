@@ -80,8 +80,8 @@ class LegalitasController extends Controller
     {
         $request->validate([
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'nama' => 'required|string',
-            'link' => 'required|string',
+            'nama' => 'nullable|string',
+            'link' => 'nullable|string',
             'deskripsi' => 'required|string',
         ]);
 
@@ -89,10 +89,10 @@ class LegalitasController extends Controller
             $legalitas = Legalitas::findOrFail($id);
 
             if ($request->hasFile('gambar')) {
-                Storage::disk('public')->delete($legalitas->gambar);
+                if ($legalitas->gambar && Storage::disk('public')->exists($legalitas->gambar)) {
+                    Storage::disk('public')->delete($legalitas->gambar);
+                }
                 $path = $request->file('gambar')->store('legalitas', 'public');
-            } else {
-                $path = $legalitas->gambar;
             }
 
             $legalitas->update([
@@ -102,9 +102,10 @@ class LegalitasController extends Controller
                 'deskripsi' => $request->deskripsi,
             ]);
 
-            return redirect()->route('legalitas.index')->with('success', 'Home Updated successfully.');
+            return redirect()->route('legalitas.index')->with('success', 'Legalitas Updated successfully.');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Failed to update home.');
+            throw $e;
+            return redirect()->back()->with('error', 'Failed to update Legalitas.');
         }
     }
 
