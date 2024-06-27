@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Home;
 use App\Models\Klien;
+use App\Models\Layanan;
 use App\Models\Legalitas;
 use App\Models\Unit;
 use App\Models\Website;
@@ -20,7 +21,8 @@ class WebsiteController extends Controller
         $home = Home::first();
         $legalitasPage = Legalitas::take(3)->get();
         $kliens = Klien::all();
-        return view('website.landing', compact('home', 'legalitasPage', 'kliens', 'units'));
+        $layanans = Layanan::all();
+        return view('website.landing', compact('home', 'legalitasPage', 'kliens', 'units', 'layanans'));
     }
     public function tentangDetail()
     {

@@ -22,11 +22,11 @@ class UnitSeeder extends Seeder
                 'ringkasan' => 'TPS 3R (Tempat Pengolahan Sampah - Reduce, Reuse, Recycle) adalah fasilitas pengolahan sampah yang bertujuan untuk mengurangi jumlah sampah.',
             ],
             [
-                'nama' => 'Unit Simpan Pinjam',
+                'nama' => 'Unit Peminjaman Dana',
                 'gambar' => 'unit/6XTHuh7WPiSVTOFXdRgzyz8ohC2JjHwymgjrqwb2.jpg',
-                'link' => 'http://127.0.0.1:8000/toko-detail',
-                'deskripsi' => 'Unit Simpan Pinjam (USP) adalah bagian dari lembaga keuangan mikro yang menyediakan layanan keuangan seperti simpanan dan pinjaman kepada anggotanya.',
-                'ringkasan' => 'Unit Simpan Pinjam (USP) adalah bagian dari lembaga keuangan mikro yang menyediakan layanan keuangan seperti simpanan dan pinjaman kepada anggotanya.',
+                'link' => 'http://127.0.0.1:8000/pinjaman-detail',
+                'deskripsi' => 'Unit Peminjaman Dana adalah bagian dari lembaga keuangan mikro yang menyediakan layanan keuangan seperti simpanan dan pinjaman kepada anggotanya.',
+                'ringkasan' => 'Unit Peminjaman Dana adalah bagian dari lembaga keuangan mikro yang menyediakan layanan keuangan seperti simpanan dan pinjaman kepada anggotanya.',
 
             ],
             [

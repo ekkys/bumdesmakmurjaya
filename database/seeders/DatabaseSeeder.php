@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
             HomeSeeder::class,
             LegalitasSeeder::class,
             UnitSeeder::class,
+            LayananSeeder::class,
+            KlienSeeder::class,
         ]);
 
 
