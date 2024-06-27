@@ -193,51 +193,50 @@
         </div><!-- End Section Title -->
         <div class="container">
             @foreach ($layanans as $layanan)
-                <div class="row gy-4 justify-content-between features-item">
+                @if ($loop->iteration % 2 != 0)
+                    <div class="row gy-4 justify-content-between features-item">
 
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                        <img src="{{ Storage::url($layanan->gambar) }}" class="img-fluid" alt="">
-                    </div>
-
-                    <div class="col-lg-5 d-flex align-items-center" data-aos="fade-up" data-aos-delay="200">
-                        <div class="content">
-                            <h3>{{ $layanan->nama }}</h3>
-                            <p>
-                                {{ $layanan->ringkasan }}
-                            </p>
-                            <a href="{{ $layanan->link }}" target="_blank" class="btn more-btn"> Selengkapnya </a>
+                        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                            <img src="{{ Storage::url($layanan->gambar) }}" class="img-fluid" alt="">
                         </div>
-                    </div>
 
-                </div><!-- Features Item -->
+                        <div class="col-lg-5 d-flex align-items-center" data-aos="fade-up" data-aos-delay="200">
+                            <div class="content">
+                                <h3>{{ $layanan->nama }}</h3>
+                                <p>
+                                    {{ $layanan->ringkasan }}
+                                </p>
+                                <a href="{{ $layanan->link }}" target="_blank" class="btn more-btn"> Selengkapnya </a>
+                            </div>
+                        </div>
+
+                    </div><!-- Features Item -->
+                @endif
+                @if ($loop->iteration % 2 == 0)
+                    <div class="row gy-4 justify-content-between features-item">
+
+                        <div class="col-lg-5 d-flex align-items-center order-2 order-lg-1" data-aos="fade-up"
+                            data-aos-delay="100">
+
+                            <div class="content">
+                                <h3>{{ $layanan->nama }}</h3>
+                                <p>
+                                    {{ $layanan->ringkasan }}
+                                </p>
+
+                                <a href="{{ $layanan->link }}" class="btn more-btn">Selengkapnya</a>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-up" data-aos-delay="200">
+                            <img src="{{ Storage::url($layanan->gambar) }}" class="img-fluid" alt="">
+                        </div>
+
+                    </div>
+                @endif
             @endforeach
-            {{-- <div class="row gy-4 justify-content-between features-item">
-
-                <div class="col-lg-5 d-flex align-items-center order-2 order-lg-1" data-aos="fade-up"
-                    data-aos-delay="100">
-
-                    <div class="content">
-                        <h3>Pembelian Anfalan & Barang Bekas.</h3>
-                        <p>
-                            Quidem qui dolore incidunt aut. In assumenda harum id iusto lorena plasico mares
-                        </p>
-                        <ul>
-                            <li><i class="bi bi-easel flex-shrink-0"></i> Et corporis ea eveniet ducimus.</li>
-                            <li><i class="bi bi-patch-check flex-shrink-0"></i> Exercitationem dolorem sapiente.
-                            </li>
-                            <li><i class="bi bi-brightness-high flex-shrink-0"></i> Veniam quia modi magnam.</li>
-                        </ul>
-                        <p></p>
-                        <a href="{{ route('pembelian.detail') }}" class="btn more-btn">Selengkapnya</a>
-                    </div>
-
-                </div>
-
-                <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-up" data-aos-delay="200">
-                    <img src="assets/img/features-2.jpg" class="img-fluid" alt="">
-                </div>
-
-            </div><!-- Features Item --> --}}
+            <!-- Features Item -->
             {{-- <div class="row gy-4 justify-content-between features-item">
 
                 <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
