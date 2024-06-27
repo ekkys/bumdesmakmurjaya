@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KlienController;
+use App\Http\Controllers\LayananController;
 use App\Http\Controllers\LegalitasController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TentangController;
@@ -32,6 +33,7 @@ Route::resource('tentang', TentangController::class);
 Route::resource('legalitas', LegalitasController::class);
 Route::resource('klien', KlienController::class);
 Route::resource('unit', UnitController::class);
+Route::resource('layanan', LayananController::class);
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

@@ -190,32 +190,28 @@
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
             <h2 class="">Layanan Kami</h2>
-            <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
         </div><!-- End Section Title -->
         <div class="container">
+            @foreach ($layanans as $layanan)
+                <div class="row gy-4 justify-content-between features-item">
 
-            <div class="row gy-4 justify-content-between features-item">
-
-                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                    <img src="assets/img/features-1.jpg" class="img-fluid" alt="">
-                </div>
-
-                <div class="col-lg-5 d-flex align-items-center" data-aos="fade-up" data-aos-delay="200">
-                    <div class="content">
-                        <h3>Pengangkutan dan Pengolahan Sampah <strong> Non B3</strong></h3>
-                        <p>
-                            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                            reprehenderit in voluptate
-                            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                            proident.
-                        </p>
-                        <a href="{{ route('pengangkutan.detail') }}" class="btn more-btn">Selengkapnya</a>
+                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                        <img src="{{ Storage::url($layanan->gambar) }}" class="img-fluid" alt="">
                     </div>
-                </div>
 
-            </div><!-- Features Item -->
+                    <div class="col-lg-5 d-flex align-items-center" data-aos="fade-up" data-aos-delay="200">
+                        <div class="content">
+                            <h3>{{ $layanan->nama }}</h3>
+                            <p>
+                                {{ $layanan->ringkasan }}
+                            </p>
+                            <a href="{{ $layanan->link }}" target="_blank" class="btn more-btn"> Selengkapnya </a>
+                        </div>
+                    </div>
 
-            <div class="row gy-4 justify-content-between features-item">
+                </div><!-- Features Item -->
+            @endforeach
+            {{-- <div class="row gy-4 justify-content-between features-item">
 
                 <div class="col-lg-5 d-flex align-items-center order-2 order-lg-1" data-aos="fade-up"
                     data-aos-delay="100">
@@ -241,8 +237,8 @@
                     <img src="assets/img/features-2.jpg" class="img-fluid" alt="">
                 </div>
 
-            </div><!-- Features Item -->
-            <div class="row gy-4 justify-content-between features-item">
+            </div><!-- Features Item --> --}}
+            {{-- <div class="row gy-4 justify-content-between features-item">
 
                 <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
                     <img src="assets/img/features-1.jpg" class="img-fluid" alt="">
@@ -261,7 +257,7 @@
                     </div>
                 </div>
 
-            </div><!-- Features Item -->
+            </div><!-- Features Item --> --}}
         </div>
     </section><!-- /Features Details Section -->
 
@@ -275,10 +271,10 @@
             <div class="row gy-4">
                 @foreach ($kliens as $klien)
                     <div class="col-xl-2 col-md-3 col-6 client-logo">
+                        {{-- <img src="{{ Storage::url($klien->gambar) }}" class="img-fluid" alt=""> --}}
                         <img src="{{ Storage::url($klien->gambar) }}" class="img-fluid" alt="">
                     </div><!-- End Client Item -->
                 @endforeach
-
             </div>
         </div>
         <div class="content container section-title mt-5" data-aos="fade-up">

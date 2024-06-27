@@ -31,8 +31,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <i class="bi bi-newspaper" style="font-size: 1rem;"></i><span>Berita</span>
+                    <a href="{{ route('unit.index') }}">
+                        <i class="bi bi-house-door" style="font-size: 1rem;"></i><span>Unit</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('layanan.index') }}">
+                        <i class="bi bi-truck" style="font-size: 1rem;"></i><span>Layanan</span>
                     </a>
                 </li>
                 <li>
@@ -42,19 +47,15 @@
                 </li>
                 <li>
                     <a href="#">
-                        <i class="bi bi-truck" style="font-size: 1rem;"></i><span>Layanan</span>
+                        <i class="bi bi-newspaper" style="font-size: 1rem;"></i><span>Berita</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="bi bi-phone-vibrate" style="font-size: 1rem;"></i><span>Link Sosmed</span>
+                        <i class="bi bi-phone-vibrate" style="font-size: 1rem;"></i><span>Kontak</span>
                     </a>
                 </li>
-                <li>
-                    <a href="{{ route('unit.index') }}">
-                        <i class="bi bi-house-door" style="font-size: 1rem;"></i><span>Unit</span>
-                    </a>
-                </li>
+
             </ul>
         </li><!-- End Website Nav -->
 
