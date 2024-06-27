@@ -12,8 +12,8 @@
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
-                            <th>Deskripsi</th>
                             <th>Ringkasan</th>
+                            <th>Deskripsi</th>
                             <th>Link</th>
                             <th>Gambar</th>
                             <th>Actions</th>
