@@ -8,6 +8,7 @@ use App\Models\Kontak;
 use App\Models\Layanan;
 use App\Models\Legalitas;
 use App\Models\Unit;
+use App\Models\Visitor;
 use App\Models\Website;
 use Illuminate\Http\Request;
 
@@ -16,15 +17,21 @@ class WebsiteController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $ip = $request->ip();
+        $visitor = Visitor::firstOrCreate(['ip_address' => $ip]);
+        $visitor->increment('visits');
+
+        $visitors = Visitor::count();
+
         $units = Unit::all();
         $home = Home::first();
         $legalitasPage = Legalitas::take(3)->get();
         $kliens = Klien::all();
         $layanans = Layanan::all();
         $kontaks = Kontak::all();
-        return view('website.landing', compact('home', 'legalitasPage', 'kliens', 'units', 'layanans', 'kontaks'));
+        return view('website.landing', compact('home', 'legalitasPage', 'kliens', 'units', 'layanans', 'kontaks', 'visitors'));
     }
     public function tentangDetail()
     {

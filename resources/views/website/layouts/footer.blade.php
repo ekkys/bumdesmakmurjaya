@@ -17,11 +17,12 @@
 
             </div> --}}
         @foreach ($kontaks as $kontak)
-            <div class="social-links d-flex col-xl-6 col-md-6 footer-links">
+            <div class="social-links d-flex col-xl-12 col-md-6 footer-links">
                 <a href="{{ $kontak->facebook }}"><i class="bi bi-facebook"></i></a>
                 <a href="{{ $kontak->instagram }}"><i class="bi bi-instagram"></i></a>
                 <a href="{{ $kontak->whatsapp }}"><i class="bi bi-whatsapp"></i></a>
                 <a href="{{ $kontak->youtube }}"><i class="bi bi-youtube"></i></a>
+                <h5>Jumlah Pengunjung : {{ $visitors }} <i class="bi bi-people"></i></h5>
             </div>
         @endforeach
 
