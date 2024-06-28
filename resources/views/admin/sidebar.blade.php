@@ -51,7 +51,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{ route('kontak.index') }}">
                         <i class="bi bi-phone-vibrate" style="font-size: 1rem;"></i><span>Kontak</span>
                     </a>
                 </li>

@@ -1,7 +1,7 @@
 <footer id="footer" class="footer position-relative">
 
     <div class="container footer-top">
-        <div class="row gy-4">
+        {{-- <div class="row gy-4">
             <div class="col-lg-4 col-md-6 footer-about">
                 <a href="" class="logo d-flex align-items-center">
                     <span class="sitename">bumdesmakmurjaya.com</span>
@@ -15,16 +15,17 @@
                     <p><strong>Email:</strong> <span>admin@bumdesmakmurjaya.com</span></p>
                 </div>
 
+            </div> --}}
+        @foreach ($kontaks as $kontak)
+            <div class="social-links d-flex col-xl-6 col-md-6 footer-links">
+                <a href="{{ $kontak->facebook }}"><i class="bi bi-facebook"></i></a>
+                <a href="{{ $kontak->instagram }}"><i class="bi bi-instagram"></i></a>
+                <a href="{{ $kontak->whatsapp }}"><i class="bi bi-whatsapp"></i></a>
+                <a href="{{ $kontak->youtube }}"><i class="bi bi-youtube"></i></a>
             </div>
-            <div class="social-links d-flex col-lg-6 col-md-6 footer-links">
-                <a href=""><i class="bi bi-twitter-x"></i></a>
-                <a href=""><i class="bi bi-facebook"></i></a>
-                <a href=""><i class="bi bi-instagram"></i></a>
-                <a href=""><i class="bi bi-linkedin"></i></a>
-            </div>
+        @endforeach
 
-
-        </div>
+    </div>
     </div>
 
     <div class="container copyright text-center mt-4">

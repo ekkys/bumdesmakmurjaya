@@ -684,57 +684,54 @@
     <!-- Contact Section -->
     <section id="contact" class="contact section">
 
-        <!-- Section Title -->
-        <div class="container section-title" data-aos="fade-up">
-            <h2>Kontak Kami</h2>
-            <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-        </div><!-- End Section Title -->
+        @foreach ($kontaks as $kontak)
+            <!-- Section Title -->
+            <div class="container section-title" data-aos="fade-up">
+                <h2>Kontak Kami</h2>
+            </div><!-- End Section Title -->
+            <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-        <div class="container" data-aos="fade-up" data-aos-delay="100">
+                <div class="row gy-4">
 
-            <div class="row gy-4">
+                    <div class="col-lg-6">
+                        <div class="info-item d-flex flex-column justify-content-center align-items-center"
+                            data-aos="fade-up" data-aos-delay="200">
+                            <i class="bi bi-geo-alt"></i>
+                            <h3>Alamat</h3>
+                            <p>{{ $kontak->alamat }}</p>
+                        </div>
+                    </div><!-- End Info Item -->
 
-                <div class="col-lg-6">
-                    <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up"
-                        data-aos-delay="200">
-                        <i class="bi bi-geo-alt"></i>
-                        <h3>Alamat</h3>
-                        <p>Jl. Dusun Tundungan, Tundungan, Sidomojo, Kec. Krian, Kabupaten Sidoarjo, Jawa Timur
-                            35151</p>
-                    </div>
-                </div><!-- End Info Item -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="info-item d-flex flex-column justify-content-center align-items-center"
+                            data-aos="fade-up" data-aos-delay="300">
+                            <i class="bi bi-telephone"></i>
+                            <h3>Hubungi kami</h3>
+                            <p>{{ $kontak->telpon }}</p>
+                        </div>
+                    </div><!-- End Info Item -->
 
-                <div class="col-lg-3 col-md-6">
-                    <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up"
-                        data-aos-delay="300">
-                        <i class="bi bi-telephone"></i>
-                        <h3>Hubungi kami</h3>
-                        <p>+62 895-6322-10577</p>
-                    </div>
-                </div><!-- End Info Item -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="info-item d-flex flex-column justify-content-center align-items-center"
+                            data-aos="fade-up" data-aos-delay="400">
+                            <i class="bi bi-envelope"></i>
+                            <h3>Email Kami</h3>
+                            <p>{{ $kontak->email }}</p>
+                        </div>
+                    </div><!-- End Info Item -->
 
-                <div class="col-lg-3 col-md-6">
-                    <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up"
-                        data-aos-delay="400">
-                        <i class="bi bi-envelope"></i>
-                        <h3>Email Kami</h3>
-                        <p>admin@bumdesmakmurjaya.com</p>
-                    </div>
-                </div><!-- End Info Item -->
+                </div>
 
-            </div>
+                <div class="row gy-4 mt-1">
+                    <div class="col-lg-12" data-aos="fade-up" data-aos-delay="300">
+                        <iframe src="{{ $kontak->maps }}" frameborder="0" style="border:0; width: 100%; height: 400px;"
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div><!-- End Google Maps -->
 
-            <div class="row gy-4 mt-1">
-                <div class="col-lg-12" data-aos="fade-up" data-aos-delay="300">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.8013057203636!2d112.583538!3d-7.3945369!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e780985bd56483b:0x5ea5850216f1457a!2sBUMDes%20MAKMUR%20JAYA%20Desa%20Sidomojo!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus"
-                        frameborder="0" style="border:0; width: 100%; height: 400px;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div><!-- End Google Maps -->
+                </div>
 
             </div>
-
-        </div>
+        @endforeach
 
     </section>
     <!-- /Contact Section -->
