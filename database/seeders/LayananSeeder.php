@@ -15,7 +15,7 @@ class LayananSeeder extends Seeder
     {
         DB::table('layanans')->insert([
             [
-                'nama' => 'Pengangkutan dan Pengolahan Sampah Non B3',
+                'nama' => 'Pengangkutan dan Pengolahan Sampah Domestik dan B3',
                 'gambar' => 'layanan/CPd5cUCnPyXvKvpdx3iTtdcqvbtQRkVyrbh50Ycm.jpg',
                 'link' => 'http://127.0.0.1:8000/pengangkutan-detail',
                 'ringkasan' => 'Pengangkutan dan pengolahan sampah non-B3 (non-bahan berbahaya dan beracun) adalah proses penting dalam manajemen limbah yang bertujuan untuk menjaga kebersihan dan kesehatan lingkungan.',
