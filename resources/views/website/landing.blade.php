@@ -7,7 +7,7 @@
         </div>
         <div class="container text-center">
             <div class="d-flex flex-column justify-content-center align-items-center">
-                <h1 data-aos="fade-up" class="" style="margin-top: 1px;">BUMDES <span>{{ $home->judul }}</span></h1>
+                <h1 data-aos="fade-up" class="" style="margin-top: 1px;">BUMDesa <span>{{ $home->judul }}</span></h1>
                 <p data-aos="fade-up" data-aos-delay="100" class="" style="margin-top: 50px;">"{{ $home->quote }}."
                     <br>
                     <strong>{{ $home->hashtag }}</strong>
@@ -113,8 +113,8 @@
                             target="_blank" class="" style="display: flex; flex-direction: column; gap: 10px;">
                             <strong style="text-align: center;"> {{ $legal->nama }}</strong>
                             <!-- Image Preview -->
-                            <img src="{{ Storage::url($legal->gambar) }}" alt="Image Preview" width="320" height="480"
-                                style=" filter: blur(1px); ">
+                            <img src="{{ Storage::url($legal->gambar) }}" alt="Image Preview" width="320" height="480">
+                            {{-- //style=" filter: blur(1px); " --}}
                         </a>
                     </div>
                 @endforeach
@@ -283,162 +283,211 @@
     </section><!-- /Clients Section -->
 
 
-    {{--
-        <!-- Services Section -->
-        <section id="services" class="services section">
 
-            <!-- Section Title -->
-            <div class="container section-title" data-aos="fade-up">
-                <h2>Services</h2>
-                <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-            </div><!-- End Section Title -->
+    <!-- Services Section -->
+    <section id="services" class="services section">
 
-            <div class="container">
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Galeri</h2>
 
-                <div class="row g-5">
+        </div><!-- End Section Title -->
 
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="service-item item-cyan position-relative">
-                            <i class="bi bi-activity icon"></i>
-                            <div>
-                                <h3>Nesciunt Mete</h3>
-                                <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus
-                                    dolores iure perferendis tempore et consequatur.</p>
-                                <a href="service-details.html" class="read-more stretched-link">Selengkapnya <i
-                                        class="bi bi-arrow-right"></i></a>
+        <div class="container">
+
+            {{-- <div class="row g-5">
+
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-item item-cyan position-relative">
+                        <i class="bi bi-activity icon"></i>
+                        <div>
+                            <h3>Nesciunt Mete</h3>
+                            <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus
+                                dolores iure perferendis tempore et consequatur.</p>
+                            <a href="service-details.html" class="read-more stretched-link">Selengkapnya <i
+                                    class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div><!-- End Service Item -->
+
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-item item-orange position-relative">
+                        <i class="bi bi-broadcast icon"></i>
+                        <div>
+                            <h3>Eosle Commodi</h3>
+                            <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque
+                                eum hic non ut nesciunt dolorem.</p>
+                            <a href="service-details.html" class="read-more stretched-link">Selengkapnya <i
+                                    class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div><!-- End Service Item -->
+
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-item item-teal position-relative">
+                        <i class="bi bi-easel icon"></i>
+                        <div>
+                            <h3>Ledo Markt</h3>
+                            <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id
+                                voluptas adipisci eos earum corrupti.</p>
+                            <a href="service-details.html" class="read-more stretched-link">Selengkapnya <i
+                                    class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div><!-- End Service Item -->
+
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-item item-red position-relative">
+                        <i class="bi bi-bounding-box-circles icon"></i>
+                        <div>
+                            <h3>Asperiores Commodi</h3>
+                            <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea
+                                fuga sit provident adipisci neque.</p>
+                            <a href="service-details.html" class="read-more stretched-link">Selengkapnya <i
+                                    class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div><!-- End Service Item -->
+
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-item item-indigo position-relative">
+                        <i class="bi bi-calendar4-week icon"></i>
+                        <div>
+                            <h3>Velit Doloremque.</h3>
+                            <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut.
+                                Sed animi at autem alias eius labore.</p>
+                            <a href="service-details.html" class="read-more stretched-link">Selengkapnya <i
+                                    class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div><!-- End Service Item -->
+
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="600">
+                    <div class="service-item item-pink position-relative">
+                        <i class="bi bi-chat-square-text icon"></i>
+                        <div>
+                            <h3>Dolori Architecto</h3>
+                            <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure.
+                                Corrupti recusandae ducimus enim.</p>
+                            <a href="service-details.html" class="read-more stretched-link">Selengkapnya <i
+                                    class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div><!-- End Service Item -->
+
+            </div> --}}
+            <div class="row g-5">
+                <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="https://asset.kompas.com/crops/wS5DZ2nuUBLUZmJWnGxolz9muAg=/0x0:859x573/750x500/data/photo/2021/09/22/614b16491983b.jpg"
+                                class="d-block w-100 " style="border-radius: 10px; alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h3>First slide label</h3>
+                                <p>Some representative placeholder content for the first slide.</p>
                             </div>
                         </div>
-                    </div><!-- End Service Item -->
-
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-                        <div class="service-item item-orange position-relative">
-                            <i class="bi bi-broadcast icon"></i>
-                            <div>
-                                <h3>Eosle Commodi</h3>
-                                <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque
-                                    eum hic non ut nesciunt dolorem.</p>
-                                <a href="service-details.html" class="read-more stretched-link">Selengkapnya <i
-                                        class="bi bi-arrow-right"></i></a>
+                        <div class="carousel-item">
+                            <img src="https://cdn.antaranews.com/cache/1200x800/2023/02/07/antarafoto-pengelolaan-sampah-plastik-070223-hnd-5.jpg"
+                                class="d-block w-100" style="border-radius: 10px;" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h3>Second slide label</h3>
+                                <p>Some representative placeholder content for the second slide.</p>
                             </div>
                         </div>
-                    </div><!-- End Service Item -->
-
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="service-item item-teal position-relative">
-                            <i class="bi bi-easel icon"></i>
-                            <div>
-                                <h3>Ledo Markt</h3>
-                                <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id
-                                    voluptas adipisci eos earum corrupti.</p>
-                                <a href="service-details.html" class="read-more stretched-link">Selengkapnya <i
-                                        class="bi bi-arrow-right"></i></a>
+                        <div class="carousel-item">
+                            <img src="https://i0.wp.com/cagakurip.com/wp-content/uploads/2016/04/Pemilahan-Sampah.jpg?ssl=1"
+                                class="d-block w-100" style="border-radius: 10px;" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h3>Third slide label</h3>
+                                <p>Some representative placeholder content for the third slide.</p>
                             </div>
                         </div>
-                    </div><!-- End Service Item -->
-
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
-                        <div class="service-item item-red position-relative">
-                            <i class="bi bi-bounding-box-circles icon"></i>
-                            <div>
-                                <h3>Asperiores Commodi</h3>
-                                <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea
-                                    fuga sit provident adipisci neque.</p>
-                                <a href="service-details.html" class="read-more stretched-link">Selengkapnya <i
-                                        class="bi bi-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div><!-- End Service Item -->
-
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="500">
-                        <div class="service-item item-indigo position-relative">
-                            <i class="bi bi-calendar4-week icon"></i>
-                            <div>
-                                <h3>Velit Doloremque.</h3>
-                                <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut.
-                                    Sed animi at autem alias eius labore.</p>
-                                <a href="service-details.html" class="read-more stretched-link">Selengkapnya <i
-                                        class="bi bi-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div><!-- End Service Item -->
-
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="600">
-                        <div class="service-item item-pink position-relative">
-                            <i class="bi bi-chat-square-text icon"></i>
-                            <div>
-                                <h3>Dolori Architecto</h3>
-                                <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure.
-                                    Corrupti recusandae ducimus enim.</p>
-                                <a href="service-details.html" class="read-more stretched-link">Selengkapnya <i
-                                        class="bi bi-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div><!-- End Service Item -->
-
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
-
             </div>
+        </div>
 
-        </section><!-- /Services Section --> --}}
+        </div>
+
+    </section><!-- /Services Section -->
 
     <!-- More Features Section -->
     {{-- <section id="more-features" class="more-features section">
-            <div class="container">
+        <div class="container">
 
-                <div class="row justify-content-around gy-4">
+            <div class="row justify-content-around gy-4">
 
-                    <div class="col-lg-6 d-flex flex-column justify-content-center order-2 order-lg-1"
-                        data-aos="fade-up" data-aos-delay="100">
-                        <h3>Enim quis est voluptatibus aliquid consequatur</h3>
-                        <p>Esse voluptas cumque vel exercitationem. Reiciendis est hic accusamus. Non ipsam et sed
-                            minima temporibus laudantium. Soluta voluptate sed facere corporis dolores excepturi</p>
+                <div class="col-lg-6 d-flex flex-column justify-content-center order-2 order-lg-1" data-aos="fade-up"
+                    data-aos-delay="100">
+                    <h3>Enim quis est voluptatibus aliquid consequatur</h3>
+                    <p>Esse voluptas cumque vel exercitationem. Reiciendis est hic accusamus. Non ipsam et sed
+                        minima temporibus laudantium. Soluta voluptate sed facere corporis dolores excepturi</p>
 
-                        <div class="row">
+                    <div class="row">
 
-                            <div class="col-lg-6 icon-box d-flex">
-                                <i class="bi bi-easel flex-shrink-0"></i>
-                                <div>
-                                    <h4>Lorem Ipsum</h4>
-                                    <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias </p>
-                                </div>
-                            </div><!-- End Icon Box -->
+                        <div class="col-lg-6 icon-box d-flex">
+                            <i class="bi bi-easel flex-shrink-0"></i>
+                            <div>
+                                <h4>Lorem Ipsum</h4>
+                                <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias </p>
+                            </div>
+                        </div><!-- End Icon Box -->
 
-                            <div class="col-lg-6 icon-box d-flex">
-                                <i class="bi bi-patch-check flex-shrink-0"></i>
-                                <div>
-                                    <h4>Nemo Enim</h4>
-                                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiise</p>
-                                </div>
-                            </div><!-- End Icon Box -->
+                        <div class="col-lg-6 icon-box d-flex">
+                            <i class="bi bi-patch-check flex-shrink-0"></i>
+                            <div>
+                                <h4>Nemo Enim</h4>
+                                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiise</p>
+                            </div>
+                        </div><!-- End Icon Box -->
 
-                            <div class="col-lg-6 icon-box d-flex">
-                                <i class="bi bi-brightness-high flex-shrink-0"></i>
-                                <div>
-                                    <h4>Dine Pad</h4>
-                                    <p>Explicabo est voluptatum asperiores consequatur magnam. Et veritatis odit</p>
-                                </div>
-                            </div><!-- End Icon Box -->
+                        <div class="col-lg-6 icon-box d-flex">
+                            <i class="bi bi-brightness-high flex-shrink-0"></i>
+                            <div>
+                                <h4>Dine Pad</h4>
+                                <p>Explicabo est voluptatum asperiores consequatur magnam. Et veritatis odit</p>
+                            </div>
+                        </div><!-- End Icon Box -->
 
-                            <div class="col-lg-6 icon-box d-flex">
-                                <i class="bi bi-brightness-high flex-shrink-0"></i>
-                                <div>
-                                    <h4>Tride clov</h4>
-                                    <p>Est voluptatem labore deleniti quis a delectus et. Saepe dolorem libero sit</p>
-                                </div>
-                            </div><!-- End Icon Box -->
+                        <div class="col-lg-6 icon-box d-flex">
+                            <i class="bi bi-brightness-high flex-shrink-0"></i>
+                            <div>
+                                <h4>Tride clov</h4>
+                                <p>Est voluptatem labore deleniti quis a delectus et. Saepe dolorem libero sit</p>
+                            </div>
+                        </div><!-- End Icon Box -->
 
-                        </div>
-
-                    </div>
-
-                    <div class="features-image col-lg-5 order-1 order-lg-2" data-aos="fade-up" data-aos-delay="200">
-                        <img src="assets/img/features-3.jpg" alt="">
                     </div>
 
                 </div>
 
+                <div class="features-image col-lg-5 order-1 order-lg-2" data-aos="fade-up" data-aos-delay="200">
+                    <img src="assets/img/features-3.jpg" alt="">
+                </div>
+
             </div>
-        </section><!-- /More Features Section --> --}}
+
+        </div>
+    </section><!-- /More Features Section --> --}}
 
 
     <!-- Pricing Section -->
