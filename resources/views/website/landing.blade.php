@@ -756,7 +756,9 @@
                             data-aos="fade-up" data-aos-delay="300">
                             <i class="bi bi-telephone"></i>
                             <h3>Hubungi kami</h3>
-                            <p>{{ $kontak->telpon }}</p>
+                            <a href="https://wa.me/6281511119337">
+                                <p>{{ $kontak->telpon }}</p>
+                            </a>
                         </div>
                     </div><!-- End Info Item -->
 

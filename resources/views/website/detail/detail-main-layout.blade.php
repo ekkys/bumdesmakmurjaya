@@ -79,7 +79,7 @@
         @yield('content')
     </main>
 
-    @include('website.layouts.footer')
+    @include('website.layouts.footer-detail')
 
     <!-- WhatsApp Float Button -->
     <a href="https://wa.me/62895632210577" class="whatsapp-float" target="_blank">

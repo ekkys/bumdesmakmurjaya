@@ -13,18 +13,18 @@
                     </p>
                     <p class="mt-3"><strong>Phone:</strong> <span>+62 815-1111-9337</span></p>
                     <p><strong>Email:</strong> <span>admin@bumdesmakmurjaya.com</span></p>
-                    <p><strong>Jumlah Pengunjung :</strong> {{ $visitors }} <i class="bi bi-people"></i></p>
+                    {{-- <p><strong>Jumlah Pengunjung :</strong> {{ $visitors }} <i class="bi bi-people"></i></p> --}}
                 </div>
 
             </div>
-            @foreach ($kontaks as $kontak)
+            {{-- @foreach ($kontaks as $kontak)
                 <div class="social-links d-flex col-xl-12 col-md-6 footer-links">
                     <a href="{{ $kontak->facebook }}"><i class="bi bi-facebook"></i></a>
                     <a href="{{ $kontak->instagram }}"><i class="bi bi-instagram"></i></a>
                     <a href="{{ $kontak->whatsapp }}"><i class="bi bi-whatsapp"></i></a>
                     <a href="{{ $kontak->youtube }}"><i class="bi bi-youtube"></i></a>
                 </div>
-            @endforeach
+            @endforeach --}}
 
         </div>
     </div>
