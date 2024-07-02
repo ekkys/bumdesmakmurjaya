@@ -19,10 +19,22 @@ class WebsiteController extends Controller
      */
     public function index(Request $request)
     {
-        $ip = $request->ip();
-        $visitor = Visitor::firstOrCreate(['ip_address' => $ip]);
-        $visitor->increment('visits');
+        // $ip = $request->ip();
+        // $visitor = Visitor::firstOrCreate(['ip_address' => $ip]);
+        // $visitor->increment('visits', 9);
 
+        // $visitors = Visitor::count();
+
+        // Retrieve the IP address from the request
+        $ip = $request->ip();
+
+        // Get or create a visitor record with the IP address
+        $visitor = Visitor::firstOrCreate(['ip_address' => $ip]);
+
+        // Increment the visits count
+        $visitor->increment('visits', 9);
+
+        // Optionally, count the total number of visitors
         $visitors = Visitor::count();
 
         $units = Unit::all();
