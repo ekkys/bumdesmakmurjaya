@@ -389,7 +389,7 @@
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <img src="https://asset.kompas.com/crops/wS5DZ2nuUBLUZmJWnGxolz9muAg=/0x0:859x573/750x500/data/photo/2021/09/22/614b16491983b.jpg"
-                                class="d-block w-100 " style="border-radius: 10px; alt="...">
+                                class="d-block w-100 " style="border-radius: 10px; height:" alt="...">
                             <div class="carousel-caption d-none d-md-block">
                                 <h3>First slide label</h3>
                                 <p>Some representative placeholder content for the first slide.</p>
@@ -747,7 +747,8 @@
                             data-aos="fade-up" data-aos-delay="200">
                             <i class="bi bi-geo-alt"></i>
                             <h3>Alamat</h3>
-                            <p>{{ $kontak->alamat }}</p>
+                            <p style="margin: 20px;" class="mt-0"> {{ $kontak->alamat }} </p>
+
                         </div>
                     </div><!-- End Info Item -->
 

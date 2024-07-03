@@ -3,19 +3,20 @@
 
         <a href="" class="logo d-flex align-items-center me-auto">
             <img src="assets/img/bumdes.png" alt="">
-            <h1 class="sitename">Bumdes {{ $home->judul }}</h1>
+            <h1 class="sitename">BUMDesa {{ $home->judul }}</h1>
         </a>
 
         <nav id="navmenu" class="navmenu">
             <ul>
                 <li><a href="#hero" class="">Home</a></li>
-                <li class="dropdown"><a href="#about"><span>Tentang Kami</span> <i
+                <li class="dropdown"><a href="#about"><span>Tentang </span> <i
                             class="bi bi-chevron-down toggle-dropdown"></i></a>
                     <ul>
                         <li><a href="#featured-services">Legalitas</a></li>
                     </ul>
                 </li>
-                <li><a href="#features">Unit Kami</a></li>
+                <li><a href="#features">Unit</a></li>
+                <li><a href="#services">Galeri</a></li>
                 <li><a href="#features-details">Layanan</a></li>
                 <li><a href="#clients">Klien</a></li>
                 <li><a href="#pricing">Pricing</a></li>

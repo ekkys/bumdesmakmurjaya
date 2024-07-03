@@ -11,8 +11,10 @@
                         35151</p>
                     <p> Kabupaten Sidoarjo, Jawa Timur</p>
                     </p>
-                    <p class="mt-3"><strong>Phone:</strong> <span>+62 815-1111-9337</span></p>
-                    <p><strong>Email:</strong> <span>admin@bumdesmakmurjaya.com</span></p>
+                    <a href="">
+                        <p class="mt-3"><strong>Phone:</strong> <span>+62 815-1111-9337</span></p>
+                    </a>
+                    <p><strong>Email:</strong> <span>bumdessidomojo1@gmail.com</span></p>
                     {{-- <p><strong>Jumlah Pengunjung :</strong> {{ $visitors * 9 }} <i class="bi bi-people"></i></p> --}}
                 </div>
 

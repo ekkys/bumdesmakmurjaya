@@ -3,7 +3,7 @@
 
         <a href="" class="logo d-flex align-items-center me-auto">
             <img src="assets/img/bumdes.png" alt="">
-            <h1 class="sitename">Bumdes Makmur Jaya</h1>
+            <h1 class="sitename">BUMDesa Makmur Jaya</h1>
         </a>
 
         <nav id="navmenu" class="navmenu">

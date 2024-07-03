@@ -70,7 +70,7 @@ class KontakController extends Controller
         $request->validate([
             'alamat' => 'required|string',
             'telpon' => 'required|string',
-            'maps' => 'required|string|url',
+            'maps' => 'required|string',
             'email' => 'required|string',
             'youtube' => 'required|string',
             'whatsapp' => 'required|string',
