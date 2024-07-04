@@ -47,13 +47,13 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th width="280px">Action</th>
                                     <th>Judul</th>
                                     <th>Deskripsi</th>
                                     <th>Gambar 1</th>
                                     <th>Gambar 2</th>
                                     <th>Gambar 3</th>
                                     <th>Nomor Telepon</th>
-                                    <th width="280px">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -62,12 +62,6 @@
                                     <tr>
                                     <tr>
                                         <td>{{ ++$i }}</td>
-                                        <td>{{ $tentang->judul }}</td>
-                                        <td>{{ $tentang->deskripsi }}</td>
-                                        <td>{{ $tentang->gambar1 }}</td>
-                                        <td>{{ $tentang->gambar2 }}</td>
-                                        <td>{{ $tentang->gambar3 }}</td>
-                                        <td>{{ $tentang->nomor_telpon }}</td>
                                         <td>
                                             <a href="{{ route('tentang.edit', $tentang->id) }}"
                                                 class="btn btn-warning btn-sm">Edit</a>
@@ -79,6 +73,14 @@
                                                     onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
                                             </form>
                                         </td>
+                                        <td>{{ $tentang->judul }}</td>
+                                        <td>
+                                            <div{!! $tentang->deskripsi !!} </div>
+                                        </td>
+                                        <td>{{ $tentang->gambar1 }}</td>
+                                        <td>{{ $tentang->gambar2 }}</td>
+                                        <td>{{ $tentang->gambar3 }}</td>
+                                        <td>{{ $tentang->nomor_telpon }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

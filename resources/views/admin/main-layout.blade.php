@@ -180,6 +180,7 @@
 
     <!-- Template Main JS File -->
     <script src="{{ url('assets_nice/js/main.js') }}"></script>
+    <script src="https://cdn.quilljs.com/1.3.7/quill.js"></script>
     @yield('scripts')
 </body>
 

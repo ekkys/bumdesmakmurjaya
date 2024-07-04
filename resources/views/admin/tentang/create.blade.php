@@ -49,6 +49,7 @@
             <div class="mb-3">
                 <h5 class="card-title">Edit Artikel</h5>
                 <div class="quill-editor-full">
+                    <textarea rows="3" class="mb-3 d-none" name="description" id="quill-editor-area"></textarea>
                 </div>
             </div>
 
@@ -71,26 +72,41 @@
             <button type="submit" class="btn btn-primary">Simpan</button>
         </form>
     </div>
-    <script src="https://cdn.quilljs.com/1.3.7/quill.js"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var quill = new Quill('#quill-editor-full', {
-                theme: 'snow'
-            });
 
-            var form = document.querySelector('form');
-            form.onsubmit = function() {
-                var deskripsi = document.querySelector('textarea[name=deskripsi]');
-                deskripsi.value = quill.root.innerHTML;
-            };
+            if (document.getElementById('quill-editor-area')) {
 
-            var toastElList = [].slice.call(document.querySelectorAll('.toast'));
-            var toastList = toastElList.map(function(toastEl) {
-                return new bootstrap.Toast(toastEl, {
-                    autohide: true,
-                    delay: 3000
-                }).show();
-            });
+                var editor = new Quill('#quill-editor-full', {
+
+                    theme: 'snow'
+
+                });
+
+                var quillEditor = document.getElementById('quill-editor-area');
+
+                editor.on('text-change', function() {
+
+                    quillEditor.value = editor.root.innerHTML;
+
+                });
+                quillEditor.addEventListener('input', function() {
+
+                    editor.root.innerHTML = quillEditor.value;
+
+                });
+
+            }
+
+        });
+        var toastElList = [].slice.call(document.querySelectorAll('.toast'));
+        var toastList = toastElList.map(function(toastEl) {
+        return new bootstrap.Toast(toastEl, {
+            autohide: true,
+            delay: 3000
+        }).show();
+        });
         });
     </script>
 @endsection
