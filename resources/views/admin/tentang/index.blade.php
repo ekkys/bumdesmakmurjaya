@@ -75,7 +75,7 @@
                                         </td>
                                         <td>{{ $tentang->judul }}</td>
                                         <td>
-                                            <div{!! $tentang->deskripsi !!} </div>
+                                            <div{!! html_entity_decode($tentang->deskripsi) !!} </div>
                                         </td>
                                         <td>{{ $tentang->gambar1 }}</td>
                                         <td>{{ $tentang->gambar2 }}</td>

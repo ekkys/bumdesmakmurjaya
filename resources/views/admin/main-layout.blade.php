@@ -31,6 +31,7 @@
     <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
     <!-- Template Main CSS File -->
     <link href="{{ url('assets_nice/css/style.css') }}" rel="stylesheet">
+    @yield('css')
     <style>
         .logo-text {
             font-size: 14px;

@@ -1,5 +1,9 @@
 @extends('admin.main-layout')
 @section('title', 'Tentang Kami')
+@section('css')
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+@endsection
 
 @section('content')
     <div class="container mt-5 card">
@@ -41,16 +45,10 @@
                 <label for="judul" class="form-label">Judul</label>
                 <input type="text" name="judul" class="form-control" id="judul">
             </div>
-            {{-- <div class="mb-3">
-                <label for="deskripsi" class="form-label">deskripsi</label>
-                <input type="text" name="deskripsi" class="form-control" id="deskripsi">
-            </div> --}}
 
             <div class="mb-3">
-                <h5 class="card-title">Edit Artikel</h5>
-                <div class="quill-editor-full">
-                    <textarea rows="3" class="mb-3 d-none" name="description" id="quill-editor-area"></textarea>
-                </div>
+                <label for="">Detail Deskripsi</label>
+                <textarea name="deskripsi" id="description" cols="30" rows="10"></textarea>
             </div>
 
             <div class="mb-3">
@@ -72,41 +70,25 @@
             <button type="submit" class="btn btn-primary">Simpan</button>
         </form>
     </div>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-
-            if (document.getElementById('quill-editor-area')) {
-
-                var editor = new Quill('#quill-editor-full', {
-
-                    theme: 'snow'
-
-                });
-
-                var quillEditor = document.getElementById('quill-editor-area');
-
-                editor.on('text-change', function() {
-
-                    quillEditor.value = editor.root.innerHTML;
-
-                });
-                quillEditor.addEventListener('input', function() {
-
-                    editor.root.innerHTML = quillEditor.value;
-
-                });
-
-            }
-
-        });
-        var toastElList = [].slice.call(document.querySelectorAll('.toast'));
-        var toastList = toastElList.map(function(toastEl) {
-        return new bootstrap.Toast(toastEl, {
-            autohide: true,
-            delay: 3000
-        }).show();
-        });
+        $('#description').summernote({
+            placeholder: 'description...',
+            tabsize: 2,
+            height: 300
         });
     </script>
+    <script>
+        var toastElList = [].slice.call(document.querySelectorAll('.toast'));
+        var toastList = toastElList.map(function(toastEl) {
+            return new bootstrap.Toast(toastEl, {
+                autohide: true,
+                delay: 3000
+            }).show();
+        });
+    </script>
+
+
 @endsection

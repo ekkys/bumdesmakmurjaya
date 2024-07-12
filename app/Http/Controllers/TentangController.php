@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tentang;
+use DOMDocument;
 use HTMLPurifier;
 use HTMLPurifier_Config;
 use Illuminate\Http\Request;
@@ -33,14 +34,14 @@ class TentangController extends Controller
     public function store(Request $request)
     {
         // Validate the request inputs
-        // $validatedData = $request->validate([
-        //     'judul' => 'required|string|max:255',
-        //     'deskripsi' => 'required', // Quill Editor content, so no string rule
-        //     'gambar1' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        //     'gambar2' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        //     'gambar3' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        //     'nomor_telpon' => 'required|string',
-        // ]);
+        $request->validate([
+            'judul' => 'required|string|max:255',
+            'deskripsi' => 'required',
+            'gambar1' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'gambar2' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'gambar3' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'nomor_telpon' => 'required|string',
+        ]);
 
         try {
             // Handle file uploads and store paths
@@ -48,15 +49,17 @@ class TentangController extends Controller
             $gambar2Path = $request->file('gambar2')->store('public/tentang');
             $gambar3Path = $request->file('gambar3')->store('public/tentang');
 
-            // Sanitize the deskripsi field
-            $config = HTMLPurifier_Config::createDefault();
-            $purifier = new HTMLPurifier($config);
-            $sanitizedDeskripsi = $purifier->purify($request->input('deskripsi'));
+
+            $deskripsi = $request->deskripsi;
+
+            $dom = new DOMDocument();
+            $dom->loadHTML($deskripsi, 9);
+            $deskripsi = $dom->saveHTML();
 
             // Create a new Tentang instance and save the data
-            $data = Tentang::create([
+            Tentang::create([
                 'judul' => $request->judul,
-                'deskripsi' => $sanitizedDeskripsi,
+                'deskripsi' => $deskripsi,
                 'gambar1' => $gambar1Path,
                 'gambar2' => $gambar2Path,
                 'gambar3' => $gambar3Path,

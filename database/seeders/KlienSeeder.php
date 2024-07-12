@@ -22,6 +22,18 @@ class KlienSeeder extends Seeder
                 'nama' => 'KSA',
                 'gambar' => 'klien/vAemaHyEMzCUAHOvJbYdSw2I8tbbdcxZ4B1Zro3C.jpg',
             ],
+            [
+                'nama' => 'BPS',
+                'gambar' => 'klien/sewiONedMfiI8xyoE3Y72XmxwmiGJHwsY5FeDobS.png',
+            ],
+            [
+                'nama' => 'BIG',
+                'gambar' => 'klien/Ru3lfAX8X1ZQpOaqmEDNZR0sCTz6tS5WgpBN403y.jpg',
+            ],
+            [
+                'nama' => 'QGR',
+                'gambar' => 'klien/PL1HeHoIwusgCNm1OKW8iWKX5ewdcdmp7Pv5IyO0.png',
+            ],
         ]);
     }
 }
