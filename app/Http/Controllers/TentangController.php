@@ -97,6 +97,7 @@ class TentangController extends Controller
      */
     public function update(Request $request, Tentang $tentang)
     {
+        // return $request->all();
         $request->validate([
             'judul' => 'nullable|string|max:255',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -117,9 +118,8 @@ class TentangController extends Controller
             }
 
             $tentang->deskripsi = $request->deskripsi;
-            $tentang->kontak = $request->kontak;
-            $tentang->lokasi = $request->lokasi;
             $tentang->nomor_telpon = $request->nomor_telpon;
+            // dd($tentang);
             $tentang->save();
 
             return redirect()->route('tentang.index')->with('success', 'Tentang updated successfully.');

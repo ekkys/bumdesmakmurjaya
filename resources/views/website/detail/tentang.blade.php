@@ -15,7 +15,7 @@
                         <h1 class="mb-2 mb-lg-0">Tentang Kami</h1>
                         <nav class="breadcrumbs">
                             <ol>
-                                <li><a href="index.html">Home</a></li>
+                                <li><a href="{{ route('website.index') }}">Home</a></li>
                                 <li class="current">Tentang Kami</li>
                             </ol>
                         </nav>
@@ -26,9 +26,6 @@
             <div class="row gy-5">
 
                 <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-
-
-
                     <div class="help-box d-flex flex-column justify-content-center align-items-center">
                         <i class="bi bi-headset help-icon"></i>
                         <h4>Ingin bertanya langsung?</h4>
@@ -37,31 +34,13 @@
                                     +62 895-632-210-577 </span></p>
                         </a>
                     </div>
-
                 </div>
-
                 <div class="col-lg-8 ps-lg-5" data-aos="fade-up" data-aos-delay="200">
-                    <img src="assets/img/services.jpg" alt="" class="img-fluid services-img">
+                    <img src="{{ Storage::url($tentang->gambar1) }}" alt="" class="img-fluid services-img">
                     <h3>
                         <h3>BUMDES Makmur Jaya <span>SIDOMOJO</span></h3>
                     </h3>
-                    <p>
-                        Bumdes Makmur Jaya Sidomojo adalah sebuah badan usaha milik desa yang bergerak dalam berbagai sektor
-                        ekonomi untuk meningkatkan kesejahteraan masyarakat desa. Dibentuk dengan tujuan utama untuk
-                        menciptakan lapangan kerja dan mengoptimalkan potensi lokal, Bumdes Makmur Jaya Sidomojo berhasil
-                        menjalankan berbagai program unggulan.Program tersebut meliputi :
-                    </p>
-                    <ul>
-                        <li><i class="bi bi-check-circle"></i> <span>Pengelolaan sampah.</span></li>
-                        <li><i class="bi bi-check-circle"></i> <span>Persewaan toko.</span></li>
-                        <li><i class="bi bi-check-circle"></i> <span>Penyediaan layanan keuangan mikro.</span></li>
-                    </ul>
-                    <p>
-                        Melalui kerja keras dan kolaborasi dengan masyarakat, Bumdes ini mampu meningkatkan pendapatan desa
-                        dan kesejahteraan
-                        penduduknya. Inisiatif seperti pengolahan hasil pertanian dan pengembangan pariwisata lokal menjadi
-                        fokus utama yang mendorong pertumbuhan ekonomi secara berkelanjutan di Sidomojo.
-                    </p>
+                    <div{!! html_entity_decode($tentang->deskripsi) !!} </div>
 
                 </div>
 

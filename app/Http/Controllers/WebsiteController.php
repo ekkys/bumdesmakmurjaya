@@ -7,6 +7,7 @@ use App\Models\Klien;
 use App\Models\Kontak;
 use App\Models\Layanan;
 use App\Models\Legalitas;
+use App\Models\Tentang;
 use App\Models\Unit;
 use App\Models\Visitor;
 use App\Models\Website;
@@ -47,7 +48,8 @@ class WebsiteController extends Controller
     }
     public function tentangDetail()
     {
-        return view('website.detail.tentang');
+        $tentang = Tentang::first();
+        return view('website.detail.tentang', compact('tentang'));
     }
 
     public function legalitasDetail()
