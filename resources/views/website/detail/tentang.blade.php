@@ -29,9 +29,9 @@
                     <div class="help-box d-flex flex-column justify-content-center align-items-center">
                         <i class="bi bi-headset help-icon"></i>
                         <h4>Ingin bertanya langsung?</h4>
-                        <a href="https://wa.me/62895632210577">
+                        <a href="https://wa.me/+6281511119337">
                             <p class="d-flex align-items-center mt-2 mb-0"><i class="bi bi-telephone me-2"></i> <span>
-                                    +62 895-632-210-577 </span></p>
+                                    +62 815-1111-9337</span></p>
                         </a>
                     </div>
                 </div>
