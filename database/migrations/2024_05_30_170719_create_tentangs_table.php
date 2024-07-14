@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('gambar1')->nullable();
             $table->string('gambar2')->nullable();
             $table->string('gambar3')->nullable();
-            $table->string('nomor_telpon')->nullable();
             $table->string('kategori')->default('tentang');
             $table->timestamps();
         });

@@ -15,7 +15,6 @@ class Tentang extends Model
         'gambar1',
         'gambar2',
         'gambar3',
-        'nomor_telpon',
         'kategori'
     ];
 }

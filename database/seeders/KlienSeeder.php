@@ -13,7 +13,7 @@ class KlienSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('legalitas')->insert([
+        DB::table('kliens')->insert([
             [
                 'nama' => 'Perum Tas 7',
                 'gambar' => 'klien/grf0samvj4sYadgQ0FkLCMWP2JSlYwi4Z0A67spJ.png',

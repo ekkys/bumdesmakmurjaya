@@ -48,11 +48,6 @@
                                             width="100">
                                     @endif
                                 </div>
-                                <div class="col-md-6">
-                                    <label for="nomor_telpon" class="form-label">Nomor Telpon</label>
-                                    <input type="text" class="form-control" id="nomor_telpon" name="nomor_telpon"
-                                        value="{{ $tentang->nomor_telpon }}">
-                                </div>
                             </div>
                             <div class="mb-3">
                                 <label for="deskripsi" class="form-label">Deskripsi</label>

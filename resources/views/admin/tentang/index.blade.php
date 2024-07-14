@@ -44,35 +44,35 @@
                     <th>Action</th>
                     <th>Judul</th>
                     <th>Deskripsi</th>
-                    <th>Gambar 1</th>
-                    <th>Gambar 2</th>
+                    <th>Gambar 1 <small>(Detail Page)</small></th>
+                    <th>Gambar 2 </th>
                     <th>Gambar 3</th>
-                    <th>Nomor Telepon</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($tentangs as $tentang)
-                    <?php $no = 1; ?>
-                    <td>{{ $no++ }}</td>
-                    <td>
-                        <a href="{{ route('tentang.edit', $tentang->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                    <tr>
+                        <?php $no = 1; ?>
+                        <td>{{ $no++ }}</td>
+                        <td>
+                            <a href="{{ route('tentang.edit', $tentang->id) }}" class="btn btn-warning btn-sm">Edit</a>
 
-                        <form action="{{ route('tentang.destroy', $tentang->id) }}" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm"
-                                onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
-                        </form>
-                    </td>
-                    <td>{{ $tentang->judul }}</td>
-                    <td>
-                        <div{!! html_entity_decode($tentang->deskripsi) !!} </div>
-                    </td>
-                    <td><img src="{{ Storage::url($tentang->gambar1) }}" alt="{{ $tentang->gambar2 }}" width="150"></td>
-                    <td><img src="{{ Storage::url($tentang->gambar2) }}" alt="{{ $tentang->gambar2 }}" width="150"></td>
-                    <td><img src="{{ Storage::url($tentang->gambar3) }}" alt="{{ $tentang->gambar2 }}" width="150">
-                    </td>
-                    <td>{{ $tentang->nomor_telpon }}</td>
+                            {{-- <form action="{{ route('tentang.destroy', $tentang->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm"
+                                    onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
+                            </form> --}}
+                        </td>
+                        <td>{{ $tentang->judul }}</td>
+                        <td>
+                            <div{!! html_entity_decode($tentang->deskripsi) !!} </div>
+                        </td>
+                        <td><img src="{{ Storage::url($tentang->gambar1) }}" alt="{{ $tentang->gambar2 }}" width="150">
+                        </td>
+                        <td><img src="{{ Storage::url($tentang->gambar2) }}" alt="{{ $tentang->gambar2 }}" width="150">
+                        </td>
+                        <td><img src="{{ Storage::url($tentang->gambar3) }}" alt="{{ $tentang->gambar2 }}" width="150">
                     </tr>
                 @endforeach
             </tbody>

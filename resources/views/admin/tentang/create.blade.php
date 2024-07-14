@@ -63,10 +63,6 @@
                 <label for="gambar3" class="form-label">Gambar 3</label>
                 <input type="file" name="gambar3" class="form-control" id="gambar3">
             </div>
-            <div class="mb-3">
-                <label for="nomor_telpon" class="form-label">Nomor Telepon</label>
-                <input type="text" name="nomor_telpon" class="form-control" id="nomor_telpon">
-            </div>
             <button type="submit" class="btn btn-primary">Simpan</button>
         </form>
     </div>

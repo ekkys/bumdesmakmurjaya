@@ -34,13 +34,13 @@ class TentangController extends Controller
     public function store(Request $request)
     {
         // Validate the request inputs
+        // return $request->all();
         $request->validate([
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required',
             'gambar1' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'gambar2' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'gambar3' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'nomor_telpon' => 'required|string',
         ]);
 
         try {
@@ -63,7 +63,6 @@ class TentangController extends Controller
                 'gambar1' => $gambar1Path,
                 'gambar2' => $gambar2Path,
                 'gambar3' => $gambar3Path,
-                'nomor_telpon' => $request->nomor_telpon,
                 'kategori' => 'tentang',
             ]);
 
@@ -98,13 +97,13 @@ class TentangController extends Controller
     public function update(Request $request, Tentang $tentang)
     {
         // return $request->all();
+        // Validate the request inputs
         $request->validate([
-            'judul' => 'nullable|string|max:255',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'deskripsi' => 'nullable|string',
-            'kontak' => 'nullable|string|max:255',
-            'lokasi' => 'nullable|string|max:255',
-            'nomor_telpon' => 'nullable|string|max:255',
+            'judul' => 'required|string|max:255',
+            'deskripsi' => 'required',
+            'gambar1' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'gambar2' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'gambar3' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         try {
