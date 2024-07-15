@@ -11,6 +11,7 @@ use App\Models\Tentang;
 use App\Models\Unit;
 use App\Models\Visitor;
 use App\Models\Website;
+use DOMDocument;
 use Illuminate\Http\Request;
 
 class WebsiteController extends Controller
@@ -32,13 +33,32 @@ class WebsiteController extends Controller
         // Optionally, count the total number of visitors
         $visitors = Visitor::count();
 
+
+        //Pre View Tentang 1 pargraf
+        $tentang = Tentang::first();
+        $prevDeskripsi = $tentang->deskripsi;
+        $prevDeskripsi = substr($prevDeskripsi, 1, -1);
+        $dom = new DOMDocument;
+        // Load HTML with error handling
+        libxml_use_internal_errors(true);
+        $dom->loadHTML($prevDeskripsi);
+        libxml_clear_errors();
+
+        // Get the first paragraph element
+        $paragraphs = $dom->getElementsByTagName('p');
+        if ($paragraphs->length > 0) {
+            $firstParagraph = $paragraphs->item(0)->nodeValue;
+        } else {
+            echo "Tidak ada paragraf dalam HTML.";
+        }
+
         $units = Unit::all();
         $home = Home::first();
         $legalitasPage = Legalitas::take(3)->get();
         $kliens = Klien::all();
         $layanans = Layanan::all();
         $kontaks = Kontak::all();
-        return view('website.landing', compact('home', 'legalitasPage', 'kliens', 'units', 'layanans', 'kontaks', 'visitors'));
+        return view('website.landing', compact('home', 'firstParagraph', 'tentang', 'legalitasPage', 'kliens', 'units', 'layanans', 'kontaks', 'visitors'));
     }
     public function tentangDetail()
     {

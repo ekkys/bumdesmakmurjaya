@@ -145,7 +145,6 @@ class TentangController extends Controller
             // Update the Tentang instance with new data
             $tentang->judul = $request->judul;
             $tentang->deskripsi = $request->deskripsi;
-            // dd($tentang);
             $tentang->save();
 
             return redirect()->route('tentang.index')->with('success', 'Tentang updated successfully.');

@@ -34,18 +34,10 @@
 
                 <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
                     <p class="who-we-are">Tentang Kami</p>
-                    <h3>BUMDES Makmur Jaya <span>SIDOMOJO</span></h3>
+                    <h3>{{ $tentang->judul }}</h3>
                     <p class="fst-italic">
-                        Bumdes Makmur Jaya Sidomojo adalah sebuah badan usaha milik desa yang bergerak dalam berbagai sektor
-                        ekonomi untuk meningkatkan kesejahteraan masyarakat desa. Dibentuk dengan tujuan utama untuk
-                        menciptakan lapangan kerja dan mengoptimalkan potensi lokal, Bumdes Makmur Jaya Sidomojo berhasil
-                        menjalankan berbagai program unggulan.Program tersebut meliputi :
+                    <div> {{ $firstParagraph }} </div>
                     </p>
-                    <ul>
-                        <li><i class="bi bi-check-circle"></i> <span>Pengelolaan sampah.</span></li>
-                        <li><i class="bi bi-check-circle"></i> <span>Persewaan toko.</span></li>
-                        <li><i class="bi bi-check-circle"></i> <span>Penyediaan layanan keuangan mikro.</span></li>
-                    </ul>
                     <a href="{{ route('tentang.detail') }}" class="read-more"><span>Selengkapnya</span><i
                             class="bi bi-arrow-right"></i></a>
                 </div>

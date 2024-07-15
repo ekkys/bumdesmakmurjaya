@@ -66,7 +66,8 @@
                         </td>
                         <td>{{ $tentang->judul }}</td>
                         <td>
-                            <div{!! html_entity_decode($tentang->deskripsi) !!} </div>
+                            <div>{!! html_entity_decode($tentang->deskripsi) !!}
+                            </div>
                         </td>
                         <td><img src="{{ Storage::url($tentang->gambar1) }}" alt="{{ $tentang->gambar2 }}" width="150">
                         </td>
