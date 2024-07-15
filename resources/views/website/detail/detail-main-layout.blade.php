@@ -82,7 +82,7 @@
     @include('website.layouts.footer-detail')
 
     <!-- WhatsApp Float Button -->
-    <a href="https://wa.me/62895632210577" class="whatsapp-float" target="_blank">
+    <a href="https://wa.me/6281511119337" class="whatsapp-float" target="_blank">
         <img src="{{ url('assets\img\whatsapp.png') }}" alt="WhatsApp">
     </a>
 

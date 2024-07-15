@@ -11,7 +11,7 @@
                         35151</p>
                     <p> Kabupaten Sidoarjo, Jawa Timur</p>
                     </p>
-                    <a href="">
+                    <a href="https://wa.me/6281511119337">
                         <p class="mt-3"><strong>Phone:</strong> <span>+62 815-1111-9337</span></p>
                     </a>
                     <p><strong>Email:</strong> <span>bumdessidomojo1@gmail.com</span></p>
