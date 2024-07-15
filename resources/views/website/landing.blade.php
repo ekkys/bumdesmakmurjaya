@@ -45,15 +45,15 @@
                 <div class="col-lg-6 about-images" data-aos="fade-up" data-aos-delay="200">
                     <div class="row gy-4">
                         <div class="col-lg-6">
-                            <img src="assets/img/about-company-1.jpg" class="img-fluid" alt="">
+                            <img src="{{ Storage::url($tentang->gambar1) }}" class="img-fluid" alt="">
                         </div>
                         <div class="col-lg-6">
                             <div class="row gy-4">
                                 <div class="col-lg-12">
-                                    <img src="assets/img/about-company-2.jpg" class="img-fluid" alt="">
+                                    <img src="{{ Storage::url($tentang->gambar2) }}" class="img-fluid" alt="">
                                 </div>
                                 <div class="col-lg-12">
-                                    <img src="assets/img/about-company-3.jpg" class="img-fluid" alt="">
+                                    <img src="{{ Storage::url($tentang->gambar3) }}" class="img-fluid" alt="">
                                 </div>
                             </div>
                         </div>
@@ -105,7 +105,8 @@
                             target="_blank" class="" style="display: flex; flex-direction: column; gap: 10px;">
                             <strong style="text-align: center;"> {{ $legal->nama }}</strong>
                             <!-- Image Preview -->
-                            <img src="{{ Storage::url($legal->gambar) }}" alt="Image Preview" width="320" height="480">
+                            <img src="{{ Storage::url($legal->gambar) }}" alt="Image Preview" width="320"
+                                height="480">
                             {{-- //style=" filter: blur(1px); " --}}
                         </a>
                     </div>
