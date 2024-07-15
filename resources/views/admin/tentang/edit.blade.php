@@ -14,7 +14,7 @@
                         <h2 class="card-title">Edit Tentang Kami</h2>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('tentang.update', ['tentang' => $tentang->id]) }}" method="POST"
+                        <form action="{{ route('tentang.update', $tentang->id) }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
                             @method('PUT')

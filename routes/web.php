@@ -30,8 +30,8 @@ Route::get('/pemusnahan-detail', [WebsiteController::class, 'pemusnahanDetail'])
 
 //Admin
 Route::resource('home', HomeController::class);
-Route::resource('tentang', TentangController::class);
-
+// Route::resource('tentang', TentangController::class);
+Route::get('tentang', [TentangController::class], 'index')->name('tentang.index');
 Route::get('tentang/{id}/edit', [TentangController::class, 'edit'])->name('tentang.edit');
 Route::put('tentang/{id}', [TentangController::class, 'update'])->name('tentang.update');
 Route::get('tentang/{id}', [TentangController::class, 'destroy'])->name('tentang.destroy');
