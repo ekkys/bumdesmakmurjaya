@@ -8,6 +8,7 @@ use HTMLPurifier;
 use HTMLPurifier_Config;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class TentangController extends Controller
 {
@@ -94,35 +95,62 @@ class TentangController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Tentang $tentang)
+    public function update(Request $request, $id)
     {
-        // return $request->all();
-        // Validate the request inputs
-        $request->validate([
-            'judul' => 'required|string|max:255',
-            'deskripsi' => 'required',
-            'gambar1' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'gambar2' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'gambar3' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-
+        // dd($request->all());
         try {
-            $tentang = Tentang::findOrFail($tentang->id);
-            $tentang->judul = $request->judul;
+            // Validate the request inputs
+            $request->validate([
+                'judul' => 'required|string|max:255',
+                'deskripsi' => 'required',
+                'gambar1' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'gambar2' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'gambar3' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
 
-            if ($request->hasFile('gambar')) {
-                $fileName = time() . '.' . $request->gambar->extension();
-                $request->gambar->move(public_path('uploads'), $fileName);
-                $tentang->gambar = $fileName;
+
+            $tentang = Tentang::findOrFail($id);
+
+            if ($request->hasFile('gambar1')) {
+                //Delete the old image
+                Storage::delete($tentang->gambar1);
+                $gambar1Path = $request->file('gambar1')->store('public/tentang');
+                $tentang->gambar1 = $gambar1Path;
             }
 
+
+            if ($request->hasFile('gambar2')) {
+                // Delete the old image if exists
+                if ($tentang->gambar2) {
+                    Storage::delete($tentang->gambar2);
+                }
+                $gambar2Path = $request->file('gambar2')->store('public/tentang');
+                $tentang->gambar2 = $gambar2Path;
+            }
+
+            if ($request->hasFile('gambar3')) {
+                // Delete the old image if exists
+                if ($tentang->gambar3) {
+                    Storage::delete($tentang->gambar3);
+                }
+                $gambar3Path = $request->file('gambar3')->store('public/tentang');
+                $tentang->gambar3 = $gambar3Path;
+            }
+
+            $deskripsi = $request->deskripsi;
+            $dom = new DOMDocument();
+            $dom->loadHTML($deskripsi, 9);
+            $deskripsi = $dom->saveHTML();
+
+            // Update the Tentang instance with new data
+            $tentang->judul = $request->judul;
             $tentang->deskripsi = $request->deskripsi;
-            $tentang->nomor_telpon = $request->nomor_telpon;
             // dd($tentang);
             $tentang->save();
 
             return redirect()->route('tentang.index')->with('success', 'Tentang updated successfully.');
         } catch (\Exception $e) {
+
             return redirect()->route('tentang.edit')->with('error', 'Failed to update Tentang.');
         }
     }

@@ -11,7 +11,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="card-title">Tentang Kami</h2>
+                        <h2 class="card-title">Edit Tentang Kami</h2>
                     </div>
                     <div class="card-body">
                         <form action="{{ route('tentang.update', ['tentang' => $tentang->id]) }}" method="POST"
@@ -26,7 +26,7 @@
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="gambar" class="form-label">Gambar 1 (Di Detail) </label>
-                                    <input type="file" class="form-control" id="gambar" name="gambar">
+                                    <input type="file" class="form-control" id="gambar" name="gambar1">
                                     @if ($tentang->gambar1)
                                         <img src="{{ Storage::url($tentang->gambar1) }}" alt="{{ $tentang->gambar1 }}"
                                             width="100">
@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="gambar" class="form-label">Gambar 2</label>
-                                    <input type="file" class="form-control" id="gambar" name="gambar">
+                                    <input type="file" class="form-control" id="gambar" name="gambar2">
                                     @if ($tentang->gambar2)
                                         <img src="{{ Storage::url($tentang->gambar2) }}" alt="{{ $tentang->gambar2 }}"
                                             width="100">
@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="gambar" class="form-label">Gambar3</label>
-                                    <input type="file" class="form-control" id="gambar" name="gambar">
+                                    <input type="file" class="form-control" id="gambar" name="gambar3">
                                     @if ($tentang->gambar3)
                                         <img src="{{ Storage::url($tentang->gambar3) }}" alt="{{ $tentang->gambar3 }}"
                                             width="100">
