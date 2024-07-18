@@ -13,11 +13,11 @@
                     <!-- Page Title -->
                     <div class="page-title" data-aos="fade">
                         <div class="container d-lg-flex justify-content-between align-items-center">
-                            <h1 class="mb-2 mb-lg-0">TPS 3R</h1>
+                            <h1 class="mb-2 mb-lg-0">{{ $unit->nama }}</h1>
                             <nav class="breadcrumbs">
                                 <ol>
                                     <li><a href="{{ route('website.index') }}">Home</a></li>
-                                    <li class="current">TPS 3R</li>
+                                    <li class="current">{{ $unit->nama }}</li>
                                 </ol>
                             </nav>
                         </div>
@@ -32,7 +32,7 @@
                             <h4>Ingin bertanya langsung?</h4>
                             <a href="https://wa.me/62895632210577">
                                 <p class="d-flex align-items-center mt-2 mb-0"><i class="bi bi-telephone me-2"></i> <span>
-                                        +62 895-632-210-577 </span></p>
+                                        +62895632210577 </span></p>
                             </a>
                         </div>
                     </div>

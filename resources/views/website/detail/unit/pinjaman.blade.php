@@ -14,7 +14,7 @@
                     <!-- Page Title -->
                     <div class="page-title" data-aos="fade">
                         <div class="container d-lg-flex justify-content-between align-items-center">
-                            <h1 class="mb-2 mb-lg-0">Peminjaman Dana</h1>
+                            <h1 class="mb-2 mb-lg-0">{{ $unit->nama }}</h1>
                             <nav class="breadcrumbs">
                                 <ol>
                                     <li><a href="{{ route('website.index') }}">Home</a></li>
@@ -40,9 +40,9 @@
                     <div class="col-lg-8 ps-lg-5" data-aos="fade-up" data-aos-delay="200">
                         <img src="{{ Storage::url($unit->gambar) }}" alt="" class="img-fluid services-img">
                         <h3>
-                            <h3>BUMDES Makmur Jaya <span>SIDOMOJO</span></h3>
+                            <h3>{{ $unit->nama }}</span></h3>
                         </h3>
-                        <div>{!! html_entity_decode($unit->deskripsi) !!} </div>
+                        <div class="mt-3">{!! html_entity_decode($unit->deskripsi) !!} </div>
 
                     </div>
 

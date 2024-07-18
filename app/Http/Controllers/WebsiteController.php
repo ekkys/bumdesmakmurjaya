@@ -90,7 +90,9 @@ class WebsiteController extends Controller
 
     public function tokoDetail()
     {
-        return view('website.detail.unit.toko');
+        $kategori = 'toko';
+        $units = Unit::where('kategori', $kategori)->get();
+        return view('website.detail.unit.toko', compact('units'));
     }
 
     public function pinjamanDetail()
