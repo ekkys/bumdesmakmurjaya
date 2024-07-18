@@ -11,10 +11,10 @@
                 <tr>
                     <th>No.</th>
                     <th>Gambar</th>
-                    <th>Judul</th>
+                    <th>Nama BUMDesa</th>
                     <th>Quote</th>
                     <th>Hashtag</th>
-                    <th>Link</th>
+                    <th>Link Youtube</th>
                     <th>Actions</th>
                 </tr>
             </thead>
