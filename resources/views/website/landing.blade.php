@@ -147,7 +147,7 @@
                                             {{ $unit->ringkasan }}
                                         </p>
                                     </div>
-                                    <a href="{{ route('tps3r.detail') }}" class="btn btn-primary"
+                                    <a href="{{ $unit->link }}" class="btn btn-primary"
                                         style="background:#388da8; border:#388da8;">Selengkapnya <i
                                             class="bi bi-arrow-right"></i>
                                     </a>

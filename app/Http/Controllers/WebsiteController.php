@@ -80,17 +80,11 @@ class WebsiteController extends Controller
     {
         return view('website.detail.biaya');
     }
-    public function unitTPSDetail()
-    {
-    }
-
 
     public function tps3rDetail()
     {
-
         $kategori = 'tps';
         $units = Unit::where('kategori', $kategori)->get();
-        // return $unit;
         return view('website.detail.unit.tps', compact('units'));
     }
 
@@ -101,7 +95,10 @@ class WebsiteController extends Controller
 
     public function pinjamanDetail()
     {
-        return view('website.detail.unit.pinjaman');
+        $kategori = 'peminjaman';
+        $units = Unit::where('kategori', $kategori)->get();
+        // return $units;
+        return view('website.detail.unit.pinjaman', compact('units'));
     }
     public function pengangkutanDetail()
     {
