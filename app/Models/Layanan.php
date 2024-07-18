@@ -15,5 +15,6 @@ class Layanan extends Model
         'deskripsi',
         'gambar',
         'link',
+        'unit'
     ];
 }

@@ -82,12 +82,16 @@ class WebsiteController extends Controller
     }
     public function unitTPSDetail()
     {
-        return view('website.detail.biaya');
     }
+
 
     public function tps3rDetail()
     {
-        return view('website.detail.unit.tps');
+
+        $kategori = 'tps';
+        $units = Unit::where('kategori', $kategori)->get();
+        // return $unit;
+        return view('website.detail.unit.tps', compact('units'));
     }
 
     public function tokoDetail()

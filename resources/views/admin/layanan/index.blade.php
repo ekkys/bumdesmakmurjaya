@@ -26,7 +26,10 @@
                                 <td>{{ $i++ }}</td>
                                 <td>{{ $layanan->nama }}</td>
                                 <td>{{ $layanan->ringkasan }}</td>
-                                <td>{{ $layanan->deskripsi }}</td>
+                                <td>
+                                    <div>{!! html_entity_decode($layanan->deskripsi) !!}
+                                    </div>
+                                </td>
                                 <td><a href="{{ $layanan->link }}" target="_blank">{{ $layanan->link }}</a></td>
                                 <td>
                                     <img src="{{ Storage::url($layanan->gambar) }}" alt="Gambar" width="100">

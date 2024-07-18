@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('deskripsi')->nullable();
             $table->text('link')->nullable();
             $table->string('gambar')->nullable();
+            $table->string('unit')->nullable();
             $table->timestamps();
         });
     }

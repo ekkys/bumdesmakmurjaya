@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Layanan;
+use App\Models\Unit;
+use DOMDocument;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -22,7 +24,9 @@ class LayananController extends Controller
      */
     public function create()
     {
-        return view('admin.layanan.create');
+        $units = Unit::all();
+        // return $units;
+        return view('admin.layanan.create', compact('units'));
     }
 
     /**
@@ -30,28 +34,40 @@ class LayananController extends Controller
      */
     public function store(Request $request)
     {
+        // dd('test');
         $request->validate([
             'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'nama' => 'required|string|max:255',
-            'deskripsi' => 'required|string|max:255',
+            'deskripsi' => 'required',
             'ringkasan' => 'required|string|max:255',
             'link' => 'required|string|max:255',
+            'unit' => 'required'
         ]);
+        // return $request->all();
         try {
+
             $path = $request->file('gambar')->store('layanan', 'public');
+            $deskripsi = $request->deskripsi;
+
+            $dom = new DOMDocument();
+            $dom->loadHTML($deskripsi, 9);
+            $deskripsi = $dom->saveHTML();
+
             Layanan::create([
                 'gambar' => $path,
                 'nama' => $request->nama,
                 'ringkasan' => $request->ringkasan,
-                'deskripsi' => $request->deskripsi,
+                'deskripsi' => $deskripsi,
                 'link' => $request->link,
+                'unit' => $request->unit
             ]);
-
             return redirect()->route('layanan.index')->with('success', 'Layanan created successfully.');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Failed to create Layanan.');
         }
     }
+
+
 
     /**
      * Display the specified resource.
@@ -82,6 +98,7 @@ class LayananController extends Controller
             'deskripsi' => 'required|string',
             'ringkasan' => 'required|string',
             'link' => 'required|string',
+            'unit' => 'required|string',
         ]);
         try {
             $data = Layanan::findOrFail($id);
@@ -95,12 +112,13 @@ class LayananController extends Controller
             } else {
                 $path = $data->gambar;
             }
-            $response =  $data->update([
+            $response = $data->update([
                 'gambar' => $path,
                 'nama' => $request->nama,
                 'deskripsi' => $request->deskripsi,
                 'ringkasan' => $request->ringkasan,
                 'link' => $request->link,
+                'unit' => $request->unit,
             ]);
             return redirect()->route('layanan.index')->with('success', 'Unit Updated successfully.');
         } catch (\Exception $e) {
