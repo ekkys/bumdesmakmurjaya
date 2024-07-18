@@ -14,6 +14,7 @@ class Unit extends Model
         'ringkasan',
         'deskripsi',
         'gambar',
-        'link'
+        'link',
+        'kategori'
     ];
 }

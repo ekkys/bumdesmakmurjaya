@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-12 mt-3">
                 <h4>Unit List</h4>
-                {{-- <a href="{{ route('unit.create') }}" class="btn btn-primary">Tambah unit</a> --}}
+                <a href="{{ route('unit.create') }}" class="btn btn-primary">Tambah unit</a>
                 <table class="table mt-3">
                     <thead>
                         <tr>
@@ -14,6 +14,7 @@
                             <th>Nama</th>
                             <th>Ringkasan</th>
                             <th>Deskripsi</th>
+                            <th>Kategori</th>
                             <th>Link</th>
                             <th>Gambar</th>
                             <th>Actions</th>
@@ -27,19 +28,20 @@
                                 <td>{{ $unit->nama }}</td>
                                 <td>{{ $unit->ringkasan }}</td>
                                 <td>{{ $unit->deskripsi }}</td>
+                                <td>{{ $unit->kategori }}</td>
                                 <td><a href="{{ $unit->link }}" target="_blank">{{ $unit->link }}</a></td>
                                 <td>
                                     <img src="{{ Storage::url($unit->gambar) }}" alt="Gambar" width="100">
                                 </td>
                                 <td>
-                                    {{-- <a href="{{ route('home.show', $home->id) }}" class="btn btn-info">Show</a> --}}
+
                                     <a href="{{ route('unit.edit', $unit->id) }}" class="btn btn-warning">Edit</a>
-                                    {{-- <form action="{{ route('unit.destroy', $unit->id) }}" method="POST" class="d-inline">
+                                    <form action="{{ route('unit.destroy', $unit->id) }}" method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger"
                                             onclick="return confirm('Anda yakin hapus ?')">Hapus</button>
-                                    </form> --}}
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach

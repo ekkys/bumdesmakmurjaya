@@ -36,6 +36,7 @@ class UnitController extends Controller
             'deskripsi' => 'required|string|max:255',
             'ringkasan' => 'required|string|max:255',
             'link' => 'required|string|max:255',
+            'kategori' => 'required|string|max:255',
         ]);
         try {
             $path = $request->file('gambar')->store('unit', 'public');
@@ -45,6 +46,7 @@ class UnitController extends Controller
                 'ringkasan' => $request->ringkasan,
                 'deskripsi' => $request->deskripsi,
                 'link' => $request->link,
+                'kategori' => $request->kategori,
             ]);
 
             return redirect()->route('unit.index')->with('success', 'Home created successfully.');
@@ -81,6 +83,7 @@ class UnitController extends Controller
             'deskripsi' => 'required|string',
             'ringkasan' => 'required|string',
             'link' => 'required|string',
+            'kategori' => 'required|string'
         ]);
 
         try {
@@ -102,6 +105,7 @@ class UnitController extends Controller
                 'deskripsi' => $request->deskripsi,
                 'ringkasan' => $request->ringkasan,
                 'link' => $request->link,
+                'kategori' => $request->kategori
             ]);
             return redirect()->route('unit.index')->with('success', 'Unit Updated successfully.');
         } catch (\Exception $e) {
