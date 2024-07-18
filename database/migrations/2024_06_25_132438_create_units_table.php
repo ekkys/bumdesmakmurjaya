@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('ringkasan');
             $table->string('gambar');
             $table->string('link');
+            $table->string('kategori')->nullable();
             $table->timestamps();
         });
     }

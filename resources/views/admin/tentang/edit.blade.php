@@ -1,7 +1,6 @@
 @extends('admin.main-layout')
 @section('title', 'Edit Tentang Kami')
 @section('css')
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 @endsection
 
@@ -68,7 +67,18 @@
         $('#description').summernote({
             placeholder: 'description...',
             tabsize: 2,
-            height: 300
+            height: 300,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+                ['fontname', ['fontname']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ol', 'ul', 'paragraph', 'height']],
+                ['table', ['table']],
+                ['insert', ['link']],
+                ['view', ['undo', 'redo', 'fullscreen', 'codeview', 'help']]
+            ]
         });
     </script>
     </div>

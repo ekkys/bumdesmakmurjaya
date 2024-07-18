@@ -95,64 +95,6 @@ class TentangController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    // public function update(Request $request, $id)
-    // {
-    //     // dd('aa');
-    //     try {
-    //         // Validate the request inputs
-    //         $request->validate([
-    //             'judul' => 'required|string|max:255',
-    //             'deskripsi' => 'required',
-    //             'gambar1' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-    //             'gambar2' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-    //             'gambar3' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-    //         ]);
-
-
-    //         $tentang = Tentang::findOrFail($id);
-
-    //         if ($request->hasFile('gambar1')) {
-    //             //Delete the old image
-    //             Storage::delete($tentang->gambar1);
-    //             $gambar1Path = $request->file('gambar1')->store('public/tentang');
-    //             $tentang->gambar1 = $gambar1Path;
-    //         }
-
-
-    //         if ($request->hasFile('gambar2')) {
-    //             // Delete the old image if exists
-    //             if ($tentang->gambar2) {
-    //                 Storage::delete($tentang->gambar2);
-    //             }
-    //             $gambar2Path = $request->file('gambar2')->store('public/tentang');
-    //             $tentang->gambar2 = $gambar2Path;
-    //         }
-
-    //         if ($request->hasFile('gambar3')) {
-    //             // Delete the old image if exists
-    //             if ($tentang->gambar3) {
-    //                 Storage::delete($tentang->gambar3);
-    //             }
-    //             $gambar3Path = $request->file('gambar3')->store('public/tentang');
-    //             $tentang->gambar3 = $gambar3Path;
-    //         }
-
-    //         $deskripsi = $request->deskripsi;
-    //         $dom = new DOMDocument();
-    //         $dom->loadHTML($deskripsi, 9);
-    //         $deskripsi = $dom->saveHTML();
-
-    //         // Update the Tentang instance with new data
-    //         $tentang->judul = $request->judul;
-    //         $tentang->deskripsi = $request->deskripsi;
-    //         $tentang->save();
-
-    //         return redirect()->route('tentang.index')->with('success', 'Tentang updated successfully.');
-    //     } catch (\Exception $e) {
-
-    //         return redirect()->route('tentang.edit')->with('error', 'Failed to update Tentang.');
-    //     }
-    // }
     public function update(Request $request, $id)
     {
 
