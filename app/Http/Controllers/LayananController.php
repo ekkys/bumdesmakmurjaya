@@ -34,7 +34,6 @@ class LayananController extends Controller
      */
     public function store(Request $request)
     {
-        // dd('test');
         $request->validate([
             'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'nama' => 'required|string|max:255',
@@ -83,7 +82,8 @@ class LayananController extends Controller
     public function edit($id)
     {
         $layanan = Layanan::findOrFail($id);
-        return view('admin.layanan.edit', compact('layanan'));
+        $units = Unit::all();
+        return view('admin.layanan.edit', compact('layanan', 'units'));
     }
 
     /**

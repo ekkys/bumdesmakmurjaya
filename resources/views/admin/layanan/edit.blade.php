@@ -39,10 +39,21 @@
                                     class="mt-2">
                             </div>
 
-                            <div class="mb-3">
-                                <label for="link" class="form-label">Link</label>
-                                <input type="url" class="form-control" id="link" name="link"
-                                    value="{{ $layanan->link }}" required>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="link" class="form-label">Link</label>
+                                    <input type="url" class="form-control" id="link" name="link"
+                                        value="{{ $layanan->link }}" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="unit" class="form-label">Unit</label>
+                                    <select class="form-control" name="unit" id="unit">
+                                        @foreach ($units as $unit)
+                                            <option {{ $layanan->unit === $unit->kategori ? 'selected' : '' }}
+                                                value="{{ $unit->kategori }}">{{ $unit->kategori }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
 
                             <button type="submit" class="btn btn-primary">Update</button>

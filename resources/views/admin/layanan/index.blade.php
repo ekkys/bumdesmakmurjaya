@@ -15,6 +15,7 @@
                             <th>Ringkasan</th>
                             <th>Deskripsi</th>
                             <th>Link</th>
+                            <th>Unit</th>
                             <th>Gambar</th>
                             <th>Actions</th>
                         </tr>
@@ -31,6 +32,7 @@
                                     </div>
                                 </td>
                                 <td><a href="{{ $layanan->link }}" target="_blank">{{ $layanan->link }}</a></td>
+                                <td>{{ $layanan->unit }}</td>
                                 <td>
                                     <img src="{{ Storage::url($layanan->gambar) }}" alt="Gambar" width="100">
                                 </td>

@@ -56,9 +56,9 @@ class WebsiteController extends Controller
         $home = Home::first();
         $legalitasPage = Legalitas::take(3)->get();
         $kliens = Klien::all();
-        $layanans = Layanan::all();
+        $layananTps = Layanan::where('unit', 'tps')->get();
         $kontaks = Kontak::all();
-        return view('website.landing', compact('home', 'firstParagraph', 'tentang', 'legalitasPage', 'kliens', 'units', 'layanans', 'kontaks', 'visitors'));
+        return view('website.landing', compact('home', 'firstParagraph', 'tentang', 'legalitasPage', 'kliens', 'units', 'layananTps', 'kontaks', 'visitors'));
     }
     public function tentangDetail()
     {

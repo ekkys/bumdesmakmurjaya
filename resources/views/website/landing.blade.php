@@ -185,7 +185,7 @@
             <h2 class="">Layanan Kami</h2>
         </div><!-- End Section Title -->
         <div class="container">
-            @foreach ($layanans as $layanan)
+            @foreach ($layananTps as $layanan)
                 @if ($loop->iteration % 2 != 0)
                     <div class="row gy-4 justify-content-between features-item">
 

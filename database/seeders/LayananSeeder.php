@@ -20,7 +20,7 @@ class LayananSeeder extends Seeder
                 'link' => 'http://127.0.0.1:8000/pengangkutan-detail',
                 'ringkasan' => 'Pengangkutan dan pengolahan sampah non-B3 (non-bahan berbahaya dan beracun) adalah proses penting dalam manajemen limbah yang bertujuan untuk menjaga kebersihan dan kesehatan lingkungan.',
                 'deskripsi' => 'Pengangkutan dan pengolahan sampah non-B3 (non-bahan berbahaya dan beracun) adalah proses penting dalam manajemen limbah yang bertujuan untuk menjaga kebersihan dan kesehatan lingkungan.',
-                'unit' => 'tps3r'
+                'unit' => 'tps'
             ],
             [
                 'nama' => 'Pembelian Anfalan & Barang Bekas',
@@ -28,7 +28,7 @@ class LayananSeeder extends Seeder
                 'link' => 'http://127.0.0.1:8000/pembelian-detail',
                 'ringkasan' => 'Pembelian anfalan (sisa material yang masih bernilai) dan barang bekas merupakan salah satu cara untuk mendukung pengelolaan sampah dan daur ulang. Berikut adalah langkah-langkah dalam pembelian anfalan dan barang bekas',
                 'deskripsi' => 'Pembelian anfalan (sisa material yang masih bernilai) dan barang bekas merupakan salah satu cara untuk mendukung pengelolaan sampah dan daur ulang. Berikut adalah langkah-langkah dalam pembelian anfalan dan barang bekas',
-                'unit' => 'tps3r'
+                'unit' => 'tps'
             ],
             [
                 'nama' => 'Pemusnahan Dokumen dan Produk Kedaluwarsa',
@@ -36,7 +36,7 @@ class LayananSeeder extends Seeder
                 'link' => 'http://127.0.0.1:8000/pemusnahan-detail',
                 'ringkasan' => 'Pemusnahan dokumen dan produk yang telah kedaluwarsa merupakan bagian penting dari manajemen limbah yang aman dan sesuai dengan peraturan',
                 'deskripsi' => 'Pemusnahan dokumen dan produk yang telah kedaluwarsa merupakan bagian penting dari manajemen limbah yang aman dan sesuai dengan peraturan',
-                'unit' => 'tps3r'
+                'unit' => 'tps'
             ]
         ]);
     }
