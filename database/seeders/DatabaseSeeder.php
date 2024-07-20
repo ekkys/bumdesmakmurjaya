@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             UnitSeeder::class,
             LayananSeeder::class,
             KlienSeeder::class,
+            GaleriSeeder::class,
             KontakSeeder::class,
         ]);
 

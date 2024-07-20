@@ -27,7 +27,7 @@
                 </li>
                 <li>
                     <a href="{{ route('legalitas.index') }}">
-                        <i class="bi bi-file-image" style="font-size: 1rem;"></i><span>Legalitas</span>
+                        <i class="bi bi-file-earmark-text" style="font-size: 1rem;"></i><span>Legalitas</span>
                     </a>
                 </li>
                 <li>
@@ -46,8 +46,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <i class="bi bi-newspaper" style="font-size: 1rem;"></i><span>Berita</span>
+                    <a href="{{ route('galeri.index') }}">
+                        <i class="bi bi-file-image" style="font-size: 1rem;"></i><span>Galeri</span>
                     </a>
                 </li>
                 <li>

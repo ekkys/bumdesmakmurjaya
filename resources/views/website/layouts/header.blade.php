@@ -16,9 +16,9 @@
                     </ul>
                 </li>
                 <li><a href="#features">Unit</a></li>
-                <li><a href="#services">Galeri</a></li>
                 <li><a href="#features-details">Layanan</a></li>
                 <li><a href="#clients">Klien</a></li>
+                <li><a href="#services">Galeri</a></li>
                 <li><a href="#pricing">Pricing</a></li>
                 <li><a href="#contact">Kontak</a></li>
             </ul>

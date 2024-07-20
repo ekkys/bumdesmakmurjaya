@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KlienController;
 use App\Http\Controllers\KontakController;
@@ -42,6 +43,7 @@ Route::resource('klien', KlienController::class);
 Route::resource('unit', UnitController::class);
 Route::resource('layanan', LayananController::class);
 Route::resource('kontak', KontakController::class);
+Route::resource('galeri', GaleriController::class);
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

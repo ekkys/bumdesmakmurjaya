@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Galeri;
 use App\Models\Home;
 use App\Models\Klien;
 use App\Models\Kontak;
@@ -56,9 +57,10 @@ class WebsiteController extends Controller
         $home = Home::first();
         $legalitasPage = Legalitas::take(3)->get();
         $kliens = Klien::all();
+        $galeris = Galeri::where('status', 'tampil')->take(6)->get();
         $layananTps = Layanan::where('unit', 'tps')->get();
         $kontaks = Kontak::all();
-        return view('website.landing', compact('home', 'firstParagraph', 'tentang', 'legalitasPage', 'kliens', 'units', 'layananTps', 'kontaks', 'visitors'));
+        return view('website.landing', compact('home', 'firstParagraph', 'tentang', 'legalitasPage', 'kliens', 'units', 'layananTps', 'kontaks', 'visitors', 'galeris'));
     }
     public function tentangDetail()
     {
