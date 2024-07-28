@@ -22,12 +22,13 @@
                 <div class="gy-4" style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
                     @foreach ($legalitasAll as $legal)
                         <div class="" data-aos="fade-up" data-aos-delay="100">
-                            <a href="https://drive.google.com/file/d/1EbNKGc5Un9Voq_F2JgApD2lk19hSnRQm/view?usp=sharing"
-                                class="" style="display: flex; flex-direction: column; gap: 10px;">
+                            <a href="{{ $legal->link }}" class=""
+                                style="display: flex; flex-direction: column; gap: 10px;">
                                 <strong style="text-align: center;"> {{ $legal->nama }}</strong>
                                 <!-- Image Preview -->
                                 <img src="{{ Storage::url($legal->gambar) }}" alt="Image Preview" width="320"
-                                    height="480" style=" filter: blur(1px); ">
+                                    height="480">
+                                {{-- style=" filter: blur(1px); " --}}
                             </a>
                         </div>
                     @endforeach

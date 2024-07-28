@@ -4,7 +4,7 @@
     <!-- Service Details Section -->
     <section id="service-details" class="service-details section">
         <!-- WhatsApp Float Button -->
-        <a href="https://wa.me/62895632210577" class="whatsapp-float" target="_blank">
+        <a href="https://wa.me/6281511119337" class="whatsapp-float" target="_blank">
             <img src="{{ url('assets\img\whatsapp.png') }}" alt="WhatsApp">
         </a>
         @foreach ($units as $unit)
@@ -30,9 +30,9 @@
                         <div class="help-box d-flex flex-column justify-content-center align-items-center">
                             <i class="bi bi-headset help-icon"></i>
                             <h4>Ingin bertanya langsung?</h4>
-                            <a href="https://wa.me/6281511119337">
+                            <a href="https://wa.me/6281511119337" target="_blank">
                                 <p class="d-flex align-items-center mt-2 mb-0"><i class="bi bi-telephone me-2"></i> <span>
-                                        +62895632210577 </span></p>
+                                        +62 815-1111-9337 </span></p>
                             </a>
                         </div>
                     </div>

@@ -6,7 +6,13 @@
         <div class="row">
             <div class="col-12 mt-3">
                 <h4>Layanan List</h4>
-                <a href="{{ route('layanan.create') }}" class="btn btn-primary">Tambah layanan</a>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <a href="{{ route('layanan.create') }}" class="btn btn-primary"><i class="bi bi-plus-square"></i>
+                            Tambah
+                            Layanan</a>
+                    </div>
+                </div>
                 <table class="table mt-3">
                     <thead>
                         <tr>

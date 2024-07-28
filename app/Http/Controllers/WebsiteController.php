@@ -24,14 +24,12 @@ class WebsiteController extends Controller
     public function index(Request $request)
     {
 
+        //Visitor counter
         $ip = $request->ip();
-
         // Get or create a visitor record with the IP address
         $visitor = Visitor::firstOrCreate(['ip_address' => $ip]);
-
         // Increment the visits count
         $visitor->increment('visits', 9);
-
         // Optionally, count the total number of visitors
         $visitors = Visitor::count();
 
@@ -53,6 +51,8 @@ class WebsiteController extends Controller
         } else {
             echo "Tidak ada paragraf dalam HTML.";
         }
+
+
 
         $units = Unit::all();
         $home = Home::first();
@@ -108,15 +108,21 @@ class WebsiteController extends Controller
     }
     public function pengangkutanDetail()
     {
-        return view('website.detail.layanan.pengangkutan');
+        $nama = 'pengangkutan';
+        $layananTps = Layanan::where('nama', 'like', '%' . $nama . '%')->get();
+        return view('website.detail.layanan.pengangkutan', compact('layananTps'));
     }
     public function pembelianDetail()
     {
-        return view('website.detail.layanan.pembelian');
+        $nama = 'pembelian';
+        $layananTps = Layanan::where('nama', 'like', '%' . $nama . '%')->get();
+        return view('website.detail.layanan.pembelian', compact('layananTps'));
     }
     public function pemusnahanDetail()
     {
-        return view('website.detail.layanan.pemusnahan');
+        $nama = 'pemusnahan';
+        $layananTps = Layanan::where('nama', 'like', '%' . $nama . '%')->get();
+        return view('website.detail.layanan.pemusnahan', compact('layananTps'));
     }
     /**
      * Show the form for creating a new resource.
