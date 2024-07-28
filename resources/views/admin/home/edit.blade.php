@@ -9,14 +9,14 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="card-title">Edit Tentang Kami</h2>
+                        <h2 class="card-title">Edit Home</h2>
                     </div>
                     <div class="card-body">
                         <form action="{{ route('home.update', $home->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="mb-3">
-                                <label for="judul" class="form-label">Nama BUMDesa</label>
+                                <label for="judul" class="form-label"><strong>Nama BUMDesa</strong></label>
                                 <input type="text" class="form-control" id="judul" name="judul"
                                     value="{{ $home->judul }}" required>
                             </div>
@@ -24,23 +24,23 @@
                                 <div class="col-lg-6">
 
 
-                                    <label for="gambar" class="form-label">Gambar</label>
+                                    <label for="gambar" class="form-label"><strong>Gambar</strong></label>
                                     <input type="file" class="form-control" id="gambar" name="gambar">
                                     <img src="{{ Storage::url($home->gambar) }}" alt="Gambar" width="100"
                                         class="mt-2">
                                 </div>
                                 <div class="col-lg-6">
-                                    <label for="quote" class="form-label">Quote</label>
+                                    <label for="quote" class="form-label"><strong>Quote</strong></label>
                                     <input type="text" class="form-control" id="quote" name="quote"
                                         value="{{ $home->quote }}" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="hastag" class="form-label">Hastag</label>
+                                    <label for="hastag" class="form-label"><strong>Hastag</strong></label>
                                     <input type="text" class="form-control" id="hashtag" name="hashtag"
                                         value="{{ $home->hashtag }}" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="link" class="form-label">Link</label>
+                                    <label for="link" class="form-label"><strong>Link</strong></label>
                                     <input type="text" class="form-control" id="link" name="link"
                                         value="{{ $home->link }}" required>
                                 </div>
