@@ -1,7 +1,6 @@
 @extends('admin.main-layout')
 @section('title', 'Edit|Legalitas')
 @section('css')
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 @endsection
 @section('content')
@@ -18,22 +17,22 @@
                             @csrf
                             @method('PUT')
                             <div class="mb-3">
-                                <label for="nama" class="form-label">Nama</label>
+                                <label for="nama" class="form-label"><strong>Nama</strong></label>
                                 <input type="text" class="form-control" id="nama" name="nama"
                                     value="{{ $legalitas->nama }}">
                             </div>
                             <div class="mb-3">
-                                <label for="gambar" class="form-label">Gambar</label>
+                                <label for="gambar" class="form-label"><strong>Gambar</strong></label>
                                 <input type="file" class="form-control" id="gambar" name="gambar">
                                 <img src="{{ Storage::url($legalitas->gambar) }}" alt="Gambar" width="100"
                                     class="mt-2">
                             </div>
                             <div class="mb-3">
-                                <label for="link" class="form-label">Link</label>
+                                <label for="link" class="form-label"><strong>Link</strong></label>
                                 <input class="form-control" id="link" name="link" value="{{ $legalitas->link }}">
                             </div>
                             <div class="mb-3">
-                                <label for="deskripsi" class="form-label">Deskripsi</label>
+                                <label for="deskripsi" class="form-label"><strong>Deskripsi</strong></label>
                                 <textarea class="form-control" id="deskripsi" name="deskripsi">{{ $legalitas->deskripsi }}</textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">Update</button>

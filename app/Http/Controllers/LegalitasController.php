@@ -76,6 +76,39 @@ class LegalitasController extends Controller
     /**
      * Update the specified resource in storage.
      */
+    // public function update(Request $request, string $id)
+    // {
+    //     $request->validate([
+    //         'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    //         'nama' => 'nullable|string',
+    //         'link' => 'nullable|string',
+    //         'deskripsi' => 'required|string',
+    //     ]);
+
+    //     try {
+    //         $legalitas = Legalitas::findOrFail($id);
+
+    //         if ($request->hasFile('gambar')) {
+    //             if ($legalitas->gambar && Storage::disk('public')->exists($legalitas->gambar)) {
+    //                 Storage::disk('public')->delete($legalitas->gambar);
+    //             }
+    //         }
+    //         $path = $request->file('gambar')->store('legalitas', 'public');
+
+    //         $legalitas->update([
+    //             'gambar' => $path,
+    //             'nama' => $request->nama,
+    //             'link' => $request->link,
+    //             'deskripsi' => $request->deskripsi,
+    //         ]);
+
+    //         return redirect()->route('legalitas.index')->with('success', 'Legalitas Updated successfully.');
+    //     } catch (\Exception $e) {
+    //         throw $e;
+    //         return redirect()->back()->with('error', 'Failed to update Legalitas.');
+    //     }
+    // }
+
     public function update(Request $request, string $id)
     {
         $request->validate([
@@ -93,21 +126,21 @@ class LegalitasController extends Controller
                     Storage::disk('public')->delete($legalitas->gambar);
                 }
                 $path = $request->file('gambar')->store('legalitas', 'public');
+                $legalitas->gambar = $path;
             }
 
-            $legalitas->update([
-                'gambar' => $path,
-                'nama' => $request->nama,
-                'link' => $request->link,
-                'deskripsi' => $request->deskripsi,
-            ]);
+            $legalitas->nama = $request->nama;
+            $legalitas->link = $request->link;
+            $legalitas->deskripsi = $request->deskripsi;
 
-            return redirect()->route('legalitas.index')->with('success', 'Legalitas Updated successfully.');
+            $legalitas->save();
+
+            return redirect()->route('legalitas.index')->with('success', 'Legalitas updated successfully.');
         } catch (\Exception $e) {
-            throw $e;
             return redirect()->back()->with('error', 'Failed to update Legalitas.');
         }
     }
+
 
     /**
      * Remove the specified resource from storage.
