@@ -7,14 +7,14 @@
             <div class="col-12 mt-3 table-responsive">
                 <h4>Kontak List</h4>
                 {{-- <a href="{{ route('kontak.create') }}" class="btn btn-primary">Tambah</a> --}}
-                <table class="table mt-3">
+                <table class="table table-responsive-lg">
                     <thead>
                         <tr>
                             <th>Action</th>
                             <th>No</th>
                             <th>Alamat</th>
                             <th>Telpon/Hp</th>
-                            <th width="600px">Maps</th>
+                            <th width="10px">Maps</th>
                             <th>Email</th>
                             <th>YouTube</th>
                             <th>WhatsApp</th>

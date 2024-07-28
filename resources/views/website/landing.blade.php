@@ -432,7 +432,6 @@
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
             <h2>Biaya Layanan</h2>
-            <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
         </div><!-- End Section Title -->
 
         <div class="container">
@@ -466,7 +465,7 @@
                     <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="200">
                         <div class="pricing-item featured">
                             @if ($biaya->keterangan != '-')
-                                <p class="popular">{{ $biaya->keterangan }}</p><br><br>
+                                <p class="popular">{{ $biaya->keterangan }}</p><br>
                             @endif
                             <h3>{{ $biaya->nama }}</h3>
                             <h3><span>Mulai dari :</span></h3>
@@ -474,7 +473,7 @@
                                     {{ $biaya->satuan }}</span></h4>
                             <a href="https://wa.me/6281511119337?text=Assalamu'alaikum%2C%20saya%20tertarik%20dengan%20{{ $biaya->nama }}.
 "
-                                class="cta-btn">Saya tertarik !</a>
+                                class="cta-btn" target="_blank"><i class="bi bi-headset"></i> Hubungi kami </a>
                             {{-- <p class="text-center small">No credit card required</p> --}}
                             {{-- <ul>
                                 <li><i class="bi bi-check"></i> <span>Quam adipiscing vitae proin</span></li>

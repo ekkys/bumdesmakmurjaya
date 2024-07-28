@@ -35,26 +35,29 @@
                         @endif
                     </div>
                 </div>
-                <form action="{{ route('legalitas.store') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="nama" class="form-label">Nama</label>
-                        <input type="text" class="form-control" id="nama" name="nama">
-                    </div>
-                    <div class="mb-3">
-                        <label for="gambar" class="form-label">Gambar</label>
-                        <input type="file" class="form-control" id="gambar" name="gambar">
-                    </div>
-                    <div class="mb-3">
-                        <label for="link" class="form-label">Link</label>
-                        <textarea class="form-control" id="link" name="link"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="deskripsi" class="form-label">Deskripsi</label>
-                        <textarea class="form-control" id="deskripsi" name="deskripsi"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+                <div class="card-body">
+
+                    <form action="{{ route('legalitas.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="nama" class="form-label"><strong>Nama</strong></label>
+                            <input type="text" class="form-control" id="nama" name="nama">
+                        </div>
+                        <div class="mb-3">
+                            <label for="gambar" class="form-label"><strong>Gambar</strong></label>
+                            <input type="file" class="form-control" id="gambar" name="gambar">
+                        </div>
+                        <div class="mb-3">
+                            <label for="link" class="form-label"><strong>Link</strong></label>
+                            <textarea class="form-control" id="link" name="link"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="deskripsi" class="form-label"><strong>Deskripsi</strong></label>
+                            <textarea class="form-control" id="deskripsi" name="deskripsi"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

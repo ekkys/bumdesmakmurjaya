@@ -37,23 +37,23 @@
         <form action="{{ route('galeri.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
-                <label for="nama" class="form-label">Nama</label>
+                <label for="nama" class="form-label"><strong>Nama</strong></label>
                 <input type="text" class="form-control" id="nama" name="nama">
             </div>
             <div class="mb-3">
-                <label for="gambar" class="form-label">Gambar</label>
+                <label for="gambar" class="form-label"><strong>Gambar</strong></label>
                 <input type="file" class="form-control" id="gambar" name="gambar">
             </div>
             <div class="mb-3">
-                <label for="tanggal" class="form-label">Tanggal</label>
+                <label for="tanggal" class="form-label"><strong>Tanggal</strong></label>
                 <input type="date" class="form-control" id="tanggal" name="tanggal">
             </div>
             <div class="mb-3">
-                <label for="keterangan" class="form-label">Keterangan</label>
+                <label for="keterangan" class="form-label"><strong>Keterangan</strong></label>
                 <textarea class="form-control" id="keterangan" name="keterangan"></textarea>
             </div>
             <div class="mb-3">
-                <label for="status" class="form-label">Status</label>
+                <label for="status" class="form-label"><strong>Status</strong></label>
                 <select class="form-control" name="status" id="status">
                     <option value="tampil">tampil</option>
                     <option value="tidak">tidak tampil</option>

@@ -6,7 +6,12 @@
         <div class="row">
             <div class="col-12 mt-3">
                 <h4>Galeri List</h4>
-                <a href="{{ route('galeri.create') }}" class="btn btn-primary">Tambah galeri</a>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <a href="{{ route('galeri.create') }}" class="btn btn-primary"><i class="bi bi-plus-square"></i>
+                            Tambah Galeri</a>
+                    </div>
+                </div>
                 <table class="table mt-3">
                     <thead>
                         <tr>
