@@ -37,7 +37,13 @@
         <div class="row">
             <div class="col-12 mt-3">
                 <h4>Unit List</h4>
-                <a href="{{ route('unit.create') }}" class="btn btn-primary">Tambah unit</a>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <a href="{{ route('unit.create') }}" class="btn btn-primary"><i class="bi bi-plus-square"></i>
+                            Tambah
+                            Unit</a>
+                    </div>
+                </div>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
