@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Biaya;
 use App\Models\Galeri;
 use App\Models\Home;
 use App\Models\Klien;
@@ -35,7 +36,7 @@ class WebsiteController extends Controller
         $visitors = Visitor::count();
 
 
-        //Pre View Tentang 1 pargraf
+        //Pre View Tentang 1 paragraf
         $tentang = Tentang::first();
         $prevDeskripsi = $tentang->deskripsi;
         $prevDeskripsi = substr($prevDeskripsi, 1, -1);
@@ -60,7 +61,8 @@ class WebsiteController extends Controller
         $galeris = Galeri::where('status', 'tampil')->take(6)->get();
         $layananTps = Layanan::where('unit', 'tps')->get();
         $kontaks = Kontak::all();
-        return view('website.landing', compact('home', 'firstParagraph', 'tentang', 'legalitasPage', 'kliens', 'units', 'layananTps', 'kontaks', 'visitors', 'galeris'));
+        $biayas = Biaya::all();
+        return view('website.landing', compact('home', 'firstParagraph', 'tentang', 'legalitasPage', 'kliens', 'units', 'layananTps', 'kontaks', 'visitors', 'galeris', 'biayas'));
     }
     public function tentangDetail()
     {

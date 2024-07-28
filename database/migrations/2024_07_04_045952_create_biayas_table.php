@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('biayas', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
+            $table->string('kategori');
             $table->string('nominal');
-            $table->string('jenis');
+            $table->longText('item_layanan');
             $table->string('satuan');
             $table->string('keterangan');
             $table->timestamps();

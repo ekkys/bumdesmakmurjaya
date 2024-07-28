@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BiayaController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KlienController;
@@ -33,15 +34,18 @@ Route::get('/pemusnahan-detail', [WebsiteController::class, 'pemusnahanDetail'])
 //Admin
 Route::resource('home', HomeController::class);
 
-Route::get('tentang', [TentangController::class], 'index')->name('tentang.index');
-Route::get('tentang/{id}/edit', [TentangController::class, 'edit'])->name('tentang.edit');
-Route::put('tentang/{id}', [TentangController::class, 'update'])->name('tentang.update');
-Route::get('tentang/{id}', [TentangController::class, 'destroy'])->name('tentang.destroy');
+Route::resource('tentang', TentangController::class);
+// Route::get('tentang', [TentangController::class, 'index'])->name('tentang.index');
+// Route::post('tentang', [TentangController::class, 'store'])->name('tentang.store');
+// Route::get('tentang/{id}/edit', [TentangController::class, 'edit'])->name('tentang.edit');
+// Route::put('tentang/{id}', [TentangController::class, 'update'])->name('tentang.update');
+// Route::get('tentang/{id}', [TentangController::class, 'destroy'])->name('tentang.destroy');
 
 Route::resource('legalitas', LegalitasController::class);
 Route::resource('klien', KlienController::class);
 Route::resource('unit', UnitController::class);
 Route::resource('layanan', LayananController::class);
+Route::resource('biaya', BiayaController::class);
 Route::resource('kontak', KontakController::class);
 Route::resource('galeri', GaleriController::class);
 

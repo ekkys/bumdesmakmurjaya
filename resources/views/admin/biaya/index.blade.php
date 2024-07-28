@@ -1,5 +1,5 @@
 @extends('admin.main-layout')
-@section('title', 'Index|unit')
+@section('title', 'Index|Biaya')
 
 @section('content')
     <!-- Toast Notifications -->
@@ -33,41 +33,43 @@
         </div>
     </div>
     <!-- Toast Notifications -->
-    <div class="container card">
+    <div class="container card ">
         <div class="row">
             <div class="col-12 mt-3">
-                <h4>Unit List</h4>
-                <a href="{{ route('unit.create') }}" class="btn btn-primary">Tambah unit</a>
+                <h4>Biaya Layanan</h4>
+                <a href="{{ route('biaya.create') }}" class="btn btn-primary ">Tambah Biaya</a>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
-                            <th>Ringkasan</th>
-                            <th>Deskripsi</th>
-                            <th>Kategori</th>
-                            <th>Link</th>
-                            <th>Gambar</th>
-                            <th>Actions</th>
+                            <th>Nominal</th>
+                            <th>Unit</th>
+                            <th>Item Layanan</th>
+                            <th>Satuan</th>
+                            <th>Keterangan</th>
+                            <th width="280px">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $i = 1; ?>
-                        @foreach ($units as $unit)
+                        <?php $i = 0; ?>
+                        @foreach ($biayas as $biaya)
                             <tr>
-                                <td>{{ $i++ }}</td>
-                                <td>{{ $unit->nama }}</td>
-                                <td>{{ $unit->ringkasan }}</td>
-                                <td>{{ $unit->deskripsi }}</td>
-                                <td>{{ $unit->kategori }}</td>
-                                <td><a href="{{ $unit->link }}" target="_blank">{{ $unit->link }}</a></td>
+                                <td>{{ ++$i }}</td>
+                                <td>{{ $biaya->nama }}</td>
+                                <td>{{ $biaya->nominal }}</td>
+                                <td>{{ $biaya->kategori }}</td>
                                 <td>
-                                    <img src="{{ Storage::url($unit->gambar) }}" alt="Gambar" width="100">
+                                    <div>
+                                        {!! html_entity_decode($biaya->item_layanan) !!}
+                                    </div>
                                 </td>
+                                <td>{{ $biaya->satuan }}</td>
+                                <td>{{ $biaya->keterangan }}</td>
                                 <td>
-
-                                    <a href="{{ route('unit.edit', $unit->id) }}" class="btn btn-warning">Edit</a>
-                                    <form action="{{ route('unit.destroy', $unit->id) }}" method="POST" class="d-inline">
+                                    <a href="{{ route('biaya.edit', $biaya->id) }}" class="btn btn-warning">Edit</a>
+                                    <form action="{{ route('biaya.destroy', $biaya->id) }}" method="POST"
+                                        class="d-inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger"
@@ -78,10 +80,13 @@
                         @endforeach
                     </tbody>
                 </table>
+
             </div>
         </div>
     </div>
 
+
+    </div>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
     <script>
         // Show toast notifications on page load

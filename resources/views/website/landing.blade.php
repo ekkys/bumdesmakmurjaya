@@ -439,53 +439,53 @@
 
             <div class="row gy-4">
 
-                <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="pricing-item">
-                        <h3>Retribusi Pelayanan Desa</h3>
-                        <p class="description">Biaya Layanan dibayarkan Perbulan</p>
-                        <h4><sup>Rp</sup>1.800.000<span> / bulan - Dusun</span></h4>
-                        <a href="#" class="cta-btn">Start a free trial</a>
-                        <p class="text-center small">No credit card required</p>
-                        <ul>
-                            <li><i class="bi bi-check"></i> <span>Quam adipiscing vitae proin</span></li>
-                            <li><i class="bi bi-check"></i> <span>Nec feugiat nisl pretium</span></li>
-                            <li><i class="bi bi-check"></i> <span>Nulla at volutpat diam uteera</span></li>
-                            <li class="na"><i class="bi bi-x"></i> <span>Pharetra massa massa ultricies</span>
-                            </li>
-                            <li class="na"><i class="bi bi-x"></i> <span>Massa ultricies mi quis
-                                    hendrerit</span></li>
-                            <li class="na"><i class="bi bi-x"></i> <span>Voluptate id voluptas qui sed aperiam
-                                    rerum</span></li>
-                            <li class="na"><i class="bi bi-x"></i> <span>Iure nihil dolores recusandae odit
-                                    voluptatibus</span></li>
-                        </ul>
-                    </div>
-                </div><!-- End Pricing Item -->
+                {{-- <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="pricing-item">
+                            <h3>Retribusi Pelayanan Desa</h3>
+                            <p class="description">Biaya Layanan dibayarkan Perbulan</p>
+                            <h4><sup>Rp</sup>1.800.000<span> / bulan - Dusun</span></h4>
+                            <a href="#" class="cta-btn">Start a free trial</a>
+                            <p class="text-center small">No credit card required</p>
+                            <ul>
+                                <li><i class="bi bi-check"></i> <span>Quam adipiscing vitae proin</span></li>
+                                <li><i class="bi bi-check"></i> <span>Nec feugiat nisl pretium</span></li>
+                                <li><i class="bi bi-check"></i> <span>Nulla at volutpat diam uteera</span></li>
+                                <li class="na"><i class="bi bi-x"></i> <span>Pharetra massa massa ultricies</span>
+                                </li>
+                                <li class="na"><i class="bi bi-x"></i> <span>Massa ultricies mi quis
+                                        hendrerit</span></li>
+                                <li class="na"><i class="bi bi-x"></i> <span>Voluptate id voluptas qui sed aperiam
+                                        rerum</span></li>
+                                <li class="na"><i class="bi bi-x"></i> <span>Iure nihil dolores recusandae odit
+                                        voluptatibus</span></li>
+                            </ul>
+                        </div>
+                    </div><!-- End Pricing Item --> --}}
 
-                <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="pricing-item featured">
-                        <p class="popular">Popular</p>
-                        <h3>Retribusi Perusahaan</h3>
-                        <p class="description">Ullam mollitia quasi nobis soluta in voluptatum et sint palora dex
-                            strater</p>
-                        <h4><sup>Rp</sup>800.000<span> / bulan</span></h4>
-                        <a href="#" class="cta-btn">Start a free trial</a>
-                        <p class="text-center small">No credit card required</p>
-                        <ul>
-                            <li><i class="bi bi-check"></i> <span>Quam adipiscing vitae proin</span></li>
-                            <li><i class="bi bi-check"></i> <span>Nec feugiat nisl pretium</span></li>
-                            <li><i class="bi bi-check"></i> <span>Nulla at volutpat diam uteera</span></li>
-                            <li><i class="bi bi-check"></i> <span>Pharetra massa massa ultricies</span></li>
-                            <li><i class="bi bi-check"></i> <span>Massa ultricies mi quis hendrerit</span></li>
-                            <li><i class="bi bi-check"></i> <span>Voluptate id voluptas qui sed aperiam
-                                    rerum</span></li>
-                            <li class="na"><i class="bi bi-x"></i> <span>Iure nihil dolores recusandae odit
-                                    voluptatibus</span></li>
-                        </ul>
-                    </div>
-                </div><!-- End Pricing Item -->
-
-                <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="300">
+                @foreach ($biayas as $biaya)
+                    <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="pricing-item featured">
+                            @if ($biaya->keterangan != '-')
+                                <p class="popular">{{ $biaya->keterangan }}</p><br><br>
+                            @endif
+                            <h3>{{ $biaya->nama }}</h3>
+                            <h3><span>Mulai dari :</span></h3>
+                            <h4><sup>Rp</sup>{{ $biaya->nominal }}<span>
+                                    {{ $biaya->satuan }}</span></h4>
+                            <a href="https://wa.me/6281511119337?text=Assalamu'alaikum%2C%20saya%20tertarik%20dengan%20{{ $biaya->nama }}.
+"
+                                class="cta-btn">Saya tertarik !</a>
+                            {{-- <p class="text-center small">No credit card required</p> --}}
+                            {{-- <ul>
+                                <li><i class="bi bi-check"></i> <span>Quam adipiscing vitae proin</span></li>
+                            </ul> --}}
+                            <div>
+                                {!! html_entity_decode($biaya->item_layanan) !!}
+                            </div>
+                        </div>
+                    </div><!-- End Pricing Item -->
+                @endforeach
+                {{-- <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="300">
                     <div class="pricing-item">
                         <h3>Retribusi Pemusanahan </h3>
                         <p class="description">Ullam mollitia quasi nobis soluta in voluptatum et sint palora dex
@@ -505,7 +505,7 @@
                                     voluptatibus</span></li>
                         </ul>
                     </div>
-                </div><!-- End Pricing Item -->
+                </div><!-- End Pricing Item --> --}}
 
             </div>
 

@@ -49,32 +49,37 @@
                     <a href="{{ route('galeri.index') }}">
                         <i class="bi bi-file-image" style="font-size: 1rem;"></i><span>Galeri</span>
                     </a>
+                <li>
+                    <a href="{{ route('biaya.index') }}">
+                        <i class="bi bi-cash-stack" style="font-size: 1rem;"></i><span>Biaya Layanan</span>
+                    </a>
                 </li>
                 <li>
                     <a href="{{ route('kontak.index') }}">
                         <i class="bi bi-phone-vibrate" style="font-size: 1rem;"></i><span>Kontak</span>
                     </a>
                 </li>
+        </li>
 
-            </ul>
-        </li><!-- End Website Nav -->
+    </ul>
+    </li><!-- End Website Nav -->
 
 
-        <li class="nav-heading">Pengaturan</li>
+    <li class="nav-heading">Pengaturan</li>
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="">
-                <i class="bi bi-person"></i>
-                <span>Profile</span>
-            </a>
-        </li><!-- End Profile Page Nav -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="">
+            <i class="bi bi-person"></i>
+            <span>Profile</span>
+        </a>
+    </li><!-- End Profile Page Nav -->
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-login.html">
-                <i class="bi bi-box-arrow-in-left"></i>
-                <span>Logout</span>
-            </a>
-        </li><!-- End Login Page Nav -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="pages-login.html">
+            <i class="bi bi-box-arrow-in-left"></i>
+            <span>Logout</span>
+        </a>
+    </li><!-- End Login Page Nav -->
 
     </ul>
 
