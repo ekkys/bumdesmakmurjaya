@@ -467,7 +467,7 @@
                             @if ($biaya->keterangan != '-')
                                 <p class="popular">{{ $biaya->keterangan }}</p><br>
                             @endif
-                            <h3>{{ $biaya->nama }}</h3>
+                            <h2>{{ $biaya->nama }}</h2>
                             <h3><span>Mulai dari :</span></h3>
                             <h4><sup>Rp</sup>{{ $biaya->nominal }}<span>
                                     {{ $biaya->satuan }}</span></h4>
