@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             KlienSeeder::class,
             GaleriSeeder::class,
             KontakSeeder::class,
+            BiayaSeeder::class,
         ]);
 
 
