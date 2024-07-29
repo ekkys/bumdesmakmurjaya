@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Visitor;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -49,25 +51,34 @@ class AdminController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function loginPage(Request $request)
     {
-        //
+        return view('admin.login1');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function actionLogin(Request $request)
     {
-        //
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect(route('home.index'));
+        } else {
+            $request->session()->put('error', 'Email atau Password Salah');
+            return redirect()->back();
+        }
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function actionlogout()
     {
-        //
+        Auth::logout();
+        return redirect(route('login'));
     }
 
     /**

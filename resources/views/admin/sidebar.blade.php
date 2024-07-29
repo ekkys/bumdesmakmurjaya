@@ -65,17 +65,17 @@
     </li><!-- End Website Nav -->
 
 
-    <li class="nav-heading">Pengaturan</li>
+    {{-- <li class="nav-heading">Pengaturan</li> --}}
 
-    <li class="nav-item">
+    {{-- <li class="nav-item">
         <a class="nav-link collapsed" href="">
             <i class="bi bi-person"></i>
             <span>Profile</span>
         </a>
-    </li><!-- End Profile Page Nav -->
+    </li><!-- End Profile Page Nav --> --}}
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-login.html">
+        <a class="nav-link collapsed" href="{{ route('actionlogout') }}">
             <i class="bi bi-box-arrow-in-left"></i>
             <span>Logout</span>
         </a>
