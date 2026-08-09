@@ -4,9 +4,28 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>BUMDes Makmur Jaya - Desa Sidomojo</title>
-    <meta content="Website Resmi BUMDes Makmur Jaya Desa Sidomojo, Krian, Sidoarjo. Layanan Pengolahan Sampah TPS3R, Toko Desa, Pinjaman, dan Pangan." name="description">
-    <meta content="bumdes, sidomojo, krian, sidoarjo, tps3r, pengolahan sampah, desa makmur jaya" name="keywords">
+    
+    <!-- Primary Meta Tags -->
+    <title>@yield('title', 'BUMDes Makmur Jaya - Desa Sidomojo Krian Sidoarjo')</title>
+    <meta name="title" content="@yield('title', 'BUMDes Makmur Jaya - Desa Sidomojo Krian Sidoarjo')">
+    <meta name="description" content="@yield('meta_description', 'Website Resmi BUMDes Makmur Jaya Desa Sidomojo, Krian, Sidoarjo. Layanan Pengolahan Sampah TPS3R, Ketahanan Pangan, Simpan Pinjam, dan Toko Desa.')">
+    <meta name="keywords" content="bumdes makmur jaya, bumdes sidomojo, tps 3r sidomojo, pengolahan sampah krian sidoarjo, bumdes krian, desa sidomojo">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="BUMDes Makmur Jaya">
+
+    <!-- Open Graph / Facebook / WhatsApp Preview -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="@yield('title', 'BUMDes Makmur Jaya - Desa Sidomojo')">
+    <meta property="og:description" content="@yield('meta_description', 'Website Resmi BUMDes Makmur Jaya Desa Sidomojo. Layanan TPS3R, Pangan, Pinjaman, dan Toko Desa.')">
+    <meta property="og:image" content="{{ asset('assets/img/hero-bg-light.webp') }}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta property="twitter:title" content="@yield('title', 'BUMDes Makmur Jaya - Desa Sidomojo')">
+    <meta property="twitter:description" content="@yield('meta_description', 'Website Resmi BUMDes Makmur Jaya Desa Sidomojo.')">
+    <meta property="twitter:image" content="{{ asset('assets/img/hero-bg-light.webp') }}">
 
     <!-- Favicons -->
     <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
@@ -27,6 +46,26 @@
     <!-- Main & Custom CSS Files -->
     <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/custom-modern.css') }}" rel="stylesheet">
+
+    <!-- Schema.org JSON-LD Structured Data for Google Ranking -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "BUMDes Makmur Jaya Desa Sidomojo",
+      "image": "{{ asset('assets/img/hero-bg-light.webp') }}",
+      "description": "Badan Usaha Milik Desa Makmur Jaya Sidomojo melayani Pengolahan Sampah TPS3R, Toko Desa, Pinjaman Usaha, dan Distribusi Pangan.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Dusun Tundungan",
+        "addressLocality": "Sidomojo, Krian",
+        "addressRegion": "Jawa Timur",
+        "postalCode": "61262",
+        "addressCountry": "ID"
+      },
+      "telephone": "+6281511119337"
+    }
+    </script>
 
     @yield('css')
 </head>
