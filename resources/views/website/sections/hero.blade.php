@@ -1,5 +1,5 @@
 <!-- Hero Section -->
-<section id="hero" class="hero">
+<section id="hero" class="hero" style="background-image: url('{{ $home->hero_bg_url ?? asset('assets/img/hero-bg-light.webp') }}');">
     <div class="container text-center">
         <div class="d-flex flex-column justify-content-center align-items-center">
             

@@ -8,7 +8,7 @@
             <div class="d-flex align-items-center justify-content-between pt-3 pb-2 mb-3 border-bottom">
                 <div>
                     <h4 class="card-title p-0 mb-1 fw-bold">Banner & Hero Beranda</h4>
-                    <p class="text-muted small mb-0">Kelola teks judul utama, slogan, dan video hero website</p>
+                    <p class="text-muted small mb-0">Kelola gambar latar belakang hero, logo, judul utama, slogan, dan video profil</p>
                 </div>
                 @if($homes->isEmpty())
                     <a href="{{ route('home.create') }}" class="btn btn-success rounded-pill px-3">
@@ -36,11 +36,12 @@
                     <thead class="table-light">
                         <tr>
                             <th style="width: 50px;">No</th>
-                            <th style="width: 100px;">Logo/Gambar</th>
+                            <th style="width: 140px;">Gambar Background Hero</th>
+                            <th style="width: 90px;">Logo</th>
                             <th>Judul Utama</th>
                             <th>Kutipan / Slogan</th>
                             <th>Hashtag</th>
-                            <th style="width: 130px;" class="text-center">Aksi</th>
+                            <th style="width: 120px;" class="text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,24 +49,27 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>
+                                    <img src="{{ $home->hero_bg_url }}" alt="Hero Background" class="rounded shadow-sm border" style="width: 120px; height: 65px; object-fit: cover;">
+                                </td>
+                                <td>
                                     @if(!empty($home->gambar))
-                                        <img src="{{ Storage::url($home->gambar) }}" alt="{{ $home->judul }}" class="rounded p-1 bg-light border" style="max-height: 50px; max-width: 80px; object-fit: contain;">
+                                        <img src="{{ Storage::url($home->gambar) }}" alt="{{ $home->judul }}" class="rounded p-1 bg-light border" style="max-height: 45px; max-width: 70px; object-fit: contain;">
                                     @else
-                                        <span class="text-muted small">No Image</span>
+                                        <span class="text-muted small">Default</span>
                                     @endif
                                 </td>
                                 <td><strong class="text-dark">{{ $home->judul }}</strong></td>
                                 <td><small class="text-muted">{{ $home->quote }}</small></td>
                                 <td><span class="badge bg-light text-success border">{{ $home->hashtag }}</span></td>
                                 <td class="text-center">
-                                    <a href="{{ route('home.edit', $home->id) }}" class="btn btn-sm btn-outline-warning" title="Edit">
+                                    <a href="{{ route('home.edit', $home->id) }}" class="btn btn-sm btn-outline-warning" title="Edit Data & Ganti Gambar">
                                         <i class="bi bi-pencil-square me-1"></i> Edit
                                     </a>
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6" class="text-center py-4 text-muted">Belum ada banner home.</td>
+                                <td colspan="7" class="text-center py-4 text-muted">Belum ada data banner home.</td>
                             </tr>
                         @endforelse
                     </tbody>

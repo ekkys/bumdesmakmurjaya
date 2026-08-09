@@ -26,22 +26,26 @@ class HomeController extends Controller
             'quote' => 'required|string|max:255',
             'hashtag' => 'required|string|max:255',
             'link' => 'nullable|string|max:255',
-            'gambar' => 'required|image|mimes:jpeg,png,jpg,webp|max:3072',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:3072',
+            'hero_background' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
         ]);
 
         try {
-            $path = $request->file('gambar')->store('home', 'public');
+            $gambarPath = $request->hasFile('gambar') ? $request->file('gambar')->store('home', 'public') : null;
+            $heroBgPath = $request->hasFile('hero_background') ? $request->file('hero_background')->store('home/hero', 'public') : null;
+
             Home::create([
-                'gambar' => $path,
+                'gambar' => $gambarPath,
+                'hero_background' => $heroBgPath,
                 'judul' => $request->judul,
                 'quote' => $request->quote,
                 'hashtag' => $request->hashtag,
                 'link' => $request->link ?? '',
             ]);
 
-            return redirect()->route('home.index')->with('success', 'Banner Home berhasil ditambahkan!');
+            return redirect()->route('home.index')->with('success', 'Banner & Hero Section berhasil ditambahkan!');
         } catch (\Throwable $e) {
-            return redirect()->back()->withInput()->with('error', 'Gagal menambahkan banner: ' . $e->getMessage());
+            return redirect()->back()->withInput()->with('error', 'Gagal menambahkan data hero: ' . $e->getMessage());
         }
     }
 
@@ -59,16 +63,26 @@ class HomeController extends Controller
             'hashtag' => 'required|string|max:255',
             'link' => 'nullable|string|max:255',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:3072',
+            'hero_background' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
         ]);
 
         try {
             $home = Home::findOrFail($id);
 
+            // Upload & ganti Logo jika ada
             if ($request->hasFile('gambar')) {
                 if ($home->gambar && Storage::disk('public')->exists($home->gambar)) {
                     Storage::disk('public')->delete($home->gambar);
                 }
                 $home->gambar = $request->file('gambar')->store('home', 'public');
+            }
+
+            // Upload & ganti Hero Background jika ada
+            if ($request->hasFile('hero_background')) {
+                if ($home->hero_background && Storage::disk('public')->exists($home->hero_background)) {
+                    Storage::disk('public')->delete($home->hero_background);
+                }
+                $home->hero_background = $request->file('hero_background')->store('home/hero', 'public');
             }
 
             $home->judul = $request->judul;
@@ -77,9 +91,9 @@ class HomeController extends Controller
             $home->link = $request->link ?? $home->link;
             $home->save();
 
-            return redirect()->route('home.index')->with('success', 'Banner Home berhasil diperbarui!');
+            return redirect()->route('home.index')->with('success', 'Banner & Background Hero berhasil diperbarui!');
         } catch (\Throwable $e) {
-            return redirect()->back()->withInput()->with('error', 'Gagal memperbarui banner: ' . $e->getMessage());
+            return redirect()->back()->withInput()->with('error', 'Gagal memperbarui hero: ' . $e->getMessage());
         }
     }
 
@@ -90,11 +104,14 @@ class HomeController extends Controller
             if ($home->gambar && Storage::disk('public')->exists($home->gambar)) {
                 Storage::disk('public')->delete($home->gambar);
             }
+            if ($home->hero_background && Storage::disk('public')->exists($home->hero_background)) {
+                Storage::disk('public')->delete($home->hero_background);
+            }
             $home->delete();
 
-            return redirect()->route('home.index')->with('success', 'Banner Home berhasil dihapus.');
+            return redirect()->route('home.index')->with('success', 'Data hero berhasil dihapus.');
         } catch (\Throwable $e) {
-            return redirect()->back()->with('error', 'Gagal menghapus banner: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Gagal menghapus data: ' . $e->getMessage());
         }
     }
 }
