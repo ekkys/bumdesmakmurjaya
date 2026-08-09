@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             KontakSeeder::class,
             BiayaSeeder::class,
             UserSeeder::class,
+            BeritaSeeder::class,
         ]);
 
 
