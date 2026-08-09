@@ -29,7 +29,7 @@
                 <li><a href="{{ route('website.index') }}#services">Galeri</a></li>
                 <li><a href="{{ route('website.index') }}#pricing">Biaya</a></li>
                 <li><a href="{{ route('website.index') }}#contact">Kontak</a></li>
-                <li class="d-none d-lg-block ms-2">
+                <li class="ms-xl-2 mt-2 mt-xl-0">
                     <a href="https://wa.me/6281511119337" target="_blank" class="btn-nav-cta">
                         <i class="bi bi-whatsapp me-1"></i> Hubungi Kami
                     </a>
