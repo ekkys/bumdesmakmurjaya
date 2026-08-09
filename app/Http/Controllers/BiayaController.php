@@ -47,6 +47,12 @@ class BiayaController extends Controller
         }
     }
 
+    public function show($id)
+    {
+        $biaya = Biaya::findOrFail($id);
+        return redirect()->route('biaya.edit', $id);
+    }
+
     public function edit($id)
     {
         $kategori_layanan = Unit::all();

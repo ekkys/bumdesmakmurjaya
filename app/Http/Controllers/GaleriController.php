@@ -45,6 +45,12 @@ class GaleriController extends Controller
         }
     }
 
+    public function show($id)
+    {
+        $galeri = Galeri::findOrFail($id);
+        return redirect()->route('galeri.edit', $id);
+    }
+
     public function edit($id)
     {
         $galeri = Galeri::findOrFail($id);

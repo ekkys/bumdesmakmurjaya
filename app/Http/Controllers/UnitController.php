@@ -47,6 +47,12 @@ class UnitController extends Controller
         }
     }
 
+    public function show($id)
+    {
+        $unit = Unit::findOrFail($id);
+        return redirect()->route('unit.edit', $id);
+    }
+
     public function edit($id)
     {
         $unit = Unit::findOrFail($id);

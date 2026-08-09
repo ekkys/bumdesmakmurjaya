@@ -49,6 +49,12 @@ class HomeController extends Controller
         }
     }
 
+    public function show(string $id)
+    {
+        $home = Home::findOrFail($id);
+        return redirect()->route('home.edit', $id);
+    }
+
     public function edit(string $id)
     {
         $home = Home::findOrFail($id);

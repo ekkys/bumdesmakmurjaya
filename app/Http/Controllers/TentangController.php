@@ -49,6 +49,12 @@ class TentangController extends Controller
         }
     }
 
+    public function show($id)
+    {
+        $tentang = Tentang::findOrFail($id);
+        return redirect()->route('tentang.edit', $id);
+    }
+
     public function edit($id)
     {
         $tentang = Tentang::findOrFail($id);

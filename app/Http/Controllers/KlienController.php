@@ -39,6 +39,12 @@ class KlienController extends Controller
         }
     }
 
+    public function show($id)
+    {
+        $klien = Klien::findOrFail($id);
+        return redirect()->route('klien.edit', $id);
+    }
+
     public function edit($id)
     {
         $klien = Klien::findOrFail($id);

@@ -93,6 +93,15 @@ class BeritaController extends Controller
     }
 
     /**
+     * Display the specified news (or redirect to public detail or edit)
+     */
+    public function show($id)
+    {
+        $berita = Berita::findOrFail($id);
+        return redirect()->route('berita.public.detail', $berita->slug);
+    }
+
+    /**
      * Show form to edit news
      */
     public function edit($id)

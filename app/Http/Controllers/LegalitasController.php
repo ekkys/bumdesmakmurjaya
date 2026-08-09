@@ -43,6 +43,12 @@ class LegalitasController extends Controller
         }
     }
 
+    public function show($id)
+    {
+        $legalitas = Legalitas::findOrFail($id);
+        return redirect()->route('legalitas.edit', $id);
+    }
+
     public function edit($id)
     {
         $legalitas = Legalitas::findOrFail($id);

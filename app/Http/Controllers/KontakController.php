@@ -40,6 +40,12 @@ class KontakController extends Controller
         }
     }
 
+    public function show($id)
+    {
+        $kontak = Kontak::findOrFail($id);
+        return redirect()->route('kontak.edit', $id);
+    }
+
     public function edit($id)
     {
         $kontak = Kontak::findOrFail($id);

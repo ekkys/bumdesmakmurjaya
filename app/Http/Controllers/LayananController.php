@@ -50,6 +50,12 @@ class LayananController extends Controller
         }
     }
 
+    public function show($id)
+    {
+        $layanan = Layanan::findOrFail($id);
+        return redirect()->route('layanan.edit', $id);
+    }
+
     public function edit($id)
     {
         $layanan = Layanan::findOrFail($id);
