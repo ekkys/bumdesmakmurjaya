@@ -2,6 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\Home;
+use App\Models\Kontak;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +24,25 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Paksa penggunaan HTTPS di lingkungan produksi
+        if ($this->app->environment('production')) {
+            URL::forceScheme('https');
+        }
+
+        // View Composer untuk website views
+        View::composer('website.*', function ($view) {
+            try {
+                if (Schema::hasTable('home') && Schema::hasTable('kontaks')) {
+                    $home = Home::first();
+                    $kontaks = Kontak::all();
+                    $view->with([
+                        'home' => $home,
+                        'kontaks' => $kontaks,
+                    ]);
+                }
+            } catch (\Throwable $e) {
+                // Ignore during migrations or initial setup
+            }
+        });
     }
 }

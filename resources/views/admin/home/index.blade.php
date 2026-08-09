@@ -1,62 +1,78 @@
 @extends('admin.main-layout')
-@section('title', 'Index|Home')
 
 @section('content')
-    <div class="container mt-5 card">
-        <h1>Home </h1>
-        {{-- <a href="{{ route('home.create') }}" class="btn btn-primary mb-3">Add Home</a> --}}
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            
+            <div class="d-flex align-items-center justify-content-between pt-3 pb-2 mb-3 border-bottom">
+                <div>
+                    <h4 class="card-title p-0 mb-1 fw-bold">Banner & Hero Beranda</h4>
+                    <p class="text-muted small mb-0">Kelola teks judul utama, slogan, dan video hero website</p>
+                </div>
+                @if($homes->isEmpty())
+                    <a href="{{ route('home.create') }}" class="btn btn-success rounded-pill px-3">
+                        <i class="bi bi-plus-circle me-1"></i> Tambah Banner
+                    </a>
+                @endif
+            </div>
 
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>No.</th>
-                    <th>Gambar</th>
-                    <th>Nama BUMDesa</th>
-                    <th>Quote</th>
-                    <th>Hashtag</th>
-                    <th>Link Youtube</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($homes as $home)
-                    <tr>
-                        <td>{{ $home->id }}</td>
-                        <td>
-                            <img src="{{ Storage::url($home->gambar) }}" alt="Gambar" width="100">
-                        </td>
-                        <td>{{ $home->judul }}</td>
-                        <td>{{ $home->quote }}</td>
-                        <td>{{ $home->hashtag }}</td>
-                        <td><a href="{{ $home->link }}" target="_blank">{{ $home->link }}</a></td>
-                        <td>
-                            {{-- <a href="{{ route('home.show', $home->id) }}" class="btn btn-info">Show</a> --}}
-                            <a href="{{ route('home.edit', $home->id) }}" class="btn btn-warning">Edit</a>
-                            {{-- <form action="{{ route('home.destroy', $home->id) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger"
-                                    onclick="return confirm('Anda yakin hapus')">Hapus</button>
-                            </form> --}}
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+            @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="bi bi-check-circle me-1"></i> {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
+            @if(session('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="bi bi-exclamation-triangle me-1"></i> {{ session('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th style="width: 50px;">No</th>
+                            <th style="width: 100px;">Logo/Gambar</th>
+                            <th>Judul Utama</th>
+                            <th>Kutipan / Slogan</th>
+                            <th>Hashtag</th>
+                            <th style="width: 130px;" class="text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($homes as $home)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>
+                                    @if(!empty($home->gambar))
+                                        <img src="{{ Storage::url($home->gambar) }}" alt="{{ $home->judul }}" class="rounded p-1 bg-light border" style="max-height: 50px; max-width: 80px; object-fit: contain;">
+                                    @else
+                                        <span class="text-muted small">No Image</span>
+                                    @endif
+                                </td>
+                                <td><strong class="text-dark">{{ $home->judul }}</strong></td>
+                                <td><small class="text-muted">{{ $home->quote }}</small></td>
+                                <td><span class="badge bg-light text-success border">{{ $home->hashtag }}</span></td>
+                                <td class="text-center">
+                                    <a href="{{ route('home.edit', $home->id) }}" class="btn btn-sm btn-outline-warning" title="Edit">
+                                        <i class="bi bi-pencil-square me-1"></i> Edit
+                                    </a>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="6" class="text-center py-4 text-muted">Belum ada banner home.</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
     </div>
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Show toast notifications on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            var toastElList = [].slice.call(document.querySelectorAll('.toast'))
-            var toastList = toastElList.map(function(toastEl) {
-                return new bootstrap.Toast(toastEl, {
-                    autohide: true,
-                    delay: 3000
-                })
-            })
-            toastList.forEach(toast => toast.show())
-        });
-    </script>
+</div>
 @endsection

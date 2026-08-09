@@ -1,98 +1,83 @@
 @extends('admin.main-layout')
-@section('title', 'Edit|Unit')
-@section('css')
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-@endsection
 
 @section('content')
-    <div class="container mt-1">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h2 class="card-title">Edit Unit</h2>
-                    </div>
-                    <div class="card-body">
-                        <form action="{{ route('unit.update', $unit->id) }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            @method('PUT')
-                            <div class="mb-3">
-                                <label for="nama" class="form-label">Nama</label>
-                                <input type="text" class="form-control" id="nama" name="nama"
-                                    value="{{ $unit->nama }}" required>
-                            </div>
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
 
-                            <div class="mb-3">
-                                <label for="deskripsi" class="form-label">Deskripsi</label>
-                                <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" required>{{ $unit->deskripsi }}</textarea>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="ringkasan" class="form-label">Ringkasan</label>
-                                <textarea class="form-control" id="ringkasan" name="ringkasan" rows="2" required>{{ $unit->ringkasan }}</textarea>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <label for="gambar" class="form-label">Gambar</label>
-                                    <input type="file" class="form-control" id="gambar" name="gambar">
-                                    <img src="{{ Storage::url($unit->gambar) }}" alt="Gambar" width="100"
-                                        class="mt-2">
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label for="kategori" class="form-label">Kategori</label>
-                                        <input type="text" class="form-control" id="kategori" name="kategori"
-                                            value="{{ $unit->kategori }}" required>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="link" class="form-label">Link</label>
-                                <input type="url" class="form-control" id="link" name="link"
-                                    value="{{ $unit->link }}" required>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary">Update</button>
-                        </form>
-                    </div>
+            <div class="d-flex align-items-center justify-content-between pt-3 pb-2 mb-3 border-bottom">
+                <div>
+                    <h4 class="card-title p-0 mb-1 fw-bold">Edit Unit Usaha</h4>
+                    <p class="text-muted small mb-0">Perbarui data unit usaha BUMDes</p>
                 </div>
+                <a href="{{ route('unit.index') }}" class="btn btn-outline-secondary rounded-pill px-3">
+                    <i class="bi bi-arrow-left me-1"></i> Kembali
+                </a>
             </div>
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul class="mb-0">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form action="{{ route('unit.update', $unit->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+
+                <div class="row g-3">
+                    
+                    <div class="col-md-8">
+                        <label for="nama" class="form-label fw-semibold">Nama Unit Usaha <span class="text-danger">*</span></label>
+                        <input type="text" name="nama" id="nama" class="form-control" value="{{ old('nama', $unit->nama) }}" required>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="kategori" class="form-label fw-semibold">Kategori Kode <span class="text-danger">*</span></label>
+                        <input type="text" name="kategori" id="kategori" class="form-control" value="{{ old('kategori', $unit->kategori) }}" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="link" class="form-label fw-semibold">Tautan / Link Halaman (Opsional)</label>
+                        <input type="text" name="link" id="link" class="form-control" value="{{ old('link', $unit->link) }}">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="gambar" class="form-label fw-semibold">Foto Unit Usaha</label>
+                        @if(!empty($unit->gambar))
+                            <div class="mb-2">
+                                <img src="{{ Storage::url($unit->gambar) }}" alt="Current Image" class="rounded border" style="max-height: 100px;">
+                            </div>
+                        @endif
+                        <input type="file" name="gambar" id="gambar" class="form-control" accept="image/*">
+                        <small class="text-muted">Biarkan kosong jika tidak ingin mengubah foto.</small>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="ringkasan" class="form-label fw-semibold">Ringkasan Singkat <span class="text-danger">*</span></label>
+                        <textarea name="ringkasan" id="ringkasan" rows="2" class="form-control" required>{{ old('ringkasan', $unit->ringkasan) }}</textarea>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="deskripsi" class="form-label fw-semibold">Deskripsi Lengkap <span class="text-danger">*</span></label>
+                        <textarea name="deskripsi" id="deskripsi" rows="6" class="form-control" required>{{ old('deskripsi', $unit->deskripsi) }}</textarea>
+                    </div>
+
+                    <div class="col-12 mt-4 text-end">
+                        <a href="{{ route('unit.index') }}" class="btn btn-light me-2">Batal</a>
+                        <button type="submit" class="btn btn-warning px-4">
+                            <i class="bi bi-save me-1"></i> Perbarui Unit Usaha
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+
         </div>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
-    <script>
-        $('#description').summernote({
-            placeholder: 'description...',
-            tabsize: 2,
-            height: 300,
-            toolbar: [
-                ['style', ['style']],
-                ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
-                ['fontname', ['fontname']],
-                ['fontsize', ['fontsize']],
-                ['color', ['color']],
-                ['para', ['ol', 'ul', 'paragraph', 'height']],
-                ['table', ['table']],
-                ['insert', ['link']],
-                ['view', ['undo', 'redo', 'fullscreen', 'codeview', 'help']]
-            ]
-        });
-
-        // Show toast notifications on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            var toastElList = [].slice.call(document.querySelectorAll('.toast'))
-            var toastList = toastElList.map(function(toastEl) {
-                return new bootstrap.Toast(toastEl, {
-                    autohide: true,
-                    delay: 3000
-                })
-            })
-            toastList.forEach(toast => toast.show())
-        });
-    </script>
+</div>
 @endsection

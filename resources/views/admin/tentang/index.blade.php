@@ -1,98 +1,82 @@
 @extends('admin.main-layout')
-@section('title', 'Tentang Kami')
 
 @section('content')
-    <!-- Toast Notifications -->
-    <div aria-live="polite" aria-atomic="true" class="position-relative">
-        <div class="toast-container position-absolute top-0 end-0 p-3">
-            @if (session('success'))
-                <div class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive"
-                    aria-atomic="true">
-                    <div class="d-flex">
-                        <div class="toast-body">
-                            {{ session('success') }}
-                        </div>
-                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
-                            aria-label="Close"></button>
-                    </div>
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            
+            <div class="d-flex align-items-center justify-content-between pt-3 pb-2 mb-3 border-bottom">
+                <div>
+                    <h4 class="card-title p-0 mb-1 fw-bold">Profil Tentang Kami</h4>
+                    <p class="text-muted small mb-0">Kelola deskripsi profil, visi misi, dan 3 foto dokumentasi tentang BUMDes</p>
+                </div>
+                @if($tentangs->isEmpty())
+                    <a href="{{ route('tentang.create') }}" class="btn btn-success rounded-pill px-3">
+                        <i class="bi bi-plus-circle me-1"></i> Tambah Profil
+                    </a>
+                @endif
+            </div>
+
+            @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="bi bi-check-circle me-1"></i> {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
 
-            @if (session('error'))
-                <div class="toast align-items-center text-white bg-danger border-0" role="alert" aria-live="assertive"
-                    aria-atomic="true">
-                    <div class="d-flex">
-                        <div class="toast-body">
-                            {{ session('error') }}
-                        </div>
-                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
-                            aria-label="Close"></button>
-                    </div>
+            @if(session('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="bi bi-exclamation-triangle me-1"></i> {{ session('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th style="width: 50px;">No</th>
+                            <th style="width: 140px;">Foto Profil</th>
+                            <th>Judul Profil</th>
+                            <th>Deskripsi Ringkas</th>
+                            <th style="width: 130px;" class="text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($tentangs as $tentang)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>
+                                    <div class="d-flex gap-1">
+                                        @if(!empty($tentang->gambar1))
+                                            <img src="{{ Storage::url($tentang->gambar1) }}" alt="Foto 1" class="rounded border" style="width: 35px; height: 35px; object-fit: cover;">
+                                        @endif
+                                        @if(!empty($tentang->gambar2))
+                                            <img src="{{ Storage::url($tentang->gambar2) }}" alt="Foto 2" class="rounded border" style="width: 35px; height: 35px; object-fit: cover;">
+                                        @endif
+                                        @if(!empty($tentang->gambar3))
+                                            <img src="{{ Storage::url($tentang->gambar3) }}" alt="Foto 3" class="rounded border" style="width: 35px; height: 35px; object-fit: cover;">
+                                        @endif
+                                    </div>
+                                </td>
+                                <td><strong class="text-dark">{{ $tentang->judul }}</strong></td>
+                                <td><small class="text-muted">{{ Str::limit(strip_tags($tentang->deskripsi), 90) }}</small></td>
+                                <td class="text-center">
+                                    <a href="{{ route('tentang.edit', $tentang->id) }}" class="btn btn-sm btn-outline-warning" title="Edit">
+                                        <i class="bi bi-pencil-square me-1"></i> Edit
+                                    </a>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="5" class="text-center py-4 text-muted">Belum ada data tentang kami.</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
-    <!-- Toast Notifications -->
-    <div class="container mt-5 card ">
-        <h1>Tentang Kami</h1>
-        {{-- <a href="{{ route('tentang.create') }}" class="btn btn-primary ">Create New Tentang</a> --}}
-
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Action</th>
-                    <th>Judul</th>
-                    <th>Deskripsi</th>
-                    <th>Gambar 1 <small>(Detail Page)</small></th>
-                    <th>Gambar 2 </th>
-                    <th>Gambar 3</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($tentangs as $tentang)
-                    <tr>
-                        <?php $no = 1; ?>
-                        <td>{{ $no++ }}</td>
-                        <td>
-                            <a href="{{ route('tentang.edit', $tentang->id) }}" class="btn btn-warning btn-sm">Edit</a>
-
-                            {{-- <form action="{{ route('tentang.destroy', $tentang->id) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm"
-                                    onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
-                            </form> --}}
-                        </td>
-                        <td>{{ $tentang->judul }}</td>
-                        <td>
-                            <div>
-                                {!! html_entity_decode($tentang->deskripsi) !!}
-                            </div>
-                        </td>
-                        <td><img src="{{ Storage::url($tentang->gambar1) }}" alt="{{ $tentang->gambar2 }}" width="150">
-                        </td>
-                        <td><img src="{{ Storage::url($tentang->gambar2) }}" alt="{{ $tentang->gambar2 }}" width="150">
-                        </td>
-                        <td><img src="{{ Storage::url($tentang->gambar3) }}" alt="{{ $tentang->gambar2 }}" width="150">
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-
-    </div>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Show toast notifications on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            var toastElList = [].slice.call(document.querySelectorAll('.toast'))
-            var toastList = toastElList.map(function(toastEl) {
-                return new bootstrap.Toast(toastEl, {
-                    autohide: true,
-                    delay: 3000
-                })
-            })
-            toastList.forEach(toast => toast.show())
-        });
-    </script>
+</div>
 @endsection

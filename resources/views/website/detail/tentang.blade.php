@@ -1,52 +1,53 @@
-@extends('website.detail.detail-main-layout')
+@extends('website.layouts.main-layout')
 
 @section('content')
-    <!-- Service Details Section -->
-    <section id="service-details" class="service-details section">
-        <!-- WhatsApp Float Button -->
-        <a href="https://wa.me/6281234567890" class="whatsapp-float" target="_blank">
-            <img src="{{ url('assets\img\whatsapp.png') }}" alt="WhatsApp">
-        </a>
-        <div class="container mt-3">
-            <div class="row">
-                <!-- Page Title -->
-                <div class="page-title" data-aos="fade">
-                    <div class="container d-lg-flex justify-content-between align-items-center">
-                        <h1 class="mb-2 mb-lg-0">Tentang Kami</h1>
-                        <nav class="breadcrumbs">
-                            <ol>
-                                <li><a href="{{ route('website.index') }}">Home</a></li>
-                                <li class="current">Tentang Kami</li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div><!-- End Page Title -->
+    <!-- Detail Hero Header -->
+    <div class="detail-hero-banner">
+        <div class="container">
+            <h1 data-aos="fade-up">Tentang Kami</h1>
+            <div class="detail-breadcrumbs" data-aos="fade-up" data-aos-delay="100">
+                <a href="{{ route('website.index') }}">Beranda</a>
+                <i class="bi bi-chevron-right"></i>
+                <span>Tentang Kami</span>
             </div>
+        </div>
+    </div>
 
-            <div class="row gy-5">
+    <!-- Content Section -->
+    <section class="section pt-0 pb-5">
+        <div class="container">
+            <div class="row gy-4">
 
+                <!-- Sidebar Contact -->
                 <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="help-box d-flex flex-column justify-content-center align-items-center">
-                        <i class="bi bi-headset help-icon"></i>
-                        <h4>Ingin bertanya langsung?</h4>
-                        <a href="https://wa.me/+6281511119337">
-                            <p class="d-flex align-items-center mt-2 mb-0"><i class="bi bi-telephone me-2"></i> <span>
-                                    +62 815-1111-9337</span></p>
+                    <div class="contact-info-card text-start">
+                        <div class="contact-icon-box ms-0">
+                            <i class="bi bi-headset"></i>
+                        </div>
+                        <h4 class="fw-bold mb-2">Pusat Informasi BUMDes</h4>
+                        <p class="text-muted mb-4">Ingin berdiskusi atau bermitra dengan BUMDes Makmur Jaya?</p>
+                        <a href="https://wa.me/6281511119337" target="_blank" class="btn btn-success w-100 rounded-pill py-2">
+                            <i class="bi bi-whatsapp me-1"></i> Hubungi Pengurus
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-8 ps-lg-5" data-aos="fade-up" data-aos-delay="200">
-                    <img src="{{ Storage::url($tentang->gambar1) }}" alt="" class="img-fluid services-img">
-                    <h3>
-                        <h3>BUMDES Makmur Jaya <span>SIDOMOJO</span></h3>
-                    </h3>
-                    <div{!! html_entity_decode($tentang->deskripsi) !!} </div>
 
+                <!-- Main Content -->
+                <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+                    <div class="detail-card-box">
+                        @if(!empty($tentang->gambar1))
+                            <img src="{{ Storage::url($tentang->gambar1) }}" alt="Tentang BUMDes" class="img-fluid rounded-4 mb-4 w-100 shadow-sm" style="max-height: 400px; object-fit: cover;">
+                        @endif
+
+                        <h2 class="fw-bold mb-3">{{ $tentang->judul ?? 'Profil BUMDes Makmur Jaya' }}</h2>
+                        
+                        <div class="article-content leading-relaxed">
+                            {!! html_entity_decode($tentang->deskripsi ?? '') !!}
+                        </div>
+                    </div>
                 </div>
 
             </div>
-
         </div>
-
-    </section><!-- /Service Details Section -->
+    </section>
 @endsection

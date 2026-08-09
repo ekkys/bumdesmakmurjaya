@@ -1,154 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-    <title>Dashboard</title>
+    <title>Login Admin - BUMDes Makmur Jaya</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="{{ url('assets_nice/img/favicon.png') }}" rel="icon">
-    <link href="{{ url('assets_nice/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+    <link href="{{ asset('assets_nice/img/favicon.png') }}" rel="icon">
+    <link href="{{ asset('assets_nice/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-        rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="{{ url('assets_nice/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ url('assets_nice/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-    <link href="{{ url('assets_nice/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
-    <link href="{{ url('assets_nice/vendor/quill/quill.snow.css') }}" rel="stylesheet">
-    <link href="{{ url('assets_nice/vendor/quill/quill.bubble.css') }}" rel="stylesheet">
-    <link href="{{ url('assets_nice/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
-    <link href="{{ url('assets_nice/vendor/simple-datatables/style.css') }}" rel="stylesheet">
-    <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+    <link href="{{ asset('assets_nice/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets_nice/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets_nice/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+    
     <!-- Template Main CSS File -->
-    <link href="{{ url('assets_nice/css/style.css') }}" rel="stylesheet">
-    @yield('css')
+    <link href="{{ asset('assets_nice/css/style.css') }}" rel="stylesheet">
     <style>
-        .logo-text {
-            font-size: 14px;
-            /* Adjust the font size as needed */
-            padding: 0 5px;
-            /* Adjust the padding as needed */
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #f8fafc;
+        }
+        .card {
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+            border: 1px solid #e2e8f0;
+        }
+        .btn-primary {
+            background: #059669;
+            border-color: #059669;
+            border-radius: 50px;
+            padding: 10px;
+            font-weight: 600;
+        }
+        .btn-primary:hover {
+            background: #047857;
+            border-color: #047857;
         }
     </style>
-    <!-- =======================================================
-      * Template Name: NiceAdmin
-      * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-      * Updated: Apr 20 2024 with Bootstrap v5.3.3
-      * Author: BootstrapMade.com
-      * License: https://bootstrapmade.com/license/
-      ======================================================== -->
 </head>
 
-
 <body>
-
     <main>
         <div class="container">
-
-            <section
-                class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+            <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
                             <div class="d-flex justify-content-center py-4">
-                                <a href="{{ route('login') }}" class="logo d-flex align-items-center w-auto">
-                                    <img src="{{ url('assets/img/bumdes.png') }}" alt="">
-                                    <span class="d-none d-lg-block">BUMDesa Makmur Jaya</span>
+                                <a href="{{ route('website.index') }}" class="logo d-flex align-items-center w-auto text-decoration-none">
+                                    <img src="{{ asset('assets/img/bumdes.png') }}" alt="Logo" style="max-height: 40px;" class="me-2">
+                                    <span class="fs-5 fw-bold text-dark">BUMDes Makmur Jaya</span>
                                 </a>
-                            </div><!-- End Logo -->
+                            </div>
 
-                            <div class="card mb-3">
+                            <div class="card mb-3 w-100">
+                                <div class="card-body p-4">
 
-                                <div class="card-body">
-
-                                    <div class="pt-4 pb-2">
-                                        <h5 class="card-title text-center pb-0 fs-4">Login</h5>
-                                        <p class="text-center small">Enter your username & password to login</p>
+                                    <div class="pt-2 pb-3 text-center">
+                                        <h5 class="card-title pb-0 fs-4 fw-bold">Login Admin</h5>
+                                        <p class="text-muted small">Masukkan email dan password akun Anda</p>
                                     </div>
+
                                     @if (session('error'))
-                                        <div class="alert alert-danger">
-                                            <b>Opps!</b> {{ session('error') }}
+                                        <div class="alert alert-danger py-2 small">
+                                            <i class="bi bi-exclamation-triangle me-1"></i> {{ session('error') }}
                                         </div>
                                     @endif
 
-                                    <form class="row g-3 needs-validation" action="{{ route('actionlogin') }}"
-                                        method="post">
+                                    <form class="row g-3" action="{{ route('actionlogin') }}" method="post">
                                         @csrf
                                         <div class="col-12">
-                                            <label for="yourUsername" class="form-label">Username</label>
-                                            <div class="input-group has-validation">
-                                                <span class="input-group-text" id="inputGroupPrepend">@</span>
-                                                <input type="email" name="email" class="form-control"
-                                                    id="yourUsername" required>
-                                                <div class="invalid-feedback">Please enter your username.</div>
+                                            <label for="yourEmail" class="form-label fw-semibold small">Email</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                                                <input type="email" name="email" class="form-control" id="yourEmail" placeholder="nama@email.com" required>
                                             </div>
                                         </div>
 
                                         <div class="col-12">
-                                            <label for="yourPassword" class="form-label">Password</label>
-                                            <input type="password" name="password" class="form-control"
-                                                id="yourPassword" required>
-                                            <div class="invalid-feedback">Please enter your password!</div>
-                                        </div>
-
-                                        <div class="col-12">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="remember"
-                                                    value="true" id="rememberMe">
-                                                <label class="form-check-label" for="rememberMe">Remember me</label>
+                                            <label for="yourPassword" class="form-label fw-semibold small">Password</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                                                <input type="password" name="password" class="form-control" id="yourPassword" placeholder="••••••••" required>
                                             </div>
                                         </div>
-                                        <div class="col-12">
-                                            <button class="btn btn-primary w-100" type="submit">Login</button>
+
+                                        <div class="col-12 mt-4">
+                                            <button class="btn btn-primary w-100" type="submit">Masuk ke Dashboard</button>
+                                        </div>
+
+                                        <div class="col-12 text-center mt-3">
+                                            <a href="{{ route('website.index') }}" class="small text-muted text-decoration-none">
+                                                <i class="bi bi-arrow-left me-1"></i> Kembali ke Beranda
+                                            </a>
                                         </div>
                                     </form>
 
                                 </div>
                             </div>
 
-                            <div class="credits">
-                                <!-- All the links in the footer should remain intact. -->
-                                <!-- You can delete the links only if you purchased the pro version. -->
-                                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-                                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-                            </div>
-
                         </div>
                     </div>
                 </div>
-
             </section>
-
         </div>
     </main>
-    <!-- End #main -->
-
 
     <!-- Vendor JS Files -->
-    <script src="{{ url('assets_nice/vendor/apexcharts/apexcharts.min.js') }}"></script>
-    <script src="{{ url('assets_nice/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ url('assets_nice/vendor/chart.js/chart.umd.js') }}"></script>
-    <script src="{{ url('assets_nice/vendor/echarts/echarts.min.js') }}"></script>
-    <script src="{{ url('assets_nice/vendor/quill/quill.js') }}"></script>
-    <script src="{{ url('assets_nice/vendor/simple-datatables/simple-datatables.js') }}"></script>
-    <script src="{{ url('assets_nice/vendor/tinymce/tinymce.min.js') }}"></script>
-    <script src="{{ url('assets_nice/vendor/php-email-form/validate.js') }}"></script>
-
-    <!-- Template Main JS File -->
-    <script src="{{ url('assets_nice/js/main.js') }}"></script>
-
+    <script src="{{ asset('assets_nice/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets_nice/js/main.js') }}"></script>
 </body>
 
 </html>

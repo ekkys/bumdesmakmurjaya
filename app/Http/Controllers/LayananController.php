@@ -4,81 +4,52 @@ namespace App\Http\Controllers;
 
 use App\Models\Layanan;
 use App\Models\Unit;
-use DOMDocument;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class LayananController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $layanans = Layanan::all();
         return view('admin.layanan.index', compact('layanans'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $units = Unit::all();
-        // return $units;
         return view('admin.layanan.create', compact('units'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        $request->validate([
-            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        $validated = $request->validate([
             'nama' => 'required|string|max:255',
-            'deskripsi' => 'required',
-            'ringkasan' => 'required|string|max:255',
-            'link' => 'required|string|max:255',
-            'unit' => 'required'
+            'unit' => 'required|string',
+            'ringkasan' => 'required|string',
+            'deskripsi' => 'required|string',
+            'link' => 'nullable|string|max:255',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg,webp|max:3072',
         ]);
-        // return $request->all();
+
         try {
-
             $path = $request->file('gambar')->store('layanan', 'public');
-            $deskripsi = $request->deskripsi;
-
-            $dom = new DOMDocument();
-            $dom->loadHTML($deskripsi, 9);
-            $deskripsi = $dom->saveHTML();
 
             Layanan::create([
                 'gambar' => $path,
                 'nama' => $request->nama,
                 'ringkasan' => $request->ringkasan,
-                'deskripsi' => $deskripsi,
-                'link' => $request->link,
-                'unit' => $request->unit
+                'deskripsi' => $request->deskripsi,
+                'link' => $request->link ?? '',
+                'unit' => $request->unit,
             ]);
-            return redirect()->route('layanan.index')->with('success', 'Layanan created successfully.');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Failed to create Layanan.');
+
+            return redirect()->route('layanan.index')->with('success', 'Layanan berhasil ditambahkan!');
+        } catch (\Throwable $e) {
+            return redirect()->back()->withInput()->with('error', 'Gagal menambahkan layanan: ' . $e->getMessage());
         }
     }
 
-
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Layanan $layanan)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id)
     {
         $layanan = Layanan::findOrFail($id);
@@ -86,59 +57,52 @@ class LayananController extends Controller
         return view('admin.layanan.edit', compact('layanan', 'units'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-
-        $request->validate([
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'nama' => 'required|string',
-            'deskripsi' => 'required|string',
-            'ringkasan' => 'required|string',
-            'link' => 'required|string',
+        $validated = $request->validate([
+            'nama' => 'required|string|max:255',
             'unit' => 'required|string',
+            'ringkasan' => 'required|string',
+            'deskripsi' => 'required|string',
+            'link' => 'nullable|string|max:255',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:3072',
         ]);
+
         try {
             $data = Layanan::findOrFail($id);
+
             if ($request->hasFile('gambar')) {
-                // Delete the old image
                 if ($data->gambar && Storage::disk('public')->exists($data->gambar)) {
                     Storage::disk('public')->delete($data->gambar);
                 }
-                // Store the new image
-                $path = $request->file('gambar')->store('layanan', 'public');
-            } else {
-                $path = $data->gambar;
+                $data->gambar = $request->file('gambar')->store('layanan', 'public');
             }
-            $response = $data->update([
-                'gambar' => $path,
-                'nama' => $request->nama,
-                'deskripsi' => $request->deskripsi,
-                'ringkasan' => $request->ringkasan,
-                'link' => $request->link,
-                'unit' => $request->unit,
-            ]);
-            return redirect()->route('layanan.index')->with('success', 'Unit Updated successfully.');
-        } catch (\Exception $e) {
-            throw $e;
-            return redirect()->back()->with('error', 'Failed to update Unit.');
+
+            $data->nama = $request->nama;
+            $data->unit = $request->unit;
+            $data->ringkasan = $request->ringkasan;
+            $data->deskripsi = $request->deskripsi;
+            $data->link = $request->link ?? $data->link;
+            $data->save();
+
+            return redirect()->route('layanan.index')->with('success', 'Layanan berhasil diperbarui!');
+        } catch (\Throwable $e) {
+            return redirect()->back()->withInput()->with('error', 'Gagal memperbarui layanan: ' . $e->getMessage());
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
         try {
             $data = Layanan::findOrFail($id);
-            Storage::disk('public')->delete($data->gambar);
+            if ($data->gambar && Storage::disk('public')->exists($data->gambar)) {
+                Storage::disk('public')->delete($data->gambar);
+            }
             $data->delete();
-            return redirect()->route('layanan.index')->with('success', 'Layanan Deleted successfully.');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Failed to delete Layanan.');
+
+            return redirect()->route('layanan.index')->with('success', 'Layanan berhasil dihapus.');
+        } catch (\Throwable $e) {
+            return redirect()->back()->with('error', 'Gagal menghapus layanan: ' . $e->getMessage());
         }
     }
 }

@@ -1,72 +1,93 @@
 @extends('admin.main-layout')
-@section('title', 'Index|Galeri')
 
 @section('content')
-    <div class="container card">
-        <div class="row">
-            <div class="col-12 mt-3">
-                <h4>Galeri List</h4>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <a href="{{ route('galeri.create') }}" class="btn btn-primary"><i class="bi bi-plus-square"></i>
-                            Tambah Galeri</a>
-                    </div>
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            
+            <div class="d-flex align-items-center justify-content-between pt-3 pb-2 mb-3 border-bottom">
+                <div>
+                    <h4 class="card-title p-0 mb-1 fw-bold">Galeri Dokumentasi Foto</h4>
+                    <p class="text-muted small mb-0">Kelola foto-foto dokumentasi kegiatan BUMDes Makmur Jaya</p>
                 </div>
-                <table class="table mt-3">
-                    <thead>
+                <a href="{{ route('galeri.create') }}" class="btn btn-success rounded-pill px-3">
+                    <i class="bi bi-plus-circle me-1"></i> Tambah Foto Galeri
+                </a>
+            </div>
+
+            @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="bi bi-check-circle me-1"></i> {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
+            @if(session('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="bi bi-exclamation-triangle me-1"></i> {{ session('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
                         <tr>
-                            <th>No</th>
-                            <th>Gambar</th>
+                            <th style="width: 50px;">No</th>
+                            <th style="width: 120px;">Foto</th>
                             <th>Nama Kegiatan</th>
                             <th>Tanggal</th>
                             <th>Keterangan</th>
                             <th>Status</th>
-                            <th>Actions</th>
+                            <th style="width: 130px;" class="text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $i = 1; ?>
-                        @foreach ($galeris as $galeri)
+                        @forelse ($galeris as $index => $galeri)
                             <tr>
-                                <td>{{ $i++ }}</td>
+                                <td>{{ $loop->iteration }}</td>
                                 <td>
-                                    <img src="{{ Storage::url($galeri->gambar) }}" alt="Gambar" width="100">
+                                    @if(!empty($galeri->gambar))
+                                        <img src="{{ Storage::url($galeri->gambar) }}" alt="{{ $galeri->nama }}" class="rounded shadow-sm" style="width: 80px; height: 55px; object-fit: cover;">
+                                    @else
+                                        <span class="text-muted small">Tidak ada</span>
+                                    @endif
                                 </td>
-                                <td>{{ $galeri->nama }}</td>
-                                <td>{{ $galeri->tanggal }}</td>
-                                <td>{{ $galeri->keterangan }}</td>
-                                <td>{{ $galeri->status }}</td>
+                                <td><strong class="text-dark">{{ $galeri->nama }}</strong></td>
+                                <td><small class="text-muted">{{ $galeri->tanggal }}</small></td>
+                                <td><small class="text-muted">{{ Str::limit($galeri->keterangan, 50) }}</small></td>
                                 <td>
-                                    {{-- <a href="{{ route('home.show', $home->id) }}" class="btn btn-info">Show</a> --}}
-                                    <a href="{{ route('galeri.edit', $galeri->id) }}" class="btn btn-warning">Edit</a>
-                                    <form action="{{ route('galeri.destroy', $galeri->id) }}" method="POST"
-                                        class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger"
-                                            onclick="return confirm('Anda yakin hapus ?')">Hapus</button>
-                                    </form>
+                                    @if($galeri->status == 'tampil')
+                                        <span class="badge bg-success">Tampil</span>
+                                    @else
+                                        <span class="badge bg-secondary">Sembunyi</span>
+                                    @endif
+                                </td>
+                                <td class="text-center">
+                                    <div class="btn-group btn-group-sm">
+                                        <a href="{{ route('galeri.edit', $galeri->id) }}" class="btn btn-outline-warning" title="Edit">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </a>
+                                        <form action="{{ route('galeri.destroy', $galeri->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus foto galeri ini?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-outline-danger" title="Hapus">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <tr>
+                                <td colspan="7" class="text-center py-4 text-muted">Belum ada foto dalam galeri.</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
+
         </div>
     </div>
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Show toast notifications on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            var toastElList = [].slice.call(document.querySelectorAll('.toast'))
-            var toastList = toastElList.map(function(toastEl) {
-                return new bootstrap.Toast(toastEl, {
-                    autohide: true,
-                    delay: 3000
-                })
-            })
-            toastList.forEach(toast => toast.show())
-        });
-    </script>
+</div>
 @endsection

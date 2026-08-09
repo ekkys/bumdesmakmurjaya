@@ -8,107 +8,81 @@ use Illuminate\Support\Facades\Storage;
 
 class KlienController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $kliens = Klien::all();
         return view('admin.klien.index', compact('kliens'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-
         return view('admin.klien.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        $request->validate([
-            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        $validated = $request->validate([
             'nama' => 'required|string|max:255',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg,webp,svg|max:2048',
         ]);
 
         try {
             $path = $request->file('gambar')->store('klien', 'public');
             Klien::create([
-                'gambar' => $path,
                 'nama' => $request->nama,
+                'gambar' => $path,
             ]);
 
-            return redirect()->route('klien.index')->with('success', 'Klien created successfully.');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Failed to create Klien.');
+            return redirect()->route('klien.index')->with('success', 'Data mitra/klien berhasil ditambahkan!');
+        } catch (\Throwable $e) {
+            return redirect()->back()->withInput()->with('error', 'Gagal menambahkan klien: ' . $e->getMessage());
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Klien $klien)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id)
     {
         $klien = Klien::findOrFail($id);
         return view('admin.klien.edit', compact('klien'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'nama' => 'nullable|string|max:255',
+        $validated = $request->validate([
+            'nama' => 'required|string|max:255',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp,svg|max:2048',
         ]);
 
         try {
-            $klien = klien::findOrFail($id);
+            $klien = Klien::findOrFail($id);
 
             if ($request->hasFile('gambar')) {
-                Storage::disk('public')->delete($klien->gambar);
-                $path = $request->file('gambar')->store('klien', 'public');
-            } else {
-                $path = $klien->gambar;
+                if ($klien->gambar && Storage::disk('public')->exists($klien->gambar)) {
+                    Storage::disk('public')->delete($klien->gambar);
+                }
+                $klien->gambar = $request->file('gambar')->store('klien', 'public');
             }
-            $klien->update([
-                'gambar' => $path,
-                'nama' => $request->nama,
-            ]);
 
-            return redirect()->route('klien.index')->with('success', 'Home Updated successfully.');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Failed to update home.');
+            $klien->nama = $request->nama;
+            $klien->save();
+
+            return redirect()->route('klien.index')->with('success', 'Data mitra/klien berhasil diperbarui!');
+        } catch (\Throwable $e) {
+            return redirect()->back()->withInput()->with('error', 'Gagal memperbarui klien: ' . $e->getMessage());
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
         try {
-            $data = Klien::find($id);
-            Storage::disk('public')->delete($data->gambar);
+            $data = Klien::findOrFail($id);
+            if ($data->gambar && Storage::disk('public')->exists($data->gambar)) {
+                Storage::disk('public')->delete($data->gambar);
+            }
             $data->delete();
 
-            return redirect()->route('klien.index')->with('success', 'Klien deleted successfully.');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Failed to delete Klien.');
+            return redirect()->route('klien.index')->with('success', 'Data mitra/klien berhasil dihapus.');
+        } catch (\Throwable $e) {
+            return redirect()->back()->with('error', 'Gagal menghapus klien: ' . $e->getMessage());
         }
     }
 }

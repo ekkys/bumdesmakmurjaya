@@ -1,78 +1,85 @@
 @extends('admin.main-layout')
-@section('title', 'Index|Layanan')
 
 @section('content')
-    <div class="container card">
-        <div class="row">
-            <div class="col-12 mt-3">
-                <h4>Layanan List</h4>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <a href="{{ route('layanan.create') }}" class="btn btn-primary"><i class="bi bi-plus-square"></i>
-                            Tambah
-                            Layanan</a>
-                    </div>
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            
+            <div class="d-flex align-items-center justify-content-between pt-3 pb-2 mb-3 border-bottom">
+                <div>
+                    <h4 class="card-title p-0 mb-1 fw-bold">Manajemen Layanan BUMDes</h4>
+                    <p class="text-muted small mb-0">Kelola daftar produk dan jasa layanan masyarakat</p>
                 </div>
-                <table class="table mt-3">
-                    <thead>
+                <a href="{{ route('layanan.create') }}" class="btn btn-success rounded-pill px-3">
+                    <i class="bi bi-plus-circle me-1"></i> Tambah Layanan
+                </a>
+            </div>
+
+            @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="bi bi-check-circle me-1"></i> {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
+            @if(session('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="bi bi-exclamation-triangle me-1"></i> {{ session('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
                         <tr>
-                            <th>No</th>
-                            <th>Nama</th>
+                            <th style="width: 50px;">No</th>
+                            <th style="width: 100px;">Gambar</th>
+                            <th>Nama Layanan</th>
+                            <th>Unit Terkait</th>
                             <th>Ringkasan</th>
-                            <th>Deskripsi</th>
-                            <th>Link</th>
-                            <th>Unit</th>
-                            <th>Gambar</th>
-                            <th>Actions</th>
+                            <th style="width: 130px;" class="text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $i = 1; ?>
-                        @foreach ($layanans as $layanan)
+                        @forelse ($layanans as $layanan)
                             <tr>
-                                <td>{{ $i++ }}</td>
-                                <td>{{ $layanan->nama }}</td>
-                                <td>{{ $layanan->ringkasan }}</td>
+                                <td>{{ $loop->iteration }}</td>
                                 <td>
-                                    <div>{!! html_entity_decode($layanan->deskripsi) !!}
+                                    @if(!empty($layanan->gambar))
+                                        <img src="{{ Storage::url($layanan->gambar) }}" alt="{{ $layanan->nama }}" class="rounded shadow-sm" style="width: 70px; height: 50px; object-fit: cover;">
+                                    @else
+                                        <span class="text-muted small">No Image</span>
+                                    @endif
+                                </td>
+                                <td><strong class="text-dark">{{ $layanan->nama }}</strong></td>
+                                <td><span class="badge bg-light text-dark border">{{ strtoupper($layanan->unit) }}</span></td>
+                                <td><small class="text-muted">{{ Str::limit($layanan->ringkasan, 70) }}</small></td>
+                                <td class="text-center">
+                                    <div class="btn-group btn-group-sm">
+                                        <a href="{{ route('layanan.edit', $layanan->id) }}" class="btn btn-outline-warning" title="Edit">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </a>
+                                        <form action="{{ route('layanan.destroy', $layanan->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus layanan ini?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-outline-danger" title="Hapus">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </form>
                                     </div>
                                 </td>
-                                <td><a href="{{ $layanan->link }}" target="_blank">{{ $layanan->link }}</a></td>
-                                <td>{{ $layanan->unit }}</td>
-                                <td>
-                                    <img src="{{ Storage::url($layanan->gambar) }}" alt="Gambar" width="100">
-                                </td>
-                                <td>
-                                    {{-- <a href="{{ route('layanan.show', $home->id) }}" class="btn btn-info">Show</a> --}}
-                                    <a href="{{ route('layanan.edit', $layanan->id) }}" class="btn btn-warning">Edit</a>
-                                    <form action="{{ route('layanan.destroy', $layanan->id) }}" method="POST"
-                                        class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger"
-                                            onclick="return confirm('Anda yakin hapus ?')">Hapus</button>
-                                    </form>
-                                </td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <tr>
+                                <td colspan="6" class="text-center py-4 text-muted">Belum ada layanan yang ditambahkan.</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
+
         </div>
     </div>
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Show toast notifications on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            var toastElList = [].slice.call(document.querySelectorAll('.toast'))
-            var toastList = toastElList.map(function(toastEl) {
-                return new bootstrap.Toast(toastEl, {
-                    autohide: true,
-                    delay: 3000
-                })
-            })
-            toastList.forEach(toast => toast.show())
-        });
-    </script>
+</div>
 @endsection

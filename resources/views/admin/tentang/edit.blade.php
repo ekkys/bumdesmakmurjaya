@@ -1,85 +1,90 @@
 @extends('admin.main-layout')
-@section('title', 'Edit Tentang Kami')
-@section('css')
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-@endsection
 
 @section('content')
-    <div class="container mt-1">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h2 class="card-title">Edit Tentang Kami</h2>
-                    </div>
-                    <div class="card-body">
-                        <form action="{{ route('tentang.update', $tentang->id) }}" method="POST"
-                            enctype="multipart/form-data">
-                            @csrf
-                            @method('PUT')
-                            <div class="mb-3">
-                                <label for="judul" class="form-label">Judul</label>
-                                <input type="text" class="form-control" id="judul" name="judul"
-                                    value="{{ $tentang->judul }}">
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label for="gambar" class="form-label">Gambar 1 (Di Detail) </label>
-                                    <input type="file" class="form-control" id="gambar" name="gambar1">
-                                    @if ($tentang->gambar1)
-                                        <img src="{{ Storage::url($tentang->gambar1) }}" alt="{{ $tentang->gambar1 }}"
-                                            width="100">
-                                    @endif
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="gambar" class="form-label">Gambar 2</label>
-                                    <input type="file" class="form-control" id="gambar" name="gambar2">
-                                    @if ($tentang->gambar2)
-                                        <img src="{{ Storage::url($tentang->gambar2) }}" alt="{{ $tentang->gambar2 }}"
-                                            width="100">
-                                    @endif
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="gambar" class="form-label">Gambar3</label>
-                                    <input type="file" class="form-control" id="gambar" name="gambar3">
-                                    @if ($tentang->gambar3)
-                                        <img src="{{ Storage::url($tentang->gambar3) }}" alt="{{ $tentang->gambar3 }}"
-                                            width="100">
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="deskripsi" class="form-label">Deskripsi</label>
-                                <textarea class="form-control" id="description" name="deskripsi" rows="3">{{ $tentang->deskripsi }}</textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Update</button>
-                        </form>
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
 
-                    </div>
+            <div class="d-flex align-items-center justify-content-between pt-3 pb-2 mb-3 border-bottom">
+                <div>
+                    <h4 class="card-title p-0 mb-1 fw-bold">Edit Profil Tentang Kami</h4>
+                    <p class="text-muted small mb-0">Perbarui profil dan 3 foto tentang BUMDes</p>
                 </div>
+                <a href="{{ route('tentang.index') }}" class="btn btn-outline-secondary rounded-pill px-3">
+                    <i class="bi bi-arrow-left me-1"></i> Kembali
+                </a>
             </div>
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul class="mb-0">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form action="{{ route('tentang.update', $tentang->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+
+                <div class="row g-3">
+                    
+                    <div class="col-12">
+                        <label for="judul" class="form-label fw-semibold">Judul Profil <span class="text-danger">*</span></label>
+                        <input type="text" name="judul" id="judul" class="form-control" value="{{ old('judul', $tentang->judul) }}" required>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="gambar1" class="form-label fw-semibold">Foto 1 (Utama)</label>
+                        @if(!empty($tentang->gambar1))
+                            <div class="mb-2">
+                                <img src="{{ Storage::url($tentang->gambar1) }}" alt="Foto 1" class="rounded border" style="max-height: 80px;">
+                            </div>
+                        @endif
+                        <input type="file" name="gambar1" id="gambar1" class="form-control" accept="image/*">
+                        <small class="text-muted">Ganti foto 1</small>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="gambar2" class="form-label fw-semibold">Foto 2</label>
+                        @if(!empty($tentang->gambar2))
+                            <div class="mb-2">
+                                <img src="{{ Storage::url($tentang->gambar2) }}" alt="Foto 2" class="rounded border" style="max-height: 80px;">
+                            </div>
+                        @endif
+                        <input type="file" name="gambar2" id="gambar2" class="form-control" accept="image/*">
+                        <small class="text-muted">Ganti foto 2</small>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="gambar3" class="form-label fw-semibold">Foto 3</label>
+                        @if(!empty($tentang->gambar3))
+                            <div class="mb-2">
+                                <img src="{{ Storage::url($tentang->gambar3) }}" alt="Foto 3" class="rounded border" style="max-height: 80px;">
+                            </div>
+                        @endif
+                        <input type="file" name="gambar3" id="gambar3" class="form-control" accept="image/*">
+                        <small class="text-muted">Ganti foto 3</small>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="deskripsi" class="form-label fw-semibold">Deskripsi Profil & Visi Misi <span class="text-danger">*</span></label>
+                        <textarea name="deskripsi" id="deskripsi" rows="8" class="form-control" required>{{ old('deskripsi', $tentang->deskripsi) }}</textarea>
+                    </div>
+
+                    <div class="col-12 mt-4 text-end">
+                        <a href="{{ route('tentang.index') }}" class="btn btn-light me-2">Batal</a>
+                        <button type="submit" class="btn btn-warning px-4">
+                            <i class="bi bi-save me-1"></i> Perbarui Profil
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-    <script>
-        $('#description').summernote({
-            placeholder: 'description...',
-            tabsize: 2,
-            height: 300,
-            toolbar: [
-                ['style', ['style']],
-                ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
-                ['fontname', ['fontname']],
-                ['fontsize', ['fontsize']],
-                ['color', ['color']],
-                ['para', ['ol', 'ul', 'paragraph', 'height']],
-                ['table', ['table']],
-                ['insert', ['link']],
-                ['view', ['undo', 'redo', 'fullscreen', 'codeview', 'help']]
-            ]
-        });
-    </script>
-    </div>
+</div>
 @endsection

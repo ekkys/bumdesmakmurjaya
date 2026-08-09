@@ -1,109 +1,87 @@
 @extends('admin.main-layout')
-@section('title', 'Index|Biaya')
 
 @section('content')
-    <!-- Toast Notifications -->
-    <div aria-live="polite" aria-atomic="true" class="position-relative">
-        <div class="toast-container position-absolute top-0 end-0 p-3">
-            @if (session('success'))
-                <div class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive"
-                    aria-atomic="true">
-                    <div class="d-flex">
-                        <div class="toast-body">
-                            {{ session('success') }}
-                        </div>
-                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
-                            aria-label="Close"></button>
-                    </div>
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            
+            <div class="d-flex align-items-center justify-content-between pt-3 pb-2 mb-3 border-bottom">
+                <div>
+                    <h4 class="card-title p-0 mb-1 fw-bold">Manajemen Tarif & Retribusi</h4>
+                    <p class="text-muted small mb-0">Kelola daftar paket biaya layanan untuk masyarakat</p>
+                </div>
+                <a href="{{ route('biaya.create') }}" class="btn btn-success rounded-pill px-3">
+                    <i class="bi bi-plus-circle me-1"></i> Tambah Paket Biaya
+                </a>
+            </div>
+
+            @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="bi bi-check-circle me-1"></i> {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
 
-            @if (session('error'))
-                <div class="toast align-items-center text-white bg-danger border-0" role="alert" aria-live="assertive"
-                    aria-atomic="true">
-                    <div class="d-flex">
-                        <div class="toast-body">
-                            {{ session('error') }}
-                        </div>
-                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
-                            aria-label="Close"></button>
-                    </div>
+            @if(session('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="bi bi-exclamation-triangle me-1"></i> {{ session('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
-        </div>
-    </div>
-    <!-- Toast Notifications -->
-    <div class="container card ">
-        <div class="row">
-            <div class="col-12 mt-3">
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <h3>List Biaya Layanan</h3>
-                        <a href="{{ route('biaya.create') }}" class="btn btn-primary"><i class="bi bi-plus-square"></i>
-                            Tambah Biaya </a>
-                    </div>
-                </div>
-                <table class="table table-bordered">
-                    <thead>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
                         <tr>
-                            <th>No</th>
-                            <th>Nama</th>
-                            <th>Nominal</th>
-                            <th>Unit</th>
-                            <th>Item Layanan</th>
-                            <th>Satuan</th>
-                            <th>Keterangan</th>
-                            <th width="280px">Action</th>
+                            <th style="width: 50px;">No</th>
+                            <th>Nama Paket</th>
+                            <th>Kategori</th>
+                            <th>Nominal Tarif</th>
+                            <th>Satuan Periode</th>
+                            <th>Highlight</th>
+                            <th style="width: 130px;" class="text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $i = 0; ?>
-                        @foreach ($biayas as $biaya)
+                        @forelse ($biayas as $biaya)
                             <tr>
-                                <td>{{ ++$i }}</td>
-                                <td>{{ $biaya->nama }}</td>
-                                <td>{{ $biaya->nominal }}</td>
-                                <td>{{ $biaya->kategori }}</td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td><strong class="text-dark">{{ $biaya->nama }}</strong></td>
+                                <td><span class="badge bg-light text-dark border">{{ strtoupper($biaya->kategori) }}</span></td>
+                                <td><span class="text-success fw-bold">Rp {{ $biaya->nominal }}</span></td>
+                                <td><small class="text-muted">{{ $biaya->satuan }}</small></td>
                                 <td>
-                                    <div>
-                                        {!! html_entity_decode($biaya->item_layanan) !!}
+                                    @if($biaya->keterangan != '-')
+                                        <span class="badge bg-primary">{{ $biaya->keterangan }}</span>
+                                    @else
+                                        <span class="text-muted small">-</span>
+                                    @endif
+                                </td>
+                                <td class="text-center">
+                                    <div class="btn-group btn-group-sm">
+                                        <a href="{{ route('biaya.edit', $biaya->id) }}" class="btn btn-outline-warning" title="Edit">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </a>
+                                        <form action="{{ route('biaya.destroy', $biaya->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus paket biaya ini?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-outline-danger" title="Hapus">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </form>
                                     </div>
                                 </td>
-                                <td>{{ $biaya->satuan }}</td>
-                                <td>{{ $biaya->keterangan }}</td>
-                                <td>
-                                    <a href="{{ route('biaya.edit', $biaya->id) }}" class="btn btn-warning">Edit</a>
-                                    <form action="{{ route('biaya.destroy', $biaya->id) }}" method="POST"
-                                        class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger"
-                                            onclick="return confirm('Anda yakin hapus ?')">Hapus</button>
-                                    </form>
-                                </td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <tr>
+                                <td colspan="7" class="text-center py-4 text-muted">Belum ada paket biaya layanan.</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
-
             </div>
+
         </div>
     </div>
-
-
-    </div>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Show toast notifications on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            var toastElList = [].slice.call(document.querySelectorAll('.toast'))
-            var toastList = toastElList.map(function(toastEl) {
-                return new bootstrap.Toast(toastEl, {
-                    autohide: true,
-                    delay: 3000
-                })
-            })
-            toastList.forEach(toast => toast.show())
-        });
-    </script>
+</div>
 @endsection

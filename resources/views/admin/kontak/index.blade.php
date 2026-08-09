@@ -1,72 +1,65 @@
 @extends('admin.main-layout')
-@section('title', 'Index|Kontak')
 
 @section('content')
-    <div class="container card">
-        <div class="row">
-            <div class="col-12 mt-3 table-responsive">
-                <h4>Kontak List</h4>
-                {{-- <a href="{{ route('kontak.create') }}" class="btn btn-primary">Tambah</a> --}}
-                <table class="table table-responsive-lg">
-                    <thead>
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            
+            <div class="d-flex align-items-center justify-content-between pt-3 pb-2 mb-3 border-bottom">
+                <div>
+                    <h4 class="card-title p-0 mb-1 fw-bold">Kontak, Alamat & Sosial Media</h4>
+                    <p class="text-muted small mb-0">Kelola informasi kontak, alamat kantor, dan tautan sosial media resmi BUMDes</p>
+                </div>
+            </div>
+
+            @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="bi bi-check-circle me-1"></i> {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
+            @if(session('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="bi bi-exclamation-triangle me-1"></i> {{ session('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
                         <tr>
-                            <th>Action</th>
-                            <th>No</th>
-                            <th>Alamat</th>
-                            <th>Telpon/Hp</th>
-                            <th width="10px">Maps</th>
+                            <th style="width: 50px;">No</th>
+                            <th>Alamat Kantor</th>
+                            <th>WhatsApp / Telepon</th>
                             <th>Email</th>
-                            <th>YouTube</th>
-                            <th>WhatsApp</th>
-                            <th>Instagram</th>
-                            <th>Facebook</th>
-                            <th>TikTok</th>
+                            <th style="width: 130px;" class="text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $i = 1; ?>
-                        @foreach ($kontaks as $kontak)
+                        @forelse ($kontaks as $kontak)
                             <tr>
-                                <td>
-                                    {{-- <a href="{{ route('home.show', $kontak->id) }}" class="btn btn-info">Show</a> --}}
-                                    <a href="{{ route('kontak.edit', $kontak->id) }}" class="btn btn-warning">Edit</a>
-                                    {{-- <form action="{{ route('kontak.destroy', $kontak->id) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger"
-                                            onclick="return confirm('Anda yakin hapus ?')">Hapus</button>
-                                    </form> --}}
+                                <td>{{ $loop->iteration }}</td>
+                                <td><small class="text-dark">{{ $kontak->alamat }}</small></td>
+                                <td><strong class="text-success"><i class="bi bi-whatsapp me-1"></i>{{ $kontak->telpon }}</strong></td>
+                                <td><small class="text-muted"><i class="bi bi-envelope me-1"></i>{{ $kontak->email }}</small></td>
+                                <td class="text-center">
+                                    <a href="{{ route('kontak.edit', $kontak->id) }}" class="btn btn-sm btn-outline-warning" title="Edit">
+                                        <i class="bi bi-pencil-square me-1"></i> Edit
+                                    </a>
                                 </td>
-                                <td>{{ $i++ }}</td>
-                                <td>{{ $kontak->alamat }} </td>
-                                <td>{{ $kontak->telpon }}</td>
-                                <td>{{ $kontak->maps }}</td>
-                                <td>{{ $kontak->email }}</td>
-                                <td>{{ $kontak->youtube }}</td>
-                                <td>{{ $kontak->whatsapp }}</td>
-                                <td>{{ $kontak->instagram }}</td>
-                                <td>{{ $kontak->facebook }}</td>
-                                <td>{{ $kontak->tiktok }}</td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <tr>
+                                <td colspan="5" class="text-center py-4 text-muted">Belum ada data kontak.</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
+
         </div>
     </div>
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Show toast notifications on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            var toastElList = [].slice.call(document.querySelectorAll('.toast'))
-            var toastList = toastElList.map(function(toastEl) {
-                return new bootstrap.Toast(toastEl, {
-                    autohide: true,
-                    delay: 3000
-                })
-            })
-            toastList.forEach(toast => toast.show())
-        });
-    </script>
+</div>
 @endsection

@@ -1,78 +1,66 @@
 @extends('admin.main-layout')
-@section('title', 'Create|Legalitas')
+
 @section('content')
-    <div class="container card">
-        <div class="row">
-            <div class="col-12 mt-3">
-                <h1>Legalitas</h1>
-                <!-- Toast Notifications -->
-                <div aria-live="polite" aria-atomic="true" class="position-relative">
-                    <div class="toast-container position-absolute top-0 end-0 p-3">
-                        @if (session('success'))
-                            <div class="toast align-items-center text-white bg-success border-0" role="alert"
-                                aria-live="assertive" aria-atomic="true">
-                                <div class="d-flex">
-                                    <div class="toast-body">
-                                        {{ session('success') }}
-                                    </div>
-                                    <button type="button" class="btn-close btn-close-white me-2 m-auto"
-                                        data-bs-dismiss="toast" aria-label="Close"></button>
-                                </div>
-                            </div>
-                        @endif
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
 
-                        @if (session('error'))
-                            <div class="toast align-items-center text-white bg-danger border-0" role="alert"
-                                aria-live="assertive" aria-atomic="true">
-                                <div class="d-flex">
-                                    <div class="toast-body">
-                                        {{ session('error') }}
-                                    </div>
-                                    <button type="button" class="btn-close btn-close-white me-2 m-auto"
-                                        data-bs-dismiss="toast" aria-label="Close"></button>
-                                </div>
-                            </div>
-                        @endif
-                    </div>
+            <div class="d-flex align-items-center justify-content-between pt-3 pb-2 mb-3 border-bottom">
+                <div>
+                    <h4 class="card-title p-0 mb-1 fw-bold">Tambah Dokumen Legalitas</h4>
+                    <p class="text-muted small mb-0">Upload berkas sertifikasi atau izin baru</p>
                 </div>
-                <div class="card-body">
-
-                    <form action="{{ route('legalitas.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="nama" class="form-label"><strong>Nama</strong></label>
-                            <input type="text" class="form-control" id="nama" name="nama">
-                        </div>
-                        <div class="mb-3">
-                            <label for="gambar" class="form-label"><strong>Gambar</strong></label>
-                            <input type="file" class="form-control" id="gambar" name="gambar">
-                        </div>
-                        <div class="mb-3">
-                            <label for="link" class="form-label"><strong>Link</strong></label>
-                            <textarea class="form-control" id="link" name="link"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="deskripsi" class="form-label"><strong>Deskripsi</strong></label>
-                            <textarea class="form-control" id="deskripsi" name="deskripsi"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                </div>
+                <a href="{{ route('legalitas.index') }}" class="btn btn-outline-secondary rounded-pill px-3">
+                    <i class="bi bi-arrow-left me-1"></i> Kembali
+                </a>
             </div>
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul class="mb-0">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form action="{{ route('legalitas.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+
+                <div class="row g-3">
+                    
+                    <div class="col-md-7">
+                        <label for="nama" class="form-label fw-semibold">Nama Dokumen / Izin <span class="text-danger">*</span></label>
+                        <input type="text" name="nama" id="nama" class="form-control" value="{{ old('nama') }}" required placeholder="Contoh: Nomor Induk Berusaha (NIB)">
+                    </div>
+
+                    <div class="col-md-5">
+                        <label for="link" class="form-label fw-semibold">Tautan Dokumen / Google Drive (Opsional)</label>
+                        <input type="text" name="link" id="link" class="form-control" value="{{ old('link') }}" placeholder="https://...">
+                    </div>
+
+                    <div class="col-12">
+                        <label for="gambar" class="form-label fw-semibold">File Gambar Sertifikat (Maks 3MB) <span class="text-danger">*</span></label>
+                        <input type="file" name="gambar" id="gambar" class="form-control" accept="image/*" required>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="deskripsi" class="form-label fw-semibold">Deskripsi Singkat (Opsional)</label>
+                        <textarea name="deskripsi" id="deskripsi" rows="3" class="form-control" placeholder="Keterangan nomor surat atau instansi penerbit...">{{ old('deskripsi') }}</textarea>
+                    </div>
+
+                    <div class="col-12 mt-4 text-end">
+                        <a href="{{ route('legalitas.index') }}" class="btn btn-light me-2">Batal</a>
+                        <button type="submit" class="btn btn-success px-4">
+                            <i class="bi bi-save me-1"></i> Simpan Dokumen
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+
         </div>
     </div>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Show toast notifications on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            var toastElList = [].slice.call(document.querySelectorAll('.toast'))
-            var toastList = toastElList.map(function(toastEl) {
-                return new bootstrap.Toast(toastEl, {
-                    autohide: true,
-                    delay: 3000
-                })
-            })
-            toastList.forEach(toast => toast.show())
-        });
-    </script>
+</div>
 @endsection

@@ -4,75 +4,49 @@ namespace App\Http\Controllers;
 
 use App\Models\Biaya;
 use App\Models\Unit;
-use DOMDocument;
 use Illuminate\Http\Request;
 
 class BiayaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $biayas = Biaya::all();
         return view('admin.biaya.index', compact('biayas'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $kategori_layanan = Unit::all();
         return view('admin.biaya.create', compact('kategori_layanan'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        $request->validate([
-            'nama' => 'required',
-            'nominal' => 'required',
-            'kategori' => 'required',
-            'item_layanan' => 'required',
-            'satuan' => 'required',
-            'keterangan' => 'required',
-        ]);
-        // return $request->all();
-
-        // return $request->validate();
-
-        $item_layanan = $request->item_layanan;
-
-        $dom = new DOMDocument();
-        $dom->loadHTML($item_layanan, 9);
-        $item_layanan = $dom->saveHTML();
-
-        Biaya::create([
-            'nama' => $request->nama,
-            'kategori' => $request->kategori,
-            'nominal' => $request->nominal,
-            'item_layanan' => $item_layanan,
-            'satuan' => $request->satuan,
-            'keterangan' => $request->keterangan,
+        $validated = $request->validate([
+            'nama' => 'required|string|max:255',
+            'nominal' => 'required|string|max:100',
+            'kategori' => 'required|string|max:100',
+            'item_layanan' => 'required|string',
+            'satuan' => 'required|string|max:100',
+            'keterangan' => 'nullable|string|max:100',
         ]);
 
-        return redirect()->route('biaya.index')->with('success', 'Biaya created successfully.');
+        try {
+            Biaya::create([
+                'nama' => $request->nama,
+                'kategori' => $request->kategori,
+                'nominal' => $request->nominal,
+                'item_layanan' => $request->item_layanan,
+                'satuan' => $request->satuan,
+                'keterangan' => $request->keterangan ?? '-',
+            ]);
+
+            return redirect()->route('biaya.index')->with('success', 'Paket biaya layanan berhasil ditambahkan!');
+        } catch (\Throwable $e) {
+            return redirect()->back()->withInput()->with('error', 'Gagal menambahkan paket biaya: ' . $e->getMessage());
+        }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Biaya $biaya)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id)
     {
         $kategori_layanan = Unit::all();
@@ -80,48 +54,41 @@ class BiayaController extends Controller
         return view('admin.biaya.edit', compact('biaya', 'kategori_layanan'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id)
     {
-
-        $request->validate([
-            'nama' => 'required',
-            'nominal' => 'required',
-            'kategori' => 'required',
-            'item_layanan' => 'required',
-            'satuan' => 'required',
-            'keterangan' => 'required',
+        $validated = $request->validate([
+            'nama' => 'required|string|max:255',
+            'nominal' => 'required|string|max:100',
+            'kategori' => 'required|string|max:100',
+            'item_layanan' => 'required|string',
+            'satuan' => 'required|string|max:100',
+            'keterangan' => 'nullable|string|max:100',
         ]);
-        // return $request->all();
-        $item_layanan = $request->item_layanan;
 
-        $dom = new DOMDocument();
-        $dom->loadHTML($item_layanan, 9);
-        $item_layanan = $dom->saveHTML();
+        try {
+            $biaya = Biaya::findOrFail($id);
+            $biaya->nama = $request->nama;
+            $biaya->nominal = $request->nominal;
+            $biaya->kategori = $request->kategori;
+            $biaya->item_layanan = $request->item_layanan;
+            $biaya->satuan = $request->satuan;
+            $biaya->keterangan = $request->keterangan ?? '-';
+            $biaya->save();
 
-        $biaya = Biaya::find($id);
-        $biaya->nama = $request->nama;
-        $biaya->nominal = $request->nominal;
-        $biaya->kategori = $request->kategori;
-        $biaya->item_layanan = $request->item_layanan;
-        $biaya->satuan = $request->satuan;
-        $biaya->keterangan = $request->keterangan;
-        $biaya->save();
-
-        return redirect()->route('biaya.index')
-            ->with('success', 'Biaya updated successfully');
+            return redirect()->route('biaya.index')->with('success', 'Paket biaya layanan berhasil diperbarui!');
+        } catch (\Throwable $e) {
+            return redirect()->back()->withInput()->with('error', 'Gagal memperbarui paket biaya: ' . $e->getMessage());
+        }
     }
 
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
-        $biaya = Biaya::find($id);
-        $biaya->delete();
-        return redirect()->route('biaya.index');
+        try {
+            $biaya = Biaya::findOrFail($id);
+            $biaya->delete();
+            return redirect()->route('biaya.index')->with('success', 'Paket biaya layanan berhasil dihapus.');
+        } catch (\Throwable $e) {
+            return redirect()->back()->with('error', 'Gagal menghapus paket biaya: ' . $e->getMessage());
+        }
     }
 }

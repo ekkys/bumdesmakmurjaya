@@ -1,90 +1,65 @@
-@extends('website.detail.detail-main-layout')
-@section('content')
-    <!-- Service Details Section -->
-    <section id="service-details" class="service-details section">
+@extends('website.layouts.main-layout')
 
-        <div class="container mt-3">
-            <div class="row">
-                <!-- Page Title -->
-                <div class="page-title" data-aos="fade">
-                    <div class="container d-lg-flex justify-content-between align-items-center">
-                        <h1 class="mb-2 mb-lg-0">Biaya Details</h1>
-                        <nav class="breadcrumbs">
-                            <ol>
-                                <li><a href="index.html">Home</a></li>
-                                <li class="current">Biaya Details</li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div><!-- End Page Title -->
+@section('content')
+    <!-- Detail Hero Header -->
+    <div class="detail-hero-banner">
+        <div class="container">
+            <h1 data-aos="fade-up">Daftar Biaya & Retribusi Layanan</h1>
+            <div class="detail-breadcrumbs" data-aos="fade-up" data-aos-delay="100">
+                <a href="{{ route('website.index') }}">Beranda</a>
+                <i class="bi bi-chevron-right"></i>
+                <span>Biaya Layanan</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Section -->
+    <section class="section pt-0 pb-5">
+        <div class="container">
+            
+            <div class="section-title text-start mb-4" data-aos="fade-up">
+                <h2>Pilihan Paket Retribusi</h2>
+                <p>Informasi tarif resmi layanan pengelolaan sampah terpadu dan jasa unit BUMDes Makmur Jaya.</p>
             </div>
 
-            <div class="row gy-5">
+            <div class="row gy-4 justify-content-center" data-aos="fade-up" data-aos-delay="100">
+                @forelse ($biayas as $biaya)
+                    @php
+                        $isFeatured = (!empty($biaya->keterangan) && $biaya->keterangan != '-');
+                        $waText = "Assalamu'alaikum, saya ingin berlangganan/bertanya paket " . urlencode($biaya->nama);
+                    @endphp
+                    <div class="col-lg-4 col-md-6">
+                        <div class="pricing-card {{ $isFeatured ? 'featured' : '' }}">
+                            @if ($isFeatured)
+                                <div class="pricing-ribbon">
+                                    <i class="bi bi-star-fill me-1"></i> {{ $biaya->keterangan }}
+                                </div>
+                            @endif
 
-                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                            <h3>{{ $biaya->nama }}</h3>
+                            
+                            <div class="pricing-amount">
+                                <span class="currency">Rp</span>
+                                <span class="price">{{ $biaya->nominal }}</span>
+                                <span class="period">/ {{ $biaya->satuan }}</span>
+                            </div>
 
-                    <div class="service-box">
-                        <h4>Serices List</h4>
-                        <div class="services-list">
-                            <a href="#" class="active"><i class="bi bi-arrow-right-circle"></i><span>Web
-                                    Design</span></a>
-                            <a href="#"><i class="bi bi-arrow-right-circle"></i><span>Web Design</span></a>
-                            <a href="#"><i class="bi bi-arrow-right-circle"></i><span>Product Management</span></a>
-                            <a href="#"><i class="bi bi-arrow-right-circle"></i><span>Graphic Design</span></a>
-                            <a href="#"><i class="bi bi-arrow-right-circle"></i><span>Marketing</span></a>
+                            <div class="pricing-features">
+                                {!! html_entity_decode($biaya->item_layanan) !!}
+                            </div>
+
+                            <div class="mt-auto">
+                                <a href="https://wa.me/6281511119337?text={{ $waText }}" target="_blank" class="btn-pricing">
+                                    <i class="bi bi-whatsapp"></i> Hubungi Kami
+                                </a>
+                            </div>
                         </div>
-                    </div><!-- End Services List -->
-
-                    <div class="service-box">
-                        <h4>Download Catalog</h4>
-                        <div class="download-catalog">
-                            <a href="#"><i class="bi bi-filetype-pdf"></i><span>Catalog PDF</span></a>
-                            <a href="#"><i class="bi bi-file-earmark-word"></i><span>Catalog DOC</span></a>
-                        </div>
-                    </div><!-- End Services List -->
-
-                    <div class="help-box d-flex flex-column justify-content-center align-items-center">
-                        <i class="bi bi-headset help-icon"></i>
-                        <h4>Have a Question?</h4>
-                        <p class="d-flex align-items-center mt-2 mb-0"><i class="bi bi-telephone me-2"></i> <span>+1 5589
-                                55488 55</span></p>
-                        <p class="d-flex align-items-center mt-1 mb-0"><i class="bi bi-envelope me-2"></i> <a
-                                href="mailto:contact@example.com">contact@example.com</a></p>
                     </div>
-
-                </div>
-
-                <div class="col-lg-8 ps-lg-5" data-aos="fade-up" data-aos-delay="200">
-                    <img src="assets/img/services.jpg" alt="" class="img-fluid services-img">
-                    <h3>Temporibus et in vero dicta aut eius lidero plastis trand lined voluptas dolorem ut voluptas</h3>
-                    <p>
-                        Blanditiis voluptate odit ex error ea sed officiis deserunt. Cupiditate non consequatur et
-                        doloremque consequuntur. Accusantium labore reprehenderit error temporibus saepe perferendis fuga
-                        doloribus vero. Qui omnis quo sit. Dolorem architecto eum et quos deleniti officia qui.
-                    </p>
-                    <ul>
-                        <li><i class="bi bi-check-circle"></i> <span>Aut eum totam accusantium voluptatem.</span></li>
-                        <li><i class="bi bi-check-circle"></i> <span>Assumenda et porro nisi nihil nesciunt
-                                voluptatibus.</span></li>
-                        <li><i class="bi bi-check-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea</span></li>
-                    </ul>
-                    <p>
-                        Est reprehenderit voluptatem necessitatibus asperiores neque sed ea illo. Deleniti quam sequi optio
-                        iste veniam repellat odit. Aut pariatur itaque nesciunt fuga.
-                    </p>
-                    <p>
-                        Sunt rem odit accusantium omnis perspiciatis officia. Laboriosam aut consequuntur recusandae
-                        mollitia doloremque est architecto cupiditate ullam. Quia est ut occaecati fuga. Distinctio ex
-                        repellendus eveniet velit sint quia sapiente cumque. Et ipsa perferendis ut nihil. Laboriosam vel
-                        voluptates tenetur nostrum. Eaque iusto cupiditate et totam et quia dolorum in. Sunt molestiae ipsum
-                        at consequatur vero. Architecto ut pariatur autem ad non cumque nesciunt qui maxime. Sunt eum quia
-                        impedit dolore alias explicabo ea.
-                    </p>
-                </div>
-
+                @empty
+                    <div class="col-12 text-center text-muted py-5">Belum ada paket biaya layanan yang tersedia.</div>
+                @endforelse
             </div>
 
         </div>
-
-    </section><!-- /Service Details Section -->
+    </section>
 @endsection

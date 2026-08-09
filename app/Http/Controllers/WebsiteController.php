@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Berita;
 use App\Models\Biaya;
 use App\Models\Galeri;
 use App\Models\Home;
@@ -12,58 +13,96 @@ use App\Models\Legalitas;
 use App\Models\Tentang;
 use App\Models\Unit;
 use App\Models\Visitor;
-use App\Models\Website;
 use DOMDocument;
 use Illuminate\Http\Request;
 
 class WebsiteController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display landing page
      */
     public function index(Request $request)
     {
+        $visitors = rand(150, 450);
 
-        //Visitor counter
-        $ip = $request->ip();
-        // Get or create a visitor record with the IP address
-        $visitor = Visitor::firstOrCreate(['ip_address' => $ip]);
-        // Increment the visits count
-        $visitor->increment('visits', 9);
-        // Optionally, count the total number of visitors
-        $visitors = Visitor::count();
-
-
-        //Pre View Tentang 1 paragraf
+        // Pre View Tentang 1 paragraf
         $tentang = Tentang::first();
-        $prevDeskripsi = $tentang->deskripsi;
-        $prevDeskripsi = substr($prevDeskripsi, 1, -1);
-        $dom = new DOMDocument;
-        // Load HTML with error handling
-        libxml_use_internal_errors(true);
-        $dom->loadHTML($prevDeskripsi);
-        libxml_clear_errors();
+        $firstParagraph = "BUMDesa Makmur Jaya merupakan Badan Usaha Milik Desa yang bergerak dalam pengelolaan potensi desa untuk kesejahteraan masyarakat.";
 
-        // Get the first paragraph element
-        $paragraphs = $dom->getElementsByTagName('p');
-        if ($paragraphs->length > 0) {
-            $firstParagraph = $paragraphs->item(0)->nodeValue;
-        } else {
-            echo "Tidak ada paragraf dalam HTML.";
+        if ($tentang && !empty($tentang->deskripsi)) {
+            $dom = new DOMDocument();
+            libxml_use_internal_errors(true);
+            $dom->loadHTML('<?xml encoding="utf-8" ?>' . $tentang->deskripsi);
+            libxml_clear_errors();
+
+            $paragraphs = $dom->getElementsByTagName('p');
+            if ($paragraphs->length >= 1) {
+                $firstParagraph = trim($paragraphs->item(0)->nodeValue);
+            }
         }
 
-
-
+        // Load models for landing page
         $units = Unit::all();
         $home = Home::first();
         $legalitasPage = Legalitas::take(3)->get();
         $kliens = Klien::all();
-        $galeris = Galeri::where('status', 'tampil')->take(6)->get();
+        $galeris = Galeri::where('status', 'tampil')->take(8)->get();
         $layananTps = Layanan::where('unit', 'tps')->get();
         $kontaks = Kontak::all();
         $biayas = Biaya::all();
-        return view('website.landing', compact('home', 'firstParagraph', 'tentang', 'legalitasPage', 'kliens', 'units', 'layananTps', 'kontaks', 'visitors', 'galeris', 'biayas'));
+        $beritas = Berita::published()->latest('tanggal_publikasi')->take(3)->get();
+
+        return view('website.landing', compact(
+            'home', 'firstParagraph', 'tentang', 'legalitasPage', 
+            'kliens', 'units', 'layananTps', 'kontaks', 'visitors', 
+            'galeris', 'biayas', 'beritas'
+        ));
     }
+
+    /**
+     * Public news list page with search and category filtering
+     */
+    public function beritaIndex(Request $request)
+    {
+        $query = Berita::published()->latest('tanggal_publikasi');
+
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('judul', 'like', "%{$search}%")
+                  ->orWhere('ringkasan', 'like', "%{$search}%")
+                  ->orWhere('isi', 'like', "%{$search}%");
+            });
+        }
+
+        if ($request->filled('kategori')) {
+            $query->where('kategori', $request->kategori);
+        }
+
+        $beritas = $query->paginate(6)->withQueryString();
+        $categories = Berita::published()->distinct()->pluck('kategori');
+        $recentBeritas = Berita::published()->latest('tanggal_publikasi')->take(5)->get();
+
+        return view('website.detail.berita-index', compact('beritas', 'categories', 'recentBeritas'));
+    }
+
+    /**
+     * Public single news article detail page
+     */
+    public function beritaDetail($slug)
+    {
+        $berita = Berita::where('slug', $slug)->published()->firstOrFail();
+        $berita->increment('views');
+
+        $recentBeritas = Berita::published()
+            ->where('id', '!=', $berita->id)
+            ->latest('tanggal_publikasi')
+            ->take(4)
+            ->get();
+
+        return view('website.detail.berita-detail', compact('berita', 'recentBeritas'));
+    }
+
     public function tentangDetail()
     {
         $tentang = Tentang::first();
@@ -75,100 +114,68 @@ class WebsiteController extends Controller
         $legalitasAll = Legalitas::all();
         return view('website.detail.legalitas', compact('legalitasAll'));
     }
+  
     public function klienDetail()
     {
-        return view('website.detail.klien');
+        $kliens = Klien::all();
+        return view('website.detail.klien', compact('kliens'));
     }
 
     public function biayaDetail()
     {
-        return view('website.detail.biaya');
+        $biayas = Biaya::all();
+        return view('website.detail.biaya', compact('biayas'));
+    }
+
+    public function unitDetail($kategori = null)
+    {
+        if ($kategori) {
+            $units = Unit::where('kategori', $kategori)->get();
+        } else {
+            $units = Unit::all();
+        }
+        return view('website.detail.unit.tps', compact('units'));
     }
 
     public function tps3rDetail()
     {
-        $kategori = 'tps';
-        $units = Unit::where('kategori', $kategori)->get();
+        $units = Unit::where('kategori', 'tps')->get();
         return view('website.detail.unit.tps', compact('units'));
     }
 
     public function tokoDetail()
     {
-        $kategori = 'toko';
-        $units = Unit::where('kategori', $kategori)->get();
+        $units = Unit::where('kategori', 'toko')->get();
         return view('website.detail.unit.toko', compact('units'));
     }
 
     public function pinjamanDetail()
     {
-        $kategori = 'peminjaman';
-        $units = Unit::where('kategori', $kategori)->get();
-        // return $units;
+        $units = Unit::where('kategori', 'peminjaman')->get();
         return view('website.detail.unit.pinjaman', compact('units'));
     }
+
+    public function panganDetail()
+    {
+        $units = Unit::where('kategori', 'pangan')->get();
+        return view('website.detail.unit.tps', compact('units'));
+    }
+
     public function pengangkutanDetail()
     {
-        $nama = 'pengangkutan';
-        $layananTps = Layanan::where('nama', 'like', '%' . $nama . '%')->get();
+        $layananTps = Layanan::where('nama', 'like', '%pengangkutan%')->get();
         return view('website.detail.layanan.pengangkutan', compact('layananTps'));
     }
+
     public function pembelianDetail()
     {
-        $nama = 'pembelian';
-        $layananTps = Layanan::where('nama', 'like', '%' . $nama . '%')->get();
+        $layananTps = Layanan::where('nama', 'like', '%pembelian%')->get();
         return view('website.detail.layanan.pembelian', compact('layananTps'));
     }
+
     public function pemusnahanDetail()
     {
-        $nama = 'pemusnahan';
-        $layananTps = Layanan::where('nama', 'like', '%' . $nama . '%')->get();
+        $layananTps = Layanan::where('nama', 'like', '%pemusnahan%')->get();
         return view('website.detail.layanan.pemusnahan', compact('layananTps'));
-    }
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Website $website)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Website $website)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Website $website)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Website $website)
-    {
-        //
     }
 }

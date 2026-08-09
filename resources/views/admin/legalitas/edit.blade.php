@@ -1,59 +1,73 @@
 @extends('admin.main-layout')
-@section('title', 'Edit|Legalitas')
-@section('css')
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-@endsection
+
 @section('content')
-    <div class="container mt-1">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h2 class="card-title">Edit Legalitas</h2>
-                    </div>
-                    <div class="card-body">
-                        <form action="{{ route('legalitas.update', $legalitas->id) }}" method="POST"
-                            enctype="multipart/form-data">
-                            @csrf
-                            @method('PUT')
-                            <div class="mb-3">
-                                <label for="nama" class="form-label"><strong>Nama</strong></label>
-                                <input type="text" class="form-control" id="nama" name="nama"
-                                    value="{{ $legalitas->nama }}">
-                            </div>
-                            <div class="mb-3">
-                                <label for="gambar" class="form-label"><strong>Gambar</strong></label>
-                                <input type="file" class="form-control" id="gambar" name="gambar">
-                                <img src="{{ Storage::url($legalitas->gambar) }}" alt="Gambar" width="100"
-                                    class="mt-2">
-                            </div>
-                            <div class="mb-3">
-                                <label for="link" class="form-label"><strong>Link</strong></label>
-                                <input class="form-control" id="link" name="link" value="{{ $legalitas->link }}">
-                            </div>
-                            <div class="mb-3">
-                                <label for="deskripsi" class="form-label"><strong>Deskripsi</strong></label>
-                                <textarea class="form-control" id="deskripsi" name="deskripsi">{{ $legalitas->deskripsi }}</textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Update</button>
-                        </form>
-                    </div>
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+
+            <div class="d-flex align-items-center justify-content-between pt-3 pb-2 mb-3 border-bottom">
+                <div>
+                    <h4 class="card-title p-0 mb-1 fw-bold">Edit Dokumen Legalitas</h4>
+                    <p class="text-muted small mb-0">Perbarui data surat izin atau sertifikasi</p>
                 </div>
+                <a href="{{ route('legalitas.index') }}" class="btn btn-outline-secondary rounded-pill px-3">
+                    <i class="bi bi-arrow-left me-1"></i> Kembali
+                </a>
             </div>
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul class="mb-0">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form action="{{ route('legalitas.update', $legalitas->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+
+                <div class="row g-3">
+                    
+                    <div class="col-md-7">
+                        <label for="nama" class="form-label fw-semibold">Nama Dokumen / Izin <span class="text-danger">*</span></label>
+                        <input type="text" name="nama" id="nama" class="form-control" value="{{ old('nama', $legalitas->nama) }}" required>
+                    </div>
+
+                    <div class="col-md-5">
+                        <label for="link" class="form-label fw-semibold">Tautan Dokumen</label>
+                        <input type="text" name="link" id="link" class="form-control" value="{{ old('link', $legalitas->link) }}">
+                    </div>
+
+                    <div class="col-12">
+                        <label for="gambar" class="form-label fw-semibold">File Gambar Sertifikat</label>
+                        @if(!empty($legalitas->gambar))
+                            <div class="mb-2">
+                                <img src="{{ Storage::url($legalitas->gambar) }}" alt="Current Image" class="rounded border" style="max-height: 120px;">
+                            </div>
+                        @endif
+                        <input type="file" name="gambar" id="gambar" class="form-control" accept="image/*">
+                        <small class="text-muted">Biarkan kosong jika tidak ingin mengubah berkas gambar.</small>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="deskripsi" class="form-label fw-semibold">Deskripsi Singkat</label>
+                        <textarea name="deskripsi" id="deskripsi" rows="3" class="form-control">{{ old('deskripsi', $legalitas->deskripsi) }}</textarea>
+                    </div>
+
+                    <div class="col-12 mt-4 text-end">
+                        <a href="{{ route('legalitas.index') }}" class="btn btn-light me-2">Batal</a>
+                        <button type="submit" class="btn btn-warning px-4">
+                            <i class="bi bi-save me-1"></i> Perbarui Dokumen
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+
         </div>
     </div>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Show toast notifications on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            var toastElList = [].slice.call(document.querySelectorAll('.toast'))
-            var toastList = toastElList.map(function(toastEl) {
-                return new bootstrap.Toast(toastEl, {
-                    autohide: true,
-                    delay: 3000
-                })
-            })
-            toastList.forEach(toast => toast.show())
-        });
-    </script>
+</div>
 @endsection

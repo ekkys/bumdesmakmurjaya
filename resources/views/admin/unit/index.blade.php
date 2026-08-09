@@ -1,105 +1,85 @@
 @extends('admin.main-layout')
-@section('title', 'Index|unit')
 
 @section('content')
-    <!-- Toast Notifications -->
-    <div aria-live="polite" aria-atomic="true" class="position-relative">
-        <div class="toast-container position-absolute top-0 end-0 p-3">
-            @if (session('success'))
-                <div class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive"
-                    aria-atomic="true">
-                    <div class="d-flex">
-                        <div class="toast-body">
-                            {{ session('success') }}
-                        </div>
-                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
-                            aria-label="Close"></button>
-                    </div>
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            
+            <div class="d-flex align-items-center justify-content-between pt-3 pb-2 mb-3 border-bottom">
+                <div>
+                    <h4 class="card-title p-0 mb-1 fw-bold">Manajemen Unit Usaha</h4>
+                    <p class="text-muted small mb-0">Kelola daftar unit usaha operasional BUMDes Makmur Jaya</p>
+                </div>
+                <a href="{{ route('unit.create') }}" class="btn btn-success rounded-pill px-3">
+                    <i class="bi bi-plus-circle me-1"></i> Tambah Unit Usaha
+                </a>
+            </div>
+
+            @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="bi bi-check-circle me-1"></i> {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
 
-            @if (session('error'))
-                <div class="toast align-items-center text-white bg-danger border-0" role="alert" aria-live="assertive"
-                    aria-atomic="true">
-                    <div class="d-flex">
-                        <div class="toast-body">
-                            {{ session('error') }}
-                        </div>
-                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
-                            aria-label="Close"></button>
-                    </div>
+            @if(session('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="bi bi-exclamation-triangle me-1"></i> {{ session('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
-        </div>
-    </div>
-    <!-- Toast Notifications -->
-    <div class="container card">
-        <div class="row">
-            <div class="col-12 mt-3">
-                <h4>Unit List</h4>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <a href="{{ route('unit.create') }}" class="btn btn-primary"><i class="bi bi-plus-square"></i>
-                            Tambah
-                            Unit</a>
-                    </div>
-                </div>
-                <table class="table table-bordered">
-                    <thead>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
                         <tr>
-                            <th>No</th>
-                            <th>Nama</th>
-                            <th>Ringkasan</th>
-                            <th>Deskripsi</th>
+                            <th style="width: 50px;">No</th>
+                            <th style="width: 100px;">Gambar</th>
+                            <th>Nama Unit</th>
                             <th>Kategori</th>
-                            <th>Link</th>
-                            <th>Gambar</th>
-                            <th>Actions</th>
+                            <th>Ringkasan</th>
+                            <th style="width: 130px;" class="text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $i = 1; ?>
-                        @foreach ($units as $unit)
+                        @forelse ($units as $unit)
                             <tr>
-                                <td>{{ $i++ }}</td>
-                                <td>{{ $unit->nama }}</td>
-                                <td>{{ $unit->ringkasan }}</td>
-                                <td>{{ $unit->deskripsi }}</td>
-                                <td>{{ $unit->kategori }}</td>
-                                <td><a href="{{ $unit->link }}" target="_blank">{{ $unit->link }}</a></td>
+                                <td>{{ $loop->iteration }}</td>
                                 <td>
-                                    <img src="{{ Storage::url($unit->gambar) }}" alt="Gambar" width="100">
+                                    @if(!empty($unit->gambar))
+                                        <img src="{{ Storage::url($unit->gambar) }}" alt="{{ $unit->nama }}" class="rounded shadow-sm" style="width: 70px; height: 50px; object-fit: cover;">
+                                    @else
+                                        <span class="text-muted small">No Image</span>
+                                    @endif
                                 </td>
-                                <td>
-
-                                    <a href="{{ route('unit.edit', $unit->id) }}" class="btn btn-warning">Edit</a>
-                                    <form action="{{ route('unit.destroy', $unit->id) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger"
-                                            onclick="return confirm('Anda yakin hapus ?')">Hapus</button>
-                                    </form>
+                                <td><strong class="text-dark">{{ $unit->nama }}</strong></td>
+                                <td><span class="badge bg-light text-dark border">{{ $unit->kategori }}</span></td>
+                                <td><small class="text-muted">{{ Str::limit($unit->ringkasan, 70) }}</small></td>
+                                <td class="text-center">
+                                    <div class="btn-group btn-group-sm">
+                                        <a href="{{ route('unit.edit', $unit->id) }}" class="btn btn-outline-warning" title="Edit">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </a>
+                                        <form action="{{ route('unit.destroy', $unit->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus unit usaha ini?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-outline-danger" title="Hapus">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <tr>
+                                <td colspan="6" class="text-center py-4 text-muted">Belum ada unit usaha.</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
+
         </div>
     </div>
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Show toast notifications on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            var toastElList = [].slice.call(document.querySelectorAll('.toast'))
-            var toastList = toastElList.map(function(toastEl) {
-                return new bootstrap.Toast(toastEl, {
-                    autohide: true,
-                    delay: 3000
-                })
-            })
-            toastList.forEach(toast => toast.show())
-        });
-    </script>
+</div>
 @endsection

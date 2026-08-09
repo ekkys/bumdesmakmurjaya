@@ -1,41 +1,45 @@
-@extends('website.detail.detail-main-layout')
-@section('content')
-    <!-- Service Details Section -->
-    <section id="service-details" class="service-details section">
+@extends('website.layouts.main-layout')
 
-        <div class="container mt-3">
-            <div class="row">
-                <!-- Page Title -->
-                <div class="page-title" data-aos="fade">
-                    <div class="container d-lg-flex justify-content-between align-items-center">
-                        <h1 class="mb-2 mb-lg-0">Legalitas</h1>
-                        <nav class="breadcrumbs">
-                            <ol>
-                                <li><a href="index.html">Home</a></li>
-                                <li class="current">Legalitas</li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div><!-- End Page Title -->
+@section('content')
+    <!-- Detail Hero Header -->
+    <div class="detail-hero-banner">
+        <div class="container">
+            <h1 data-aos="fade-up">Legalitas & Sertifikasi</h1>
+            <div class="detail-breadcrumbs" data-aos="fade-up" data-aos-delay="100">
+                <a href="{{ route('website.index') }}">Beranda</a>
+                <i class="bi bi-chevron-right"></i>
+                <span>Legalitas</span>
             </div>
-            <div class="containers mt-5">
-                <div class="gy-4" style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
-                    @foreach ($legalitasAll as $legal)
-                        <div class="" data-aos="fade-up" data-aos-delay="100">
-                            <a href="{{ $legal->link }}" class=""
-                                style="display: flex; flex-direction: column; gap: 10px;">
-                                <strong style="text-align: center;"> {{ $legal->nama }}</strong>
-                                <!-- Image Preview -->
-                                <img src="{{ Storage::url($legal->gambar) }}" alt="Image Preview" width="320"
-                                    height="480">
-                                {{-- style=" filter: blur(1px); " --}}
+        </div>
+    </div>
+
+    <!-- Content Section -->
+    <section class="section pt-0 pb-5">
+        <div class="container">
+            
+            <div class="section-title text-start mb-4" data-aos="fade-up">
+                <h2>Dokumen Resmi BUMDes</h2>
+                <p>Seluruh unit usaha BUMDes Makmur Jaya telah memiliki dasar hukum dan izin operasional resmi.</p>
+            </div>
+
+            <div class="legalitas-grid" data-aos="fade-up" data-aos-delay="100">
+                @forelse ($legalitasAll as $legal)
+                    <div class="legalitas-card">
+                        <div class="legalitas-img-box">
+                            <img src="{{ Storage::url($legal->gambar) }}" alt="{{ $legal->nama }}" loading="lazy">
+                        </div>
+                        <h4>{{ $legal->nama }}</h4>
+                        <div class="mt-auto pt-2">
+                            <a href="{{ $legal->link ?? Storage::url($legal->gambar) }}" target="_blank" class="btn btn-sm btn-outline-success rounded-pill px-3">
+                                <i class="bi bi-file-earmark-pdf me-1"></i> Buka Dokumen Lengkap
                             </a>
                         </div>
-                    @endforeach
-                </div>
+                    </div>
+                @empty
+                    <div class="col-12 text-center text-muted py-5">Belum ada dokumen legalitas terdaftar.</div>
+                @endforelse
             </div>
 
         </div>
-
-    </section><!-- /Service Details Section -->
+    </section>
 @endsection

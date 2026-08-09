@@ -1,53 +1,68 @@
-@extends('website.detail.detail-main-layout')
+@extends('website.layouts.main-layout')
 
 @section('content')
-    <!-- Service Details Section -->
-    <section id="service-details" class="service-details section">
-        <!-- WhatsApp Float Button -->
-        <a href="https://wa.me/6281511119337" class="whatsapp-float" target="_blank">
-            <img src="{{ url('assets\img\whatsapp.png') }}" alt="WhatsApp">
-        </a>
+    @php
+        $unit = $units->first();
+        $title = $unit->nama ?? 'Unit Peminjaman Dana';
+    @endphp
 
-        @foreach ($units as $unit)
-            <div class="container mt-3">
-                <div class="row">
-                    <!-- Page Title -->
-                    <div class="page-title" data-aos="fade">
-                        <div class="container d-lg-flex justify-content-between align-items-center">
-                            <h1 class="mb-2 mb-lg-0">{{ $unit->nama }}</h1>
-                            <nav class="breadcrumbs">
-                                <ol>
-                                    <li><a href="{{ route('website.index') }}">Home</a></li>
-                                    <li class="current">{{ $unit->nama }}</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div><!-- End Page Title -->
-                </div>
+    <!-- Detail Hero Header -->
+    <div class="detail-hero-banner">
+        <div class="container">
+            <h1 data-aos="fade-up">{{ $title }}</h1>
+            <div class="detail-breadcrumbs" data-aos="fade-up" data-aos-delay="100">
+                <a href="{{ route('website.index') }}">Beranda</a>
+                <i class="bi bi-chevron-right"></i>
+                <a href="{{ route('website.index') }}#features">Unit Usaha</a>
+                <i class="bi bi-chevron-right"></i>
+                <span>{{ $title }}</span>
+            </div>
+        </div>
+    </div>
 
-                <div class="row gy-5">
+    <!-- Content Section -->
+    <section class="section pt-0 pb-5">
+        <div class="container">
+            @foreach ($units as $item)
+                <div class="row gy-4 mb-5">
 
+                    <!-- Sidebar Contact -->
                     <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="help-box d-flex flex-column justify-content-center align-items-center">
-                            <i class="bi bi-headset help-icon"></i>
-                            <h4>Ingin bertanya langsung?</h4>
-                            <a href="https://wa.me/6281511119337" target="_blank">
-                                <p class="d-flex align-items-center mt-2 mb-0"><i class="bi bi-telephone me-2"></i> <span>
-                                        +62 815-1111-9337 </span></p>
+                        <div class="contact-info-card text-start mb-4">
+                            <div class="contact-icon-box ms-0">
+                                <i class="bi bi-cash-coin"></i>
+                            </div>
+                            <h4 class="fw-bold mb-2">Simpan Pinjam Usaha</h4>
+                            <p class="text-muted mb-4">Solusi permodalan usaha mikro dan kecil untuk warga desa.</p>
+                            <a href="https://wa.me/6281511119337?text=Assalamu'alaikum%2C%20saya%20ingin%20berkonsultasi%20mengenai%20unit%20peminjaman%20dana" target="_blank" class="btn btn-success w-100 rounded-pill py-2">
+                                <i class="bi bi-whatsapp me-1"></i> Ajukan Konsultasi
                             </a>
                         </div>
                     </div>
-                    <div class="col-lg-8 ps-lg-5" data-aos="fade-up" data-aos-delay="200">
-                        <img src="{{ Storage::url($unit->gambar) }}" alt="" class="img-fluid services-img">
-                        <h3>
-                            <h3>{{ $unit->nama }}</span></h3>
-                        </h3>
-                        <div class="mt-3">{!! html_entity_decode($unit->deskripsi) !!} </div>
 
+                    <!-- Main Content -->
+                    <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+                        <div class="detail-card-box">
+                            @if(!empty($item->gambar))
+                                <img src="{{ Storage::url($item->gambar) }}" alt="{{ $item->nama }}" class="img-fluid rounded-4 mb-4 w-100 shadow-sm" style="max-height: 420px; object-fit: cover;">
+                            @endif
+
+                            <h2 class="fw-bold mb-3">{{ $item->nama }}</h2>
+
+                            @if(!empty($item->ringkasan))
+                                <div class="p-3 bg-light rounded-3 border-start border-success border-4 mb-4 text-secondary">
+                                    {{ $item->ringkasan }}
+                                </div>
+                            @endif
+                            
+                            <div class="article-content leading-relaxed">
+                                {!! html_entity_decode($item->deskripsi ?? '') !!}
+                            </div>
+                        </div>
                     </div>
 
                 </div>
-            </div>
-        @endforeach
-    </section><!-- /Service Details Section -->
+            @endforeach
+        </div>
+    </section>
 @endsection

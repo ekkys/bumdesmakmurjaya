@@ -1,23 +1,20 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\BiayaController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KlienController;
 use App\Http\Controllers\KontakController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\LegalitasController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TentangController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\WebsiteController;
 use Illuminate\Support\Facades\Route;
 
-
-
-// Website
+// Website Public Routes
 Route::get('/', [WebsiteController::class, 'index'])->name('website.index');
 Route::get('/tentang-detail', [WebsiteController::class, 'tentangDetail'])->name('tentang.detail');
 Route::get('/legalitas-detail', [WebsiteController::class, 'legalitasDetail'])->name('legalitas.detail');
@@ -27,18 +24,23 @@ Route::get('/unit-detail', [WebsiteController::class, 'unitDetail'])->name('unit
 Route::get('/tps3r-detail', [WebsiteController::class, 'tps3rDetail'])->name('tps3r.detail');
 Route::get('/toko-detail', [WebsiteController::class, 'tokoDetail'])->name('toko.detail');
 Route::get('/pinjaman-detail', [WebsiteController::class, 'pinjamanDetail'])->name('pinjaman.detail');
+Route::get('/pangan-detail', [WebsiteController::class, 'panganDetail'])->name('pangan.detail');
 Route::get('/pengangkutan-detail', [WebsiteController::class, 'pengangkutanDetail'])->name('pengangkutan.detail');
 Route::get('/pembelian-detail', [WebsiteController::class, 'pembelianDetail'])->name('pembelian.detail');
 Route::get('/pemusnahan-detail', [WebsiteController::class, 'pemusnahanDetail'])->name('pemusnahan.detail');
 
+// Public News Routes
+Route::get('/kabar-berita', [WebsiteController::class, 'beritaIndex'])->name('berita.public.index');
+Route::get('/kabar-berita/{slug}', [WebsiteController::class, 'beritaDetail'])->name('berita.public.detail');
 
-// Route untuk login
+// Admin Auth Routes
 Route::get('login', [AdminController::class, 'loginPage'])->name('login');
-Route::post('actionlogin', [AdminController::class, 'actionlogin'])->name('actionlogin');
+Route::post('actionlogin', [AdminController::class, 'actionLogin'])->name('actionlogin');
 
-// Route dengan middleware auth
+// Admin Protected Routes
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+    Route::resource('berita', BeritaController::class);
     Route::resource('home', HomeController::class);
     Route::resource('tentang', TentangController::class);
     Route::resource('legalitas', LegalitasController::class);

@@ -8,124 +8,99 @@ use Illuminate\Support\Facades\Storage;
 
 class UnitController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $units = Unit::all();
         return view('admin.unit.index', compact('units'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('admin.unit.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        $request->validate([
-            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        $validated = $request->validate([
             'nama' => 'required|string|max:255',
-            'deskripsi' => 'required|string|max:255',
-            'ringkasan' => 'required|string|max:255',
-            'link' => 'required|string|max:255',
-            'kategori' => 'required|string|max:255',
+            'kategori' => 'required|string|max:100',
+            'ringkasan' => 'required|string',
+            'deskripsi' => 'required|string',
+            'link' => 'nullable|string|max:255',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg,webp|max:3072',
         ]);
+
         try {
             $path = $request->file('gambar')->store('unit', 'public');
             Unit::create([
-                'gambar' => $path,
                 'nama' => $request->nama,
+                'kategori' => $request->kategori,
                 'ringkasan' => $request->ringkasan,
                 'deskripsi' => $request->deskripsi,
-                'link' => $request->link,
-                'kategori' => $request->kategori,
+                'link' => $request->link ?? '',
+                'gambar' => $path,
             ]);
 
-            return redirect()->route('unit.index')->with('success', 'Home created successfully.');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Failed to create home.');
+            return redirect()->route('unit.index')->with('success', 'Unit Usaha berhasil ditambahkan!');
+        } catch (\Throwable $e) {
+            return redirect()->back()->withInput()->with('error', 'Gagal menambahkan Unit Usaha: ' . $e->getMessage());
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Unit $unit)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id)
     {
         $unit = Unit::findOrFail($id);
         return view('admin.unit.edit', compact('unit'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'nama' => 'required|string',
-            'deskripsi' => 'required|string',
+        $validated = $request->validate([
+            'nama' => 'required|string|max:255',
+            'kategori' => 'required|string|max:100',
             'ringkasan' => 'required|string',
-            'link' => 'required|string',
-            'kategori' => 'required|string'
+            'deskripsi' => 'required|string',
+            'link' => 'nullable|string|max:255',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:3072',
         ]);
 
         try {
-            $data = Unit::findOrFail($id);
+            $unit = Unit::findOrFail($id);
 
             if ($request->hasFile('gambar')) {
-                // Delete the old image
-                if ($data->gambar && Storage::disk('public')->exists($data->gambar)) {
-                    Storage::disk('public')->delete($data->gambar);
+                if ($unit->gambar && Storage::disk('public')->exists($unit->gambar)) {
+                    Storage::disk('public')->delete($unit->gambar);
                 }
-                // Store the new image
-                $path = $request->file('gambar')->store('unit', 'public');
-            } else {
-                $path = $data->gambar;
+                $unit->gambar = $request->file('gambar')->store('unit', 'public');
             }
-            $response =  $data->update([
-                'gambar' => $path,
-                'nama' => $request->nama,
-                'deskripsi' => $request->deskripsi,
-                'ringkasan' => $request->ringkasan,
-                'link' => $request->link,
-                'kategori' => $request->kategori
-            ]);
-            return redirect()->route('unit.index')->with('success', 'Unit Updated successfully.');
-        } catch (\Exception $e) {
-            throw $e;
-            return redirect()->back()->with('error', 'Failed to update Unit.');
+
+            $unit->nama = $request->nama;
+            $unit->kategori = $request->kategori;
+            $unit->ringkasan = $request->ringkasan;
+            $unit->deskripsi = $request->deskripsi;
+            $unit->link = $request->link ?? $unit->link;
+            $unit->save();
+
+            return redirect()->route('unit.index')->with('success', 'Unit Usaha berhasil diperbarui!');
+        } catch (\Throwable $e) {
+            return redirect()->back()->withInput()->with('error', 'Gagal memperbarui Unit Usaha: ' . $e->getMessage());
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
         try {
-            $data = Unit::find($id);
-            Storage::disk('public')->delete($data->gambar);
-            $data->delete();
-            return redirect()->route('unit.index')->with('success', 'Home deleted successfully.');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Failed to delete home.');
+            $unit = Unit::findOrFail($id);
+
+            if ($unit->gambar && Storage::disk('public')->exists($unit->gambar)) {
+                Storage::disk('public')->delete($unit->gambar);
+            }
+
+            $unit->delete();
+
+            return redirect()->route('unit.index')->with('success', 'Unit Usaha berhasil dihapus.');
+        } catch (\Throwable $e) {
+            return redirect()->back()->with('error', 'Gagal menghapus Unit Usaha: ' . $e->getMessage());
         }
     }
 }
