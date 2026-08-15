@@ -90,7 +90,10 @@
                                             <label for="yourPassword" class="form-label fw-semibold small">Password</label>
                                             <div class="input-group">
                                                 <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                                                <input type="password" name="password" class="form-control" id="yourPassword" placeholder="••••••••" required>
+                                                <input type="password" name="password" class="form-control border-end-0" id="yourPassword" placeholder="••••••••" required>
+                                                <button class="btn btn-outline-secondary border-start-0 text-muted" type="button" id="togglePassword" title="Lihat password" style="background-color: transparent; border-color: #dee2e6;">
+                                                    <i class="bi bi-eye" id="togglePasswordIcon"></i>
+                                                </button>
                                             </div>
                                         </div>
 
@@ -118,6 +121,22 @@
     <!-- Vendor JS Files -->
     <script src="{{ asset('assets_nice/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets_nice/js/main.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const togglePasswordBtn = document.getElementById('togglePassword');
+            const passwordInput = document.getElementById('yourPassword');
+            const toggleIcon = document.getElementById('togglePasswordIcon');
+
+            if (togglePasswordBtn && passwordInput && toggleIcon) {
+                togglePasswordBtn.addEventListener('click', function () {
+                    const isPassword = passwordInput.type === 'password';
+                    passwordInput.type = isPassword ? 'text' : 'password';
+                    toggleIcon.className = isPassword ? 'bi bi-eye-slash' : 'bi bi-eye';
+                    togglePasswordBtn.setAttribute('title', isPassword ? 'Sembunyikan password' : 'Lihat password');
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
