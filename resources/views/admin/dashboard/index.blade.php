@@ -80,7 +80,8 @@
                         </div>
                         <div class="ps-3">
                             <h4 class="fw-bold mb-0">{{ number_format($totalVisitors, 0, ',', '.') }}</h4>
-                            <span class="text-muted small">Total hits</span>
+                            <span class="text-muted small d-block">Total hits (x9)</span>
+                            <span class="text-muted small">Asli: <strong>{{ number_format($realVisitors ?? 0, 0, ',', '.') }}</strong></span>
                         </div>
                     </div>
                 </div>

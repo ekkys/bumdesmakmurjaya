@@ -24,7 +24,7 @@
                 </li>
                 <li><a href="{{ route('website.index') }}#news">Berita</a></li>
                 <li><a href="{{ route('website.index') }}#features">Unit Usaha</a></li>
-                <li><a href="{{ route('website.index') }}#features-details">Layanan</a></li>
+                <li><a href="{{ route('website.index') }}#features-details">Produk & Layanan</a></li>
                 <li><a href="{{ route('website.index') }}#clients">Klien</a></li>
                 <li><a href="{{ route('website.index') }}#services">Galeri</a></li>
                 <li><a href="{{ route('website.index') }}#pricing">Biaya</a></li>

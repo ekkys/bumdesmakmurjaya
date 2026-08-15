@@ -20,6 +20,7 @@ class AdminController extends Controller
     public function dashboard(Request $request)
     {
         $totalVisitors = Visitor::count() * 9;
+        $realVisitors = Visitor::count();
         $totalBerita = Berita::count();
         $totalUnit = Unit::count();
         $totalLayanan = Layanan::count();
@@ -31,6 +32,7 @@ class AdminController extends Controller
 
         return view('admin.dashboard.index', compact(
             'totalVisitors',
+            'realVisitors',
             'totalBerita',
             'totalUnit',
             'totalLayanan',

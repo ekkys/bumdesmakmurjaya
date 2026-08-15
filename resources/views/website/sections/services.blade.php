@@ -4,9 +4,9 @@
 
         <div class="section-title" data-aos="fade-up">
             <span class="section-badge">
-                <i class="bi bi-gear-wide-connected"></i> Layanan Unggulan
+                <i class="bi bi-gear-wide-connected"></i>Produk & Layanan Unggulan
             </span>
-            <h2>Layanan Kami</h2>
+            <h2>Produk & Layanan</h2>
             <p>Solusi pengolahan sampah terpadu, pemusnahan dokumen resmi, dan pengangkutan profesional</p>
         </div>
 

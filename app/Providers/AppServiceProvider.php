@@ -35,9 +35,14 @@ class AppServiceProvider extends ServiceProvider
                 if (Schema::hasTable('home') && Schema::hasTable('kontaks')) {
                     $home = Home::first();
                     $kontaks = Kontak::all();
+                    $realVisitors = 0;
+                    if (Schema::hasTable('visitors')) {
+                        $realVisitors = \App\Models\Visitor::count();
+                    }
                     $view->with([
                         'home' => $home,
                         'kontaks' => $kontaks,
+                        'realVisitors' => $realVisitors,
                     ]);
                 }
             } catch (\Throwable $e) {
