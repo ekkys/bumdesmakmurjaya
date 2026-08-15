@@ -1,4 +1,4 @@
-<!-- Klien & Mitra Section -->
+<!-- Mitra Section -->
 <section id="clients" class="clients section" style="padding: 70px 0; background: var(--bumdes-light);">
     <div class="container">
 
@@ -6,7 +6,7 @@
             <span class="section-badge">
                 <i class="bi bi-hand-thumbs-up-fill"></i> Kepercayaan Mitra
             </span>
-            <h2>Klien & Mitra Kami</h2>
+            <h2>Mitra Kami</h2>
             <p>Dipercaya oleh berbagai instansi, perusahaan swasta, dan kelompok masyarakat</p>
         </div>
 
@@ -14,7 +14,8 @@
             @forelse ($kliens as $klien)
                 <div class="col-6 col-md-4 col-lg-2">
                     <div class="client-logo-card">
-                        <img src="{{ Storage::url($klien->gambar) }}" alt="{{ $klien->nama }}" title="{{ $klien->nama }}" loading="lazy">
+                        <img src="{{ Storage::url($klien->gambar) }}" alt="{{ $klien->nama }}" title="{{ $klien->nama }}"
+                            loading="lazy">
                     </div>
                 </div>
             @empty
